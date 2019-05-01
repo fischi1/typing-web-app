@@ -20,13 +20,11 @@ const theme = createMuiTheme({
 });
 
 export default function withRootMui(Component : ComponentType<{}>) : ComponentType<{}> {
-
     const Welcome: React.SFC<{}> = () => {
         return <MuiThemeProvider theme={theme}>
             <CssBaseline />
             <Component />
         </MuiThemeProvider>;
     }
-
     return Welcome;
 }
