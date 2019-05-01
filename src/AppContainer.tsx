@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, SFC, useState } from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -15,9 +15,6 @@ const styles = (theme: Theme) => createStyles({
     list: {
       width: 250,
     },
-    fullList: {
-      width: 'auto',
-    },
     content: {
         padding: theme.spacing.unit
     }
@@ -27,68 +24,58 @@ type Props = {
     children: ReactNode[]
 } & WithStyles<typeof styles>;
 
-type State = {
-    open: boolean
-};
+const TemporaryDrawer : SFC<Props> = (props) => {
+    
+    const { classes, children } = props;
 
-class TemporaryDrawer extends React.Component<Props,State> {
-  constructor(props : Props) {
-      super(props);
-      this.state = {
-        open: false
-      };
-  }
-
-  render() {
-    const { classes, children } = this.props;
-
+    const [open, setOpen] = useState<boolean>(false);
+    
     const sideList = (
-      <div className={classes.list}>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
+        <div className={classes.list}>
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      );
 
     return (
-      <>
-        <AppBar position="sticky">
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={() => this.setState({open:true})}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              Mini variant drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer open={this.state.open} onClose={() => this.setState({open: false})}>
-            {sideList}
-        </Drawer>
-        <div className={classes.content}>
-            {children}
-        </div>
-      </>
+        <>
+          <AppBar position="sticky">
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={() => setOpen(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6">
+                Mini variant drawer
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer open={open} onClose={() => setOpen(false)}>
+              {sideList}
+          </Drawer>
+          <div className={classes.content}>
+              {children}
+          </div>
+        </>
     );
-  }
 }
 
 export default withStyles(styles)(TemporaryDrawer);
