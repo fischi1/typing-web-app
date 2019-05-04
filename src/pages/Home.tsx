@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Typography, createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
+import cn from "classnames";
 
 const styles = (theme: Theme) => createStyles({
     container: {
@@ -17,7 +18,7 @@ type Props = RouteComponentProps & WithStyles<typeof styles>;
 const Home : FC<Props> = (props : Props) => {
     console.log(props);
     const {classes} = props;
-    return <div className={classes.container}>     
+    return <div className={cn(classes.container, "page")}>     
         <Typography variant="h4" color="inherit">
             Home
         </Typography>

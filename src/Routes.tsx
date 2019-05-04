@@ -1,12 +1,13 @@
-import React, { FC, lazy, Suspense } from "react";
+import React, { FC, lazy, Suspense, ReactNode } from "react";
 import { Switch, Route } from "react-router";
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const Error404 = lazy(() => import('./pages/Error404'));
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Error404 from "./pages/Error404";
+
 
 const Routes : FC<{}> = () => {
-    return (
-    <Suspense fallback={<div>Loading...</div>}>
+    const switchRoutes : ReactNode = (        
         <Switch>
             <Route
             exact
@@ -21,6 +22,31 @@ const Routes : FC<{}> = () => {
             component={Error404}
             />
         </Switch>
+    );
+
+    return (
+    <Suspense fallback={<div>Loading...</div>}>
+    
+        <Route
+          render={({ location }) => {
+            const { pathname } = location;
+            return (
+                <TransitionGroup>
+                    <CSSTransition 
+                        key={pathname}
+                        classNames="page"
+                        timeout={{
+                            enter: 1000,
+                            exit: 1000,
+                        }} 
+                    >
+                        <Route
+                        location={location}
+                        render={() => switchRoutes}
+                        />
+                    </CSSTransition>
+                </TransitionGroup>
+            )}} />
     </Suspense>
     )
 }

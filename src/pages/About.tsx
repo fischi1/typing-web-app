@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Typography, WithStyles, Card, CardContent, withStyles, createStyles, Theme } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
+import cn from "classnames";
 
 const styles = (theme : Theme) => createStyles({
   card: {
@@ -52,7 +53,7 @@ const About : FC<Props> = (props : Props) => {
         </Card>
     );
 
-    return <div className={classes.container}>     
+    return <div className={cn(classes.container, "page")}>     
         <Typography variant="h4">
             About
         </Typography>
