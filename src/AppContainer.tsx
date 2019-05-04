@@ -1,15 +1,16 @@
-import React, { ReactNode, SFC, useState } from 'react';
+import React, { ReactNode, useState, FC, ComponentProps } from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { AppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
+import PersonIcon from '@material-ui/icons/Person';
+import { Link as RouterLink } from 'react-router-dom';
+import { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 
 const styles = (theme: Theme) => createStyles({
     list: {
@@ -17,40 +18,50 @@ const styles = (theme: Theme) => createStyles({
     },
     content: {
         padding: theme.spacing.unit
+    },
+    header: {
+        color: theme.palette.primary.contrastText
     }
   });
 
 type Props = {
-    children: ReactNode[]
+    children: ReactNode
 } & WithStyles<typeof styles>;
 
-const TemporaryDrawer : SFC<Props> = (props) => {
+function SomePathLink(props: ButtonBaseProps) {
+  return <RouterLink to="/some/path" {...props} />
+}
+
+const TemporaryDrawer : FC<Props> = (props) => {
     
-    const { classes, children } = props;
+    const { classes, children} = props;
 
     const [open, setOpen] = useState<boolean>(false);
+    var closeDrawer = () : void => setOpen(false);
     
     const sideList = (
         <div className={classes.list}>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <ListItem button {...{component: RouterLink, to: `/`} as any} onClick={closeDrawer}>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText>
+                Home
+              </ListItemText>
+            </ListItem>
+            <ListItem button {...{component: RouterLink, to: `/about`} as any} onClick={closeDrawer}>
+              <ListItemIcon>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText>
+                About
+              </ListItemText>
+            </ListItem>
           </List>
         </div>
       );
+
 
     return (
         <>
@@ -63,7 +74,7 @@ const TemporaryDrawer : SFC<Props> = (props) => {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6">
+              <Typography variant="h6" className={classes.header}>
                 Mini variant drawer
               </Typography>
             </Toolbar>
