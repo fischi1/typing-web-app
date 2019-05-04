@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, FC, ComponentProps } from 'react';
+import React, { ReactNode, useState, FC } from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -10,14 +10,18 @@ import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 import { Link as RouterLink } from 'react-router-dom';
-import { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 
 const styles = (theme: Theme) => createStyles({
     list: {
       width: 250,
     },
     content: {
-        padding: theme.spacing.unit
+        display: "flex",
+        flexFlow: "column",
+        flexDirection: "column",
+        minHeight: "100%",
+        height: "100%",
+        backgroundColor: "red" 
     },
     header: {
         color: theme.palette.primary.contrastText
@@ -27,10 +31,6 @@ const styles = (theme: Theme) => createStyles({
 type Props = {
     children: ReactNode
 } & WithStyles<typeof styles>;
-
-function SomePathLink(props: ButtonBaseProps) {
-  return <RouterLink to="/some/path" {...props} />
-}
 
 const TemporaryDrawer : FC<Props> = (props) => {
     
@@ -61,7 +61,6 @@ const TemporaryDrawer : FC<Props> = (props) => {
           </List>
         </div>
       );
-
 
     return (
         <>
