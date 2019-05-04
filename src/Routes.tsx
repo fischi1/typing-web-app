@@ -1,4 +1,4 @@
-import React, { FC, lazy, Suspense, ReactNode } from "react";
+import React, { FC, Suspense, ReactNode } from "react";
 import { Switch, Route } from "react-router";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Home from "./pages/Home";
@@ -36,8 +36,8 @@ const Routes : FC<{}> = () => {
                         key={pathname}
                         classNames="page"
                         timeout={{
-                            enter: 1000,
-                            exit: 1000,
+                            enter: 500,
+                            exit: 500,
                         }} 
                     >
                         <Route

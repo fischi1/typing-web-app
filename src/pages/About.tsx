@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Typography, WithStyles, Card, CardContent, withStyles, createStyles, Theme } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
 import cn from "classnames";
+import Page from "../shared/Page";
 
 const styles = (theme : Theme) => createStyles({
   card: {
@@ -21,7 +22,6 @@ const styles = (theme : Theme) => createStyles({
     marginBottom: 12,
   },
   container: {
-      flex: "1 1 100%",
       backgroundColor: theme.palette.secondary.light,
       padding: theme.spacing.unit
   }
@@ -53,19 +53,21 @@ const About : FC<Props> = (props : Props) => {
         </Card>
     );
 
-    return <div className={cn(classes.container, "page")}>     
-        <Typography variant="h4">
-            About
-        </Typography>
-        {card}
-        {card}
-        {card}
-        {card}
-        {card}
-        {card}
-        {card}
-        {card}
-    </div>; 
+    return <Page>
+		<div className={cn(classes.container)}>     
+			<Typography variant="h4">
+				About
+			</Typography>
+			{card}
+			{card}
+			{card}
+			{card}
+			{card}
+			{card}
+			{card}
+			{card}
+		</div>
+	</Page>; 
 }
 
 export default withStyles(styles)(About);

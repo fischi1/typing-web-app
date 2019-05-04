@@ -9,18 +9,12 @@ import { AppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/cor
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
+import ErrorIcon from '@material-ui/icons/Error';
 import { Link as RouterLink } from 'react-router-dom';
 
 const styles = (theme: Theme) => createStyles({
     list: {
       width: 250,
-    },
-    content: {
-        display: "flex",
-        flexFlow: "column",
-        flexDirection: "column",
-        minHeight: "100%",
-        height: "100%"
     },
     header: {
         color: theme.palette.primary.contrastText
@@ -57,6 +51,14 @@ const TemporaryDrawer : FC<Props> = (props) => {
                         About
                     </ListItemText>
                 </ListItem>
+                <ListItem button {...{component: RouterLink, to: `/asdf`} as any} onClick={closeDrawer}>
+                    <ListItemIcon>
+                        <ErrorIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                        Wrong link you got
+                    </ListItemText>
+                </ListItem>
             </List>
         </div>
     );
@@ -80,9 +82,7 @@ const TemporaryDrawer : FC<Props> = (props) => {
           <Drawer open={open} onClose={() => setOpen(false)}>
               {sideList}
           </Drawer>
-          <div className={classes.content}>
-              {children}
-          </div>
+          {children}
         </>
     );
 }
