@@ -40,26 +40,26 @@ const TemporaryDrawer : FC<Props> = (props) => {
     
     const sideList = (
         <div className={classes.list}>
-          <List>
-            <ListItem button {...{component: RouterLink, to: `/`} as any} onClick={closeDrawer}>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText>
-                Home
-              </ListItemText>
-            </ListItem>
-            <ListItem button {...{component: RouterLink, to: `/about`} as any} onClick={closeDrawer}>
-              <ListItemIcon>
-                <PersonIcon />
-              </ListItemIcon>
-              <ListItemText>
-                About
-              </ListItemText>
-            </ListItem>
-          </List>
+            <List>
+                <ListItem button {...{component: RouterLink, to: `/`} as any} onClick={closeDrawer}>
+                    <ListItemIcon>
+                        <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                        Home
+                    </ListItemText>
+                </ListItem>
+                <ListItem button {...{component: RouterLink, to: `/about`} as any} onClick={closeDrawer}>
+                    <ListItemIcon>
+                        <PersonIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                        About
+                    </ListItemText>
+                </ListItem>
+            </List>
         </div>
-      );
+    );
 
     return (
         <>
