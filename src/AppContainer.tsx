@@ -20,8 +20,7 @@ const styles = (theme: Theme) => createStyles({
         flexFlow: "column",
         flexDirection: "column",
         minHeight: "100%",
-        height: "100%",
-        backgroundColor: "red" 
+        height: "100%"
     },
     header: {
         color: theme.palette.primary.contrastText
