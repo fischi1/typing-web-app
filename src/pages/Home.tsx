@@ -3,12 +3,30 @@ import { Typography, createStyles, Theme, WithStyles, withStyles } from "@materi
 import { RouteComponentProps } from "react-router";
 import cn from "classnames";
 import Page from "../shared/Page";
+import GermanKeyboardController from "../shared/keyboard/GermanKeyboardController";
+
+const generalStyle = createStyles({
+    biggerFont: {
+        fontSize: "1.3rem"
+    }
+});
 
 const styles = (theme: Theme) => createStyles({
     container: {
         backgroundColor: theme.palette.primary.dark,
         padding: theme.spacing.unit,
         color: theme.palette.primary.contrastText
+    },
+    parOneContainer: {
+        fontFamily: "monospace",
+        ...generalStyle.biggerFont
+    },
+    parTwoContainer: {
+        fontFamily: "Roboto Mono",
+        ...generalStyle.biggerFont
+    },
+    anotherColor: {
+        color: "#38d973"
     }
 });
 
@@ -22,7 +40,7 @@ const Home : FC<Props> = (props : Props) => {
                 Home
             </Typography>
         
-            <Typography paragraph color="inherit">
+            <Typography paragraph color="inherit" className={classes.parOneContainer}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
                 elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
@@ -35,13 +53,13 @@ const Home : FC<Props> = (props : Props) => {
                 ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
             </Typography>
         
-            <Typography paragraph color="inherit">
+            <Typography paragraph color="inherit" className={classes.parTwoContainer}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
                 elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
                 hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
                 velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
-                Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis
+                Amet nisl suscipit <span className={classes.anotherColor}>adipiscing bibendum est ultricies</span> integer quis. Cursus euismod quis
                 viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
                 Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus
                 at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
@@ -60,19 +78,8 @@ const Home : FC<Props> = (props : Props) => {
                 at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
                 ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
             </Typography>
-            
-            <Typography paragraph color="inherit">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
-                elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
-                velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
-                Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis
-                viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
-                Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus
-                at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
-                ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-            </Typography>
+
+            <GermanKeyboardController />
         </div>
     </Page>; 
 }
