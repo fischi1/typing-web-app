@@ -3,10 +3,15 @@ import React from "react";
 const pressedColor = "#a1a1a1";
 const normalColor = "#ffffff";
 
+function colorForKey(pressed) {
+    if(pressed)
+        return pressedColor;
+    return normalColor;
+}
+
 const GermanKeyboardSVG  = (props) => {
   
     const { keys } = props;
-
     
     return <>
     <svg
@@ -278,7 +283,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_1"
           d="m 60,0 h 60 V 60 H 60 Z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[49]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -294,7 +299,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_2"
           d="m 120,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[50]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -310,7 +315,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_3"
           d="m 180,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[51]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -326,7 +331,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_4"
           d="m 240,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[52]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -342,7 +347,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_5"
           d="m 300,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[53]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -358,7 +363,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_6"
           d="m 360,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[54]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -374,7 +379,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_7"
           d="m 420,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[55]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -390,7 +395,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_8"
           d="m 480,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[56]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -406,7 +411,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_9"
           d="m 540,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[57]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -422,7 +427,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_0"
           d="m 600,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[48]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -438,7 +443,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_ss"
           d="m 660,0 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[219]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -502,7 +507,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_q"
           d="m 90,60 h 60 v 60 H 90 Z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[81]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -518,7 +523,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_w"
           d="m 150,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[87]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -534,7 +539,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_e"
           d="m 210,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[69]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -550,7 +555,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_r"
           d="m 270,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[82]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -566,7 +571,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_t"
           d="m 330,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[84]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -582,7 +587,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_z"
           d="m 390,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[90]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -598,7 +603,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_u"
           d="m 450,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[85]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -614,7 +619,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_i"
           d="m 510,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[73]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -630,7 +635,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_o"
           d="m 570,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[79]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -646,7 +651,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_p"
           d="m 630,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[80]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -662,7 +667,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_ue"
           d="m 690,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[186]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -678,7 +683,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_plus"
           d="m 750,60 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[187]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -710,7 +715,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_a"
           d="m 105,120 h 60 v 60 h -60 z"
           style={{
-            fill: keys ? pressedColor : normalColor,
+            fill: colorForKey(keys[65]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -726,7 +731,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_s"
           d="m 165,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[83]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -742,7 +747,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_d"
           d="m 225,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[68]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -758,7 +763,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_f"
           d="m 285,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[70]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -774,7 +779,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_g"
           d="m 345,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[71]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -790,7 +795,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_h"
           d="m 405,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[72]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -806,7 +811,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_j"
           d="m 465,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[74]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -822,7 +827,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_k"
           d="m 525,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[75]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -838,7 +843,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_l"
           d="m 585,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[76]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -854,7 +859,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_oe"
           d="m 645,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[192]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -870,7 +875,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_ae"
           d="m 705,120 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[222]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -902,7 +907,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_shift"
           d="M 3.750996e-7,180 H 75.001511 v 60 H 3.750996e-7 Z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[16]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -918,7 +923,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_y"
           d="m 135,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[89]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -934,7 +939,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_x"
           d="m 195,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[88]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -950,7 +955,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_c"
           d="m 255,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[67]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -966,7 +971,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_v"
           d="m 315,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[86]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -982,7 +987,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_b"
           d="m 375,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[66]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -998,7 +1003,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_n"
           d="m 435,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[78]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -1014,7 +1019,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_m"
           d="m 495,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[77]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -1030,7 +1035,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_comma"
           d="m 555,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[188]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -1046,7 +1051,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_dot"
           d="m 615,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[190]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -1062,7 +1067,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_dash"
           d="m 675,180 h 60 v 60 h -60 z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[189]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",
@@ -1158,7 +1163,7 @@ const GermanKeyboardSVG  = (props) => {
           id="rect_space"
           d="m 240,240 h 360 v 60 H 240 Z"
           style={{
-            fill: "#ffffff",
+            fill: colorForKey(keys[32]),
             fillOpacity: 1,
             fillRule: "evenodd",
             stroke: "#000000",

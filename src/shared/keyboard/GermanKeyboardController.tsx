@@ -1,9 +1,9 @@
-import React, { FC, useRef, useState } from "react";
-import { Theme, createStyles, withStyles, WithStyles } from "@material-ui/core";
+import React, { FC } from "react";
+import { createStyles, withStyles, WithStyles } from "@material-ui/core";
 import GermanKeyboardSVG from "./GermanKeyboardSVG";
-import useKeyEvents from "../hooks/useKeyEvents";
+import useGermanKeysState from "./useGermanKeysState";
 
-const styles = (theme : Theme) => createStyles({
+const styles = () => createStyles({
     container: {
         textAlign: "center"
     }
@@ -14,30 +14,12 @@ type Props = {
 
 const GermanKeyboardController : FC<Props> = (props : Props) => {
     const {classes} = props;    
-    const [keys, setKeys] = useState(false);
 
-    const keyUpRef = useRef<any>();
-    const keyDownRef = useRef<any>();
-
-    keyDownRef.current = (e : KeyboardEvent) => {      
-        console.log(e);  
-        if(e.code === "KeyA") {
-            console.log("down");
-            setKeys(true);
-        }
-    };
-    keyUpRef.current = (e : KeyboardEvent) => {    
-        if(e.code === "KeyA") {
-            console.log("up");
-            setKeys(false);
-        }
-    };
-
-    useKeyEvents(keyUpRef.current, keyDownRef.current);
+    const keysState = useGermanKeysState();
 
     return <>
         <div className={classes.container}>
-            <GermanKeyboardSVG keys={keys}/>
+            <GermanKeyboardSVG keys={keysState}/>
         </div>
     </>;
 }
