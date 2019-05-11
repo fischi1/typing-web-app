@@ -18,6 +18,9 @@ const styles = (theme: Theme) => createStyles({
     },
     header: {
         color: theme.palette.primary.contrastText
+    },
+    appbar: {
+        backgroundColor: theme.palette.primary.dark
     }
   });
 
@@ -65,7 +68,7 @@ const TemporaryDrawer : FC<Props> = (props) => {
 
     return (
         <>
-          <AppBar position="sticky">
+          <AppBar position="sticky" className={classes.appbar}>
             <Toolbar>
               <IconButton
                 color="inherit"

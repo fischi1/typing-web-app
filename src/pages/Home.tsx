@@ -13,9 +13,7 @@ const generalStyle = createStyles({
 
 const styles = (theme: Theme) => createStyles({
     container: {
-        backgroundColor: "#7a444a",
-        padding: theme.spacing.unit,
-        color: theme.palette.primary.contrastText
+        padding: theme.spacing.unit
     },
     parOneContainer: {
         fontFamily: "monospace",
@@ -39,11 +37,11 @@ const Home : FC<Props> = (props : Props) => {
     const {classes} = props;
     return <Page>
         <div className={cn(classes.container)}>     
-            <Typography variant="h4" color="inherit">
+            <Typography variant="h4">
                 Home
             </Typography>
         
-            <Typography paragraph color="inherit" className={classes.parOneContainer}>
+            <Typography paragraph className={classes.parOneContainer}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
                 elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
@@ -56,7 +54,7 @@ const Home : FC<Props> = (props : Props) => {
                 ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
             </Typography>
         
-            <Typography paragraph color="inherit" className={classes.parTwoContainer}>
+            <Typography paragraph className={classes.parTwoContainer}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
                 elementum <span className={classes.textBold}>facilisis leo ve<span className={classes.anotherColor}>l. Risus</span></span> at ultrices mi tempus imperdiet. Semper risus in
@@ -69,7 +67,7 @@ const Home : FC<Props> = (props : Props) => {
                 ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
             </Typography>
             
-            <Typography paragraph color="inherit">
+            <Typography paragraph>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
                 elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in

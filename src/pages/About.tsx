@@ -5,26 +5,24 @@ import cn from "classnames";
 import Page from "../shared/Page";
 
 const styles = (theme : Theme) => createStyles({
-  card: {
-    minWidth: 275,
-    backgroundColor: theme.palette.secondary.main,
-    marginBottom: theme.spacing.unit
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  container: {
-      backgroundColor: theme.palette.secondary.light,
-      padding: theme.spacing.unit
-  }
+    card: {
+        minWidth: 275,
+        marginBottom: theme.spacing.unit
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+    container: {
+        padding: theme.spacing.unit
+    }
 });
 
 type Props = RouteComponentProps & WithStyles<typeof styles>;
