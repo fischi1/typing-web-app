@@ -11,16 +11,23 @@ import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 import ErrorIcon from '@material-ui/icons/Error';
 import { Link as RouterLink } from 'react-router-dom';
+import dog from "./assets/images/dog.gif";
 
 const styles = (theme: Theme) => createStyles({
     list: {
-      width: 250,
+      width: 300,
     },
     header: {
         color: theme.palette.primary.contrastText
     },
     appbar: {
         backgroundColor: theme.palette.primary.dark
+    },
+    headerIcon: {
+        width: "50px",
+        height: "50px",
+        marginLeft: theme.spacing.unit * 1.5,
+        imageRendering: "pixelated"
     }
   });
 
@@ -75,11 +82,12 @@ const TemporaryDrawer : FC<Props> = (props) => {
                     aria-label="Open drawer"
                     onClick={() => setOpen(true)}
                     >
-                    <MenuIcon />
+                        <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.header}>
-                    Mini variant drawer
+                        Typing Web App
                     </Typography>
+                    <img src={dog} alt="Dog" className={classes.headerIcon}/>
                 </Toolbar>
             </AppBar>
             <Drawer open={open} onClose={() => setOpen(false)}>
