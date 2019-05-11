@@ -7,9 +7,9 @@ import Routes from './Routes';
 const App:FC<{}> = () => {
   return <>
     <BrowserRouter>
-      <AppContainer>
-        <Routes />
-      </AppContainer> 
+        <AppContainer>
+            <Routes />
+        </AppContainer> 
     </BrowserRouter>
   </>
 }

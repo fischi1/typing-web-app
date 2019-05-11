@@ -68,24 +68,24 @@ const TemporaryDrawer : FC<Props> = (props) => {
 
     return (
         <>
-          <AppBar position="sticky" className={classes.appbar}>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={() => setOpen(true)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" className={classes.header}>
-                Mini variant drawer
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer open={open} onClose={() => setOpen(false)}>
-              {sideList}
-          </Drawer>
-          {children}
+            <AppBar position="sticky" className={classes.appbar}>
+                <Toolbar>
+                    <IconButton
+                    color="inherit"
+                    aria-label="Open drawer"
+                    onClick={() => setOpen(true)}
+                    >
+                    <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" className={classes.header}>
+                    Mini variant drawer
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Drawer open={open} onClose={() => setOpen(false)}>
+                {sideList}
+            </Drawer>
+            {children}
         </>
     );
 }
