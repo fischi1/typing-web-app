@@ -1,6 +1,7 @@
-import React, { ComponentType } from "react";
+import React, { ComponentType, FC } from "react";
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
+import getDisplayName from "./shared/functions/getDisplayName";
 
 const theme = createMuiTheme({
     palette: {
@@ -24,12 +25,15 @@ const theme = createMuiTheme({
     }
 });
 
-export default function withRootMui(Component : ComponentType<{}>) : ComponentType<{}> {
-    const Welcome: React.SFC<{}> = () => {
+const withRootMui = <P extends object>(Component: ComponentType<P>) => {
+    var Wrapper: FC<P> = (props: P) => {
         return <MuiThemeProvider theme={theme}>
             <CssBaseline />
-            <Component />
+            <Component {...props}/>
         </MuiThemeProvider>;
     }
-    return Welcome;
+    Wrapper.displayName = `WithRootMui(${getDisplayName(Component)})`;
+    return Wrapper;
 }
+
+export default withRootMui;
