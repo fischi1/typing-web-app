@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
-import { Theme, Typography } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
 import DiamondDisplay from './DiamondDisplay';
+import LevelProgressionDisplay from './LevelProgressionDisplay';
 
 const styles = (theme: Theme) => createStyles({
     container: {
@@ -16,12 +17,9 @@ type Props = {
 
 const AccountInformation : FC<Props> = (props) => {
     const {classes} = props;
-
     return (
         <div className={classes.container}>
-            <Typography paragraph>
-                asdf
-            </Typography>
+            <LevelProgressionDisplay additionalProps={ {style:{marginRight: "8px"}} } username="Username" lvl={123} curXP={1234} nextLvlXP={9999}/>
             <DiamondDisplay />
         </div>
     );

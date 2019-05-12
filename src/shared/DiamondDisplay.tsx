@@ -6,20 +6,21 @@ import { highlightColors } from '../highlightColors';
 
 const styles = (theme: Theme) => createStyles({
     container: {
-        flex: "0 0 auto",
-        display: "flex"
+        display: "flex" 
     },
     diamondIcon: {
-        height: "62px",
+        height: "50px",
         width: "auto",
         imageRendering: "pixelated",
-        marginLeft: "-22px"
+        marginLeft: "-19px",
+        marginTop: "8px"
     },
     diamondText: {
         color: highlightColors.blue,
         fontSize: "2.4rem",
         borderBottom: "3px solid " + highlightColors.blue,
         paddingRight: "17px",
+        paddingLeft: "2px",
         height: "52px"
     }
 });
