@@ -28,6 +28,10 @@ const styles = (theme: Theme) => createStyles({
         height: "50px",
         marginLeft: theme.spacing.unit * 1.5,
         imageRendering: "pixelated"
+    },
+    burgerMenuButton: {
+        padding: "0px",
+        marginRight: theme.spacing.unit * 1.5,
     }
   });
 
@@ -81,6 +85,7 @@ const TemporaryDrawer : FC<Props> = (props) => {
                     color="inherit"
                     aria-label="Open drawer"
                     onClick={() => setOpen(true)}
+                    className={classes.burgerMenuButton}
                     >
                         <MenuIcon />
                     </IconButton>
