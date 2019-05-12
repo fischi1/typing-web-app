@@ -11,27 +11,30 @@ import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 import ErrorIcon from '@material-ui/icons/Error';
 import { Link as RouterLink } from 'react-router-dom';
-import dog from "./assets/images/dog.gif";
+import Logo from './shared/Logo';
+import AccountInformation from './shared/AccountInformation';
 
 const styles = (theme: Theme) => createStyles({
     list: {
       width: 300,
     },
-    header: {
-        color: theme.palette.primary.contrastText
-    },
     appbar: {
-        backgroundColor: theme.palette.primary.dark
+        backgroundColor: theme.palette.primary.dark,
+        borderBottom: "2px solid " + theme.palette.primary.contrastText,
+        height: "64px",
+        boxShadow: "none"
     },
-    headerIcon: {
-        width: "50px",
-        height: "50px",
-        marginLeft: theme.spacing.unit * 1.5,
-        imageRendering: "pixelated"
+    header: {
+        fontSize: "2.4rem"
+    },
+    leftHeader: {
+        flex: "0 0 33%",
+        display: "flex"
     },
     burgerMenuButton: {
         padding: "0px",
         marginRight: theme.spacing.unit * 1.5,
+        marginLeft: theme.spacing.unit * 1.5
     }
   });
 
@@ -80,19 +83,22 @@ const TemporaryDrawer : FC<Props> = (props) => {
     return (
         <>
             <AppBar position="sticky" className={classes.appbar}>
-                <Toolbar>
-                    <IconButton
-                    color="inherit"
-                    aria-label="Open drawer"
-                    onClick={() => setOpen(true)}
-                    className={classes.burgerMenuButton}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" className={classes.header}>
-                        Typing Web App
-                    </Typography>
-                    <img src={dog} alt="Dog" className={classes.headerIcon}/>
+                <Toolbar disableGutters>
+                    <div className={classes.leftHeader}>
+                        <IconButton
+                        color="inherit"
+                        aria-label="Open drawer"
+                        onClick={() => setOpen(true)}
+                        className={classes.burgerMenuButton}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h1" className={classes.header}>
+                            Level 123
+                        </Typography>
+                    </div>
+                    <Logo />
+                    <AccountInformation />
                 </Toolbar>
             </AppBar>
             <Drawer open={open} onClose={() => setOpen(false)}>

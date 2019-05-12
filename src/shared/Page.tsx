@@ -4,7 +4,7 @@ import cn from "classnames";
 
 const styles = (theme : Theme) => createStyles({
     pageContainer: {
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: theme.palette.primary.dark
     }
 });
 

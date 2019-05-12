@@ -19,7 +19,8 @@ const theme = createMuiTheme({
         type: "dark"
     },
     typography: {
-        fontFamily: "Roboto Mono"
+        fontFamily: "m5x7",
+        fontSize: 24
     }
 });
 
