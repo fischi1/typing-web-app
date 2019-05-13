@@ -1,33 +1,24 @@
 import React, { FC } from "react";
-import { Typography, createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
+import { createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
-import cn from "classnames";
 import Page from "../shared/Page";
 import GermanKeyboardController from "../shared/keyboard/GermanKeyboardController";
-
-const generalStyle = createStyles({
-    biggerFont: {
-        fontSize: "1.3rem"
-    }
-});
+import TypingCanvas from "../shared/typing/TypingCanvas";
+import { highlightColors } from "../highlightColors";
 
 const styles = (theme: Theme) => createStyles({
     container: {
-        padding: theme.spacing.unit
+        display: "flex",
+        height: "60%"
     },
-    parOneContainer: {
-        fontFamily: "monospace",
-        ...generalStyle.biggerFont
-    },
-    parTwoContainer: {
-        fontFamily: "Roboto Mono",
-        ...generalStyle.biggerFont
-    },
-    anotherColor: {
-        color: "#38d973"
-    },
-    textBold: {
-        fontWeight: "bold"
+    left: {
+        backgroundColor: highlightColors.gray,
+        flex: "1 0 auto"
+    }, center: {
+        flex: "0 0 1200px"
+    }, right: {
+        backgroundColor: highlightColors.green,
+        flex: "1 0 auto"
     }
 });
 
@@ -36,32 +27,19 @@ type Props = RouteComponentProps & WithStyles<typeof styles>;
 const Home : FC<Props> = (props : Props) => {
     const {classes} = props;
     return <Page>
-        <div className={cn(classes.container)}>     
-            <Typography variant="h4">
-                Home
-            </Typography>
-        
-            <Typography paragraph className={classes.parOneContainer}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
-            </Typography>
-        
-            <Typography paragraph className={classes.parTwoContainer}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
-                elementum <span className={classes.textBold}>facilisis leo ve<span className={classes.anotherColor}>l. Risus</span></span> at ultrices mi tempus imperdiet. Semper risus in
-                hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
-                velit laoreet id donec ultrices. Odio morbi quis commodo odi    o aenean sed adipiscing.
-                Amet nisl suscipit <span className={classes.anotherColor}>adipiscing bibendum est ultricies</span> integer quis. Cursus euismod quis
-                viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
-            </Typography>
-            
-            <Typography paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            </Typography>
+        <div className={classes.container}>  
+            <div className={classes.left}>
+                a
+            </div>
+            <div className={classes.center}>
+                <TypingCanvas />
+            </div>
+            <div className={classes.right}>
+                c
+            </div>
 
-            <GermanKeyboardController />
         </div>
+        <GermanKeyboardController />
     </Page>; 
 }
 

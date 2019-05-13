@@ -5,5 +5,6 @@ export const highlightColors = {
     green: "#38d973",
     tuscan: "#7a444a",
     deer: "#bf7958",
-    gray: "#808080"
+    gray: "#808080",
+    darkgray: "#1a1a1a"
 }
