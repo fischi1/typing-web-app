@@ -111,7 +111,7 @@ export const init = () => {
         bitmapFontText.x = 50;
         bitmapFontText.y = 200;
 
-        const bitmapStyle  = { font: '55px Roboto Mono', align: 'left', tint: 0x00ffff};
+        const bitmapStyle  = { font: '55px Roboto Mono', align: 'left', tint: 0x000000};
     
         app.stage.addChild(bitmapFontText);
 
@@ -126,7 +126,7 @@ export const init = () => {
 
             if(curLineX > window.innerWidth) {
                 curLineX = 0;
-                curLineY += 40;
+                curLineY += 45;
             }
             char.x = curLineX;
             curLineX += 25;
@@ -138,7 +138,15 @@ export const init = () => {
     }
 }
 
+var time = 0;
+var dir = 1;
+
 function loop(delta : number) {
-    text.text = ((delta-1) + 1000) + "";
-    cat.x += delta * 0.1;
+    var deltaS = delta * 0.01;
+    time += deltaS;
+    text.text = "" + Math.floor(time);
+    if(cat.x > window.innerWidth || cat.x < 0)
+        dir *= -1;
+    cat.x += deltaS * 200 * dir;
+    cat.y = Math.sin(time * 15)  * 50 + 100;
 }
