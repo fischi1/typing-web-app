@@ -9,16 +9,16 @@ import { highlightColors } from "../highlightColors";
 const styles = (theme: Theme) => createStyles({
     container: {
         display: "flex",
-        height: "60%"
+        height: "27vw"
     },
     left: {
         backgroundColor: highlightColors.gray,
-        flex: "1 0 auto"
+        flex: "0 0 20%"
     }, center: {
-        flex: "0 0 62.5%"
+        flex: "0 0 60%"
     }, right: {
         backgroundColor: highlightColors.red,
-        flex: "1 0 auto"
+        flex: "0 0 20%"
     }
 });
 
@@ -38,8 +38,10 @@ const Home : FC<Props> = (props : Props) => {
             <div className={classes.right}>
                 c
             </div>
-
         </div>
+        <br/>
+        <br/>
+        <br/>
         <GermanKeyboardController />
     </Page>; 
 }

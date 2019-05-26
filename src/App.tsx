@@ -3,6 +3,15 @@ import withRootMui from './withRootMui';
 import { BrowserRouter } from 'react-router-dom';
 import AppContainer from './AppContainer';
 import Routes from './Routes';
+import { createStyles, withStyles } from '@material-ui/core';
+
+const styles = createStyles({
+    '@global': {
+        body: {
+            minWidth: "1400px"
+        }
+    }
+});
 
 const App:FC<{}> = () => {
     return <>
@@ -14,4 +23,4 @@ const App:FC<{}> = () => {
     </>
 }
 
-export default withRootMui(App);
+export default withStyles(styles)(withRootMui(App));
