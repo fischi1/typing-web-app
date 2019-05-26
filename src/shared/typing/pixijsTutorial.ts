@@ -13,12 +13,11 @@ console.log(bitmapFontUrl);
 
 //Aliases
 let Application = PIXI.Application,
-    loader = PIXI.loader,
-    resources = PIXI.loader.resources,
+    loader = PIXI.Loader.shared,
     Sprite = PIXI.Sprite,
     Rectangle = PIXI.Rectangle,
     Text = PIXI.Text,
-    BitmapText = PIXI.extras.BitmapText;
+    BitmapText = PIXI.BitmapText;
 
 var cat : PIXI.Sprite;
 var text : PIXI.Text;
@@ -31,13 +30,13 @@ export const init = () => {
       type = "canvas"
     }
 
-    PIXI.utils.sayHello(type)
+    PIXI.utils.sayHello(type);
     
     app = new Application({ 
         antialias: true,
         transparent: false,
         resolution: 1,
-        autoResize: true
+        autoDensity: true
       }
     );
 
@@ -57,19 +56,18 @@ export const init = () => {
     container.appendChild(app.view);
 
     //load an image and run the `setup` function when it's done
-     loader
-        .add([
-            dog,
-            tilesheet,
-        ]).add("RobotoMonoBitmap", bitmapFontUrl)
+    loader
+        .add("dog", dog)
+        .add("tilesheet", tilesheet)
+        .add("RobotoMonoBitmap", bitmapFontUrl)
     .load(setup);
 
     //This `setup` function will run when the image has loaded
-    function setup() {
+    function setup(loader : PIXI.Loader, resources : any) {
 
         //Create the cat sprite
-        cat = new Sprite(resources[dog].texture);
-        let tiles = new Sprite(resources[tilesheet].texture);
+        cat = new Sprite(resources.dog.texture);
+        let tiles = new Sprite(resources.tilesheet.texture);
         
         //Add the cat to the stage
         app.stage.addChild(cat);
@@ -81,7 +79,7 @@ export const init = () => {
         tiles.x = 770;
 
         //Create the `tileset` sprite from the texture
-        let texture = resources[tilesheet].texture.clone();
+        let texture = resources.tilesheet.texture.clone();
 
         //Create a rectangle object that defines the position and
         //size of the sub-image you want to extract from the texture
@@ -109,12 +107,12 @@ export const init = () => {
         text.y = 0;
         app.stage.addChild(text);
 
-        const bitmapFontText = new BitmapText('bitmapf onts are supported!\nWoo yay!', { font: '55px Roboto Mono', align: 'left', tint: 0x0000ff});
+        const bitmapFontText = new BitmapText('bitmapf onts are supported!\nWoo yay!', { font: {name:"Roboto Mono", size: 55}, align: 'left', tint: 0x0000ff});
     
         bitmapFontText.x = 50;
-        bitmapFontText.y = 200;
+        bitmapFontText.y = 200; 
 
-        const bitmapStyle  = { font: '55px Roboto Mono', align: 'left', tint: 0x000000};
+        const bitmapStyle  = { font: {name:"Roboto Mono", size: 55}, align: 'left', tint: 0x000000};
     
         app.stage.addChild(bitmapFontText);
 
