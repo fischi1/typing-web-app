@@ -21,8 +21,7 @@ const TypingCanvas : FC<Props> = (props) => {
     }, [])
 
     return (
-        <div className={classes.container}>
-        </div>
+        <div className={classes.container} id="typing-area-container" />
     );
 }
 

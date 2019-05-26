@@ -1,10 +1,16 @@
 import React, { FC } from 'react';
 import withRootMui from './withRootMui';
-import TypingCanvas from './shared/typing/TypingCanvas';
+import { BrowserRouter } from 'react-router-dom';
+import AppContainer from './AppContainer';
+import Routes from './Routes';
 
 const App:FC<{}> = () => {
     return <>
-        <TypingCanvas />
+      <BrowserRouter>
+          <AppContainer>
+              <Routes />
+          </AppContainer> 
+      </BrowserRouter>
     </>
 }
 

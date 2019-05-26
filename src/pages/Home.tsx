@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
+import { createStyles, Theme, WithStyles, withStyles, Typography } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
 import Page from "../shared/Page";
 import GermanKeyboardController from "../shared/keyboard/GermanKeyboardController";
@@ -15,9 +15,9 @@ const styles = (theme: Theme) => createStyles({
         backgroundColor: highlightColors.gray,
         flex: "1 0 auto"
     }, center: {
-        flex: "0 0 1200px"
+        flex: "0 0 62.5%"
     }, right: {
-        backgroundColor: highlightColors.green,
+        backgroundColor: highlightColors.red,
         flex: "1 0 auto"
     }
 });
@@ -32,6 +32,7 @@ const Home : FC<Props> = (props : Props) => {
                 a
             </div>
             <div className={classes.center}>
+                <Typography>Info on top</Typography>
                 <TypingCanvas />
             </div>
             <div className={classes.right}>

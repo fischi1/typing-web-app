@@ -22,6 +22,7 @@ let Application = PIXI.Application,
 
 var cat : PIXI.Sprite;
 var text : PIXI.Text;
+var app : PIXI.Application;
 
 export const init = () => {
 
@@ -32,22 +33,28 @@ export const init = () => {
 
     PIXI.utils.sayHello(type)
     
-    let app = new Application({ 
+    app = new Application({ 
         antialias: true,
         transparent: false,
-        resolution: 1
+        resolution: 1,
+        autoResize: true
       }
     );
-    
+
     app.renderer.view.style.position = "absolute";
     app.renderer.view.style.display = "block";
     app.renderer.autoResize = true;
-    app.renderer.resize(window.innerWidth, window.innerHeight);
+    //app.renderer.resize(window.innerWidth, window.innerHeight);
 
     app.renderer.backgroundColor = parseInt(highlightColors.green.replace(/^#/, ''), 16);
 
     //Add the canvas that Pixi automatically created for you to the HTML document
-    document.body.appendChild(app.view);
+    const container = document.getElementById("typing-area-container");
+
+    if(!container)
+        return;
+        
+    container.appendChild(app.view);
 
     //load an image and run the `setup` function when it's done
      loader
@@ -68,14 +75,10 @@ export const init = () => {
         app.stage.addChild(cat);
         app.stage.addChild(tiles);
 
-        cat.x = 100;
-        cat.y = 100;
         cat.scale.x = 0.5;
         cat.scale.y = 0.5;
 
         tiles.x = 770;
-
-        cat.rotation = Math.PI * 0.25;        
 
         //Create the `tileset` sprite from the texture
         let texture = resources[tilesheet].texture.clone();
@@ -145,8 +148,9 @@ function loop(delta : number) {
     var deltaS = delta * 0.01;
     time += deltaS;
     text.text = "" + Math.floor(time);
-    if(cat.x > window.innerWidth || cat.x < 0)
+    if(cat.x > app.view.width || cat.x < 0)
         dir *= -1;
+    cat.rotation = Math.PI * time;
     cat.x += deltaS * 200 * dir;
-    cat.y = Math.sin(time * 15)  * 50 + 100;
+    cat.y = Math.sin(time * 8)  * 250 + 300;
 }
