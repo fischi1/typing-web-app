@@ -1,13 +1,13 @@
 
 import * as PIXI from 'pixi.js';
-import { highlightColors } from '../../highlightColors';
-
-import dog from "../../assets/images/dog.gif";
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
-import { Word } from './types/Word';
+import dog from "../../assets/images/dog.gif";
+import { highlightColors } from '../../highlightColors';
 import { GameObject } from './types/GameObject';
-import generateGOs from './generateGOs';
+import { Word } from './types/Word';
 import { Letter } from './types/Letter';
+import generateGOs from './generateGOs';
+
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -70,6 +70,8 @@ export async function init() {
 
         //Create the cat sprite
         cat = new Sprite(resources.dog.texture);
+        var fontTexture = resources.bitmapFontTexture.texture as PIXI.Texture;
+        console.log(fontTexture);
         
         //Add the cat to the stage
         app.stage.addChild(cat);
@@ -78,9 +80,11 @@ export async function init() {
         cat.scale.y = 0.5;
 
         //init text
-        generateGOs(testText, words, gameObjects as Letter[], fontXML);
+        generateGOs(testText, words, gameObjects as Letter[], fontTexture);
         console.log(words);
         console.log(gameObjects);
+
+        gameObjects.forEach(go => app.stage.addChild(go.sprite));
 
         const style = new PIXI.TextStyle({
             fontFamily: "Arial",
@@ -112,6 +116,8 @@ function loop(delta : number) {
     cat.rotation = Math.PI * time;
     cat.x += deltaS * 200 * dir;
     cat.y = Math.sin(time * 8)  * 250 + 300;
+
+    gameObjects.forEach(go => go.update(deltaS));
 }
 
 window.addEventListener("resize", handleResize);
