@@ -3,6 +3,15 @@ import * as PIXI from 'pixi.js';
 import { highlightColors } from '../../highlightColors';
 
 import dog from "../../assets/images/dog.gif";
+import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
+import { Word } from './types/Word';
+import { GameObject } from './types/GameObject';
+import generateGOs from './generateGOs';
+import { Letter } from './types/Letter';
+
+const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
+
+const testText = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium.";
 
 const areaWidth = 1190;
 const areaHeight = 500;
@@ -15,12 +24,16 @@ let Application = PIXI.Application,
     Text = PIXI.Text;
 
 var cat : PIXI.Sprite;
-var debutTimeText : PIXI.Text;
+var debugTimeText : PIXI.Text;
 var app : PIXI.Application;
 
 var htmlCanvasContainer : HTMLElement | null;
 
-export const init = () => {
+const words : Word[] = [];
+const gameObjects : GameObject[] = [];
+
+export async function init() {
+    const fontXML = await (await fetch(bitmapFontXML)).text();
 
     let type = "WebGL";
     if(!PIXI.utils.isWebGLSupported()){
@@ -42,15 +55,14 @@ export const init = () => {
 
     //Add the canvas that Pixi automatically created for you to the HTML document
     const container = document.getElementById("typing-area-container");
-
     if(!container)
-        return;
-        
+        return;        
     container.appendChild(app.view);
 
     //load an image and run the `setup` function when it's done
     loader
         .add("dog", dog)
+        .add("bitmapFontTexture", bitmapFontTexture)
     .load(setup);
 
     //This `setup` function will run when the image has loaded
@@ -65,16 +77,21 @@ export const init = () => {
         cat.scale.x = 0.5;
         cat.scale.y = 0.5;
 
+        //init text
+        generateGOs(testText, words, gameObjects as Letter[], fontXML);
+        console.log(words);
+        console.log(gameObjects);
+
         const style = new PIXI.TextStyle({
             fontFamily: "Arial",
             fontSize: "15px",
             fill: 0xffffff,
             wordWrap: true
         });
-        debutTimeText = new Text('time', style);
-        debutTimeText.x = 0;
-        debutTimeText.y = 0;
-        app.stage.addChild(debutTimeText);
+        debugTimeText = new Text('time', style);
+        debugTimeText.x = 0;
+        debugTimeText.y = 0;
+        app.stage.addChild(debugTimeText);
 
         app.ticker.add(delta => loop(delta));
     } 
@@ -87,7 +104,7 @@ function loop(delta : number) {
     var deltaS = delta * 0.01;
     time += deltaS;
     
-    debutTimeText.text = "" + Math.floor(time);
+    debugTimeText.text = "" + Math.floor(time);
 
     if(cat.x > app.view.width || cat.x < 0)
         dir *= -1;
