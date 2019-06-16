@@ -14,7 +14,7 @@ export default function generateGOs(text : string, words : Word[], letters : Let
 function generateForWord(wordText : string, words : Word[], letters : Letter[], fontTexture : PIXI.Texture, xmlHelper : XMLHelper) {
     var word : Word = {letters:[]};
     for(let i = 0; i < wordText.length; i++) {
-        fontTexture.frame = xmlHelper.getRectangleForChar("l");
+        fontTexture.frame = xmlHelper.getRectangleForChar("ß");
         let sprite = new PIXI.Sprite(fontTexture);
         let letter = new Letter(wordText.charAt(i), sprite);
         word.letters.push(letter);
