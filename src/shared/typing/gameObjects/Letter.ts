@@ -5,10 +5,16 @@ export class Letter extends GameObject{
     character : string;
 
     private randomTime = 0;
+    
     constructor(character : string, sprite : PIXI.Sprite) {
         super(sprite);
         this.character = character;
         this.sprite = sprite;
+    }
+
+    init() {
+        this.sprite.scale.x = Math.random();
+        this.sprite.scale.y = Math.random();
     }
 
     update(deltaTime : number) : void {

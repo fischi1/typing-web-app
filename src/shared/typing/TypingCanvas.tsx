@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
-import { init } from './pixijsTutorial';
+import { init } from './initTyping';
 
 const styles = () => createStyles({
     container: {

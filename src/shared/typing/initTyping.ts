@@ -3,12 +3,11 @@ import * as PIXI from 'pixi.js';
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
 import dog from "../../assets/images/dog.gif";
 import { highlightColors } from '../../highlightColors';
-import generateGOs from './generateGOs';
-import { GameObject } from './types/GameObject';
-import { Letter } from './types/Letter';
-import { Word } from './types/Word';
+import generateGOs, { LetterGenerationParamsType } from './generateGOs';
+import { GameObject } from './gameObjects/GameObject';
+import { Letter } from './gameObjects/Letter';
+import { Word } from './gameObjects/Word';
 import { XMLHelper } from './XMLHelper';
-
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -37,6 +36,7 @@ export async function init() {
     const fontXMLtext = await (await fetch(bitmapFontXML)).text();
     const fontXML = new DOMParser().parseFromString(fontXMLtext, "text/xml");
     const xmlHelper = new XMLHelper(fontXML);
+    console.log("biggestWidth: " + xmlHelper.biggestWidth);
 
     let type = "WebGL";
     if(!PIXI.utils.isWebGLSupported()){
@@ -77,14 +77,16 @@ export async function init() {
         
         //Add the cat to the stage
         app.stage.addChild(cat);
-
         cat.scale.x = 0.5;
         cat.scale.y = 0.5;
 
         //init text
-        generateGOs(testText, words, gameObjects as Letter[], fontTexture, xmlHelper);
+        var letterParams : LetterGenerationParamsType = {words, letters: gameObjects as Letter[], fontTexture, xmlHelper};
+        generateGOs(testText,  letterParams);
 
-        gameObjects.forEach(go => app.stage.addChild(go.sprite));
+        gameObjects.forEach(go => {
+            app.stage.addChild(go.sprite);
+        });
 
         const style = new PIXI.TextStyle({
             fontFamily: "Arial",
@@ -97,6 +99,7 @@ export async function init() {
         debugTimeText.y = 0;
         app.stage.addChild(debugTimeText);
 
+        gameObjects.forEach(go => go.init());
         app.ticker.add(delta => loop(delta));
     } 
 }
@@ -117,7 +120,9 @@ function loop(delta : number) {
     cat.x += deltaS * 200 * dir;
     cat.y = Math.sin(time * 8)  * 250 + 300;
 
-    gameObjects.forEach(go => go.update(deltaS));
+    gameObjects.forEach(go => {
+        go.update(deltaS);
+    });
 }
 
 window.addEventListener("resize", handleResize);

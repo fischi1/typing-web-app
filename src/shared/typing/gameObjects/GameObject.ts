@@ -8,7 +8,7 @@ export abstract class GameObject{
         this.sprite = sprite;
     }
 
-    update(deltaTime : number) : void {
+    init() : void {}
 
-    }
+    update(deltaTime : number) : void {}
 }

@@ -7,6 +7,8 @@ type RectangleDictionary = {
 export class XMLHelper {
     private xmlDoc : Document;
     private rectangleDic : RectangleDictionary;
+    
+    biggestWidth : number = 0;
 
     constructor(xmlDoc : Document) {
         this.xmlDoc = xmlDoc;
@@ -21,7 +23,11 @@ export class XMLHelper {
 
     getRectangleForChar(char: string): PIXI.Rectangle {
         const code = char.charCodeAt(0);
-        return this.rectangleDic[code];
+        return this.getRectangle(code);
+    }
+
+    getRectangle(charCode : number) : PIXI.Rectangle {
+        return this.rectangleDic[charCode];
     }
 
     private initDic() : RectangleDictionary {
@@ -33,11 +39,15 @@ export class XMLHelper {
             const elem = chars[i];
 
             var id = +(elem.getAttribute("id") as string);
+            var width = +(elem.getAttribute("width") as string);
+
+            if(width > this.biggestWidth)
+                this.biggestWidth = width;
 
             ret[id] = new PIXI.Rectangle(
                 +(elem.getAttribute("x") as string),
                 +(elem.getAttribute("y") as string),
-                +(elem.getAttribute("width") as string),
+                width,
                 +(elem.getAttribute("height") as string)
             );
         }
