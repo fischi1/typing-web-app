@@ -3,10 +3,11 @@ import * as PIXI from 'pixi.js';
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
 import dog from "../../assets/images/dog.gif";
 import { highlightColors } from '../../highlightColors';
-import { GameObject } from './types/GameObject';
-import { Word } from './types/Word';
-import { Letter } from './types/Letter';
 import generateGOs from './generateGOs';
+import { GameObject } from './types/GameObject';
+import { Letter } from './types/Letter';
+import { Word } from './types/Word';
+import { XMLHelper } from './XMLHelper';
 
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
@@ -33,13 +34,15 @@ const words : Word[] = [];
 const gameObjects : GameObject[] = [];
 
 export async function init() {
-    const fontXML = await (await fetch(bitmapFontXML)).text();
+    const fontXMLtext = await (await fetch(bitmapFontXML)).text();
+    const fontXML = new DOMParser().parseFromString(fontXMLtext, "text/xml");
+    const xmlHelper = new XMLHelper(fontXML);
 
     let type = "WebGL";
     if(!PIXI.utils.isWebGLSupported()){
       type = "canvas"
     }
-
+    PIXI.utils.skipHello();
     PIXI.utils.sayHello(type);
 
     app = new Application({ 
@@ -71,7 +74,6 @@ export async function init() {
         //Create the cat sprite
         cat = new Sprite(resources.dog.texture);
         var fontTexture = resources.bitmapFontTexture.texture as PIXI.Texture;
-        console.log(fontTexture);
         
         //Add the cat to the stage
         app.stage.addChild(cat);
@@ -80,9 +82,7 @@ export async function init() {
         cat.scale.y = 0.5;
 
         //init text
-        generateGOs(testText, words, gameObjects as Letter[], fontTexture);
-        console.log(words);
-        console.log(gameObjects);
+        generateGOs(testText, words, gameObjects as Letter[], fontTexture, xmlHelper);
 
         gameObjects.forEach(go => app.stage.addChild(go.sprite));
 
