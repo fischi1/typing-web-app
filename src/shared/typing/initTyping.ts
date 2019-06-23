@@ -4,8 +4,7 @@ import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
 import dog from "../../assets/images/dog.gif";
 import { highlightColors } from '../../highlightColors';
 import generateGOs, { LetterGenerationParamsType } from './generateGOs';
-import { GameObject } from './gameObjects/GameObject';
-import { Letter } from './gameObjects/Letter';
+import { GameObject, GameContext } from './gameObjects/GameObject';
 import { Word } from './gameObjects/Word';
 import { XMLHelper } from './XMLHelper';
 import initWordPositions, { InitWordPositionsParams } from './initWordPositions';
@@ -32,6 +31,7 @@ var htmlCanvasContainer : HTMLElement | null;
 
 const words : Word[] = [];
 const gameObjects : GameObject[] = [];
+var gameContext : GameContext = {deltaTime: 0, timeSinceStart : 0, addGameObject : go => gameObjects.push(go)};
 
 export async function init() {
     const fontXMLtext = await (await fetch(bitmapFontXML)).text();
@@ -82,12 +82,17 @@ export async function init() {
         cat.scale.y = 0.5;
 
         //init text
-        var letterParams : LetterGenerationParamsType = {words, letters: gameObjects as Letter[], fontTexture, xmlHelper};
-        generateGOs(testText,  letterParams);
+        var letterParams : LetterGenerationParamsType = {
+            words: words,
+            gameObjects: gameObjects,
+            fontTexture,
+            xmlHelper
+        };
+        var letters = generateGOs(testText,  letterParams);
         const initWordPositionsParams : InitWordPositionsParams = { 
             words: words,
             letterWidth: xmlHelper.biggestWidth * 0.3,
-            letterHeight: 250 * 0.3,
+            letterHeight: 450 * 0.3,
             canvasWidth: areaWidth,
             xOffset: 20,
             yOffset: 0,
@@ -112,7 +117,7 @@ export async function init() {
         app.stage.addChild(debugTimeText);
 
         //preparing done, init go
-        gameObjects.forEach(go => go.init());
+        gameObjects.forEach(go => go.init(gameContext));
         app.ticker.add(delta => loop(delta));
     } 
 }
@@ -134,7 +139,7 @@ function loop(delta : number) {
     cat.y = Math.sin(time * 8)  * 250 + 300;
 
     gameObjects.forEach(go => {
-        go.update({deltaTime : deltaS, timeSinceStart : time});
+        go.update(gameContext);
     });
 }
 

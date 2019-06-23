@@ -1,8 +1,9 @@
 import * as PIXI from 'pixi.js';
 
-export type UpdateInfo = {
+export type GameContext = {
     deltaTime : number,
-    timeSinceStart : number
+    timeSinceStart : number,
+    addGameObject(go : GameObject) : void
 }
 
 export abstract class GameObject{
@@ -13,7 +14,7 @@ export abstract class GameObject{
         this.sprite = sprite;
     }
 
-    init() : void {}
+    init(gameContext : GameContext) : void {}
 
-    update(updateInfo : UpdateInfo) : void {}
+    update(gameContext : GameContext) : void {}
 }

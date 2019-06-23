@@ -27,6 +27,12 @@ const initWordPositions = (params : InitWordPositionsParams) => {
         word.letters.forEach(letter => {
             letter.sprite.x = xPos;
             letter.sprite.y = yPos;
+
+            if(letter.subLetter) {
+                letter.subLetter.sprite.x = xPos;
+                letter.subLetter.sprite.y = yPos + letterHeight / 2;
+            }
+
             xPos += letterWidth;
         });
         xPos += letterWidth;
