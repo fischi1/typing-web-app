@@ -2,12 +2,12 @@
 import * as PIXI from 'pixi.js';
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
 import dog from "../../assets/images/dog.gif";
-import { highlightColors } from '../../highlightColors';
-import generateGOs, { LetterGenerationParamsType } from './generateGOs';
-import { GameObject, GameContext } from './gameObjects/GameObject';
+import { GameContext, GameObject } from './gameObjects/GameObject';
 import { Word } from './gameObjects/Word';
-import { XMLHelper } from './XMLHelper';
+import generateGOs, { LetterGenerationParamsType } from './generateGOs';
 import initWordPositions, { InitWordPositionsParams } from './initWordPositions';
+import pixiColorHelper from './pixiColorHelper';
+import { XMLHelper } from './XMLHelper';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -55,7 +55,7 @@ export async function init() {
     
     resizeCanvas();
 
-    app.renderer.backgroundColor = parseInt(highlightColors.darkgray.replace(/^#/, ''), 16);
+    app.renderer.backgroundColor = pixiColorHelper.darkgray;
 
     //Add the canvas that Pixi automatically created for you to the HTML document
     const container = document.getElementById("typing-area-container");

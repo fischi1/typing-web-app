@@ -1,9 +1,9 @@
 import * as PIXI from 'pixi.js';
+import { GameObject } from './gameObjects/GameObject';
 import { Letter } from "./gameObjects/Letter";
 import { Word } from "./gameObjects/Word";
+import pixiColorHelper from './pixiColorHelper';
 import { XMLHelper } from './XMLHelper';
-import { GameObject } from './gameObjects/GameObject';
-import { highlightColors } from '../../highlightColors';
 
 export type LetterGenerationParamsType = {
     words: Word[],
@@ -30,7 +30,7 @@ function generateForWord(wordText : string, additionalParams : LetterGenerationP
 
         let letter = new Letter(wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
         let subLetter = new Letter(wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
-        subLetter.sprite.tint = parseInt(highlightColors.green.replace(/^#/, ''), 16)
+        subLetter.sprite.tint = pixiColorHelper.green;
         letter.subLetter = subLetter;
 
         word.letters.push(letter);
