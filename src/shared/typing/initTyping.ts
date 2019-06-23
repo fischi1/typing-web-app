@@ -8,10 +8,11 @@ import { GameObject } from './gameObjects/GameObject';
 import { Letter } from './gameObjects/Letter';
 import { Word } from './gameObjects/Word';
 import { XMLHelper } from './XMLHelper';
+import initWordPositions, { InitWordPositionsParams } from './initWordPositions';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
-const testText = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium.";
+const testText = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.";
 
 const areaWidth = 1190;
 const areaHeight = 500;
@@ -83,6 +84,17 @@ export async function init() {
         //init text
         var letterParams : LetterGenerationParamsType = {words, letters: gameObjects as Letter[], fontTexture, xmlHelper};
         generateGOs(testText,  letterParams);
+        const initWordPositionsParams : InitWordPositionsParams = { 
+            words: words,
+            letterWidth: xmlHelper.biggestWidth * 0.3,
+            letterHeight: 250 * 0.3,
+            canvasWidth: areaWidth,
+            xOffset: 20,
+            yOffset: 0,
+            rightMargin: 20
+        };
+        initWordPositions(initWordPositionsParams);
+        console.log("letters: " + gameObjects.length);
 
         gameObjects.forEach(go => {
             app.stage.addChild(go.sprite);
@@ -99,6 +111,7 @@ export async function init() {
         debugTimeText.y = 0;
         app.stage.addChild(debugTimeText);
 
+        //preparing done, init go
         gameObjects.forEach(go => go.init());
         app.ticker.add(delta => loop(delta));
     } 
@@ -121,7 +134,7 @@ function loop(delta : number) {
     cat.y = Math.sin(time * 8)  * 250 + 300;
 
     gameObjects.forEach(go => {
-        go.update(deltaS);
+        go.update({deltaTime : deltaS, timeSinceStart : time});
     });
 }
 

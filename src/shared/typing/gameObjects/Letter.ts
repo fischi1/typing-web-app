@@ -1,10 +1,13 @@
 import * as PIXI from 'pixi.js';
-import { GameObject } from "./GameObject";
+import { GameObject, UpdateInfo } from "./GameObject";
 
 export class Letter extends GameObject{
     character : string;
 
-    private randomTime = 0;
+    private startX = 0;
+    private startY = 0;
+
+    private speed = -2;
     
     constructor(character : string, sprite : PIXI.Sprite) {
         super(sprite);
@@ -13,18 +16,13 @@ export class Letter extends GameObject{
     }
 
     init() {
-        this.sprite.scale.x = Math.random();
-        this.sprite.scale.y = Math.random();
+        this.sprite.scale.x = 0.3;
+        this.sprite.scale.y = 0.3;
+        this.startX = this.sprite.x;
+        this.startY = this.sprite.y;
     }
 
-    update(deltaTime : number) : void {
-        this.randomTime += deltaTime;
-
-        if(this.randomTime > 1.5) {
-            this.randomTime = 0;
-            this.sprite.x = Math.random() * 1000;
-            this.sprite.y = Math.random() * 500;
-            this.sprite.tint = PIXI.utils.rgb2hex([Math.random(), Math.random(), Math.random()]);
-        }
+    update(updateInfo : UpdateInfo) : void {
+        this.sprite.y = this.startY + Math.sin(updateInfo.timeSinceStart * this.speed) * 100 - 70;
     }
 }

@@ -1,5 +1,10 @@
 import * as PIXI from 'pixi.js';
 
+export type UpdateInfo = {
+    deltaTime : number,
+    timeSinceStart : number
+}
+
 export abstract class GameObject{
     children: GameObject[] = [];
     sprite : PIXI.Sprite;
@@ -10,5 +15,5 @@ export abstract class GameObject{
 
     init() : void {}
 
-    update(deltaTime : number) : void {}
+    update(updateInfo : UpdateInfo) : void {}
 }
