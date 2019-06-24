@@ -12,6 +12,8 @@ export type LetterGenerationParamsType = {
     xmlHelper: XMLHelper
 }
 
+var counter = 0;
+
 export default function generateGOs(text : string, additionalParams : LetterGenerationParamsType) : Letter[] {
     const splitText = text.split(" ");
     const letters : Letter[] = [];
@@ -28,8 +30,8 @@ function generateForWord(wordText : string, additionalParams : LetterGenerationP
     for(let i = 0; i < wordText.length; i++) {
         additionalParams.fontTexture.frame = additionalParams.xmlHelper.getRectangle(wordText.charCodeAt(i));
 
-        let letter = new Letter(wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
-        let subLetter = new Letter(wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
+        let letter = new Letter(counter, wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
+        let subLetter = new Letter(counter, wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
         subLetter.sprite.tint = pixiColorHelper.green;
         letter.subLetter = subLetter;
 
@@ -37,6 +39,9 @@ function generateForWord(wordText : string, additionalParams : LetterGenerationP
 
         additionalParams.gameObjects.push(letter);
         additionalParams.gameObjects.push(subLetter);
+
+        counter++;
     }
+    counter++;
     additionalParams.words.push(word);
 }

@@ -138,6 +138,9 @@ function loop(delta : number) {
     cat.x += deltaS * 200 * dir;
     cat.y = Math.sin(time * 8)  * 250 + 300;
 
+    gameContext.deltaTime = deltaS;
+    gameContext.timeSinceStart = time;
+
     gameObjects.forEach(go => {
         go.update(gameContext);
     });
