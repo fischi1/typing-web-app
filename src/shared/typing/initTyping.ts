@@ -8,6 +8,7 @@ import generateGOs, { LetterGenerationParamsType } from './generateGOs';
 import initWordPositions, { InitWordPositionsParams } from './initWordPositions';
 import pixiColorHelper from './pixiColorHelper';
 import { XMLHelper } from './XMLHelper';
+import { waitForSoundsLoaded } from './SoundManager';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -70,7 +71,7 @@ export async function init() {
     .load(setup);
 
     //This `setup` function will run when the image has loaded
-    function setup(loader : PIXI.Loader, resources : any) {
+    async function setup(loader : PIXI.Loader, resources : any) {
 
         //Create the cat sprite
         cat = new Sprite(resources.dog.texture);
@@ -118,6 +119,9 @@ export async function init() {
 
         //preparing done, init go
         gameObjects.forEach(go => go.init(gameContext));
+        console.log("waiting for load");
+        await waitForSoundsLoaded();
+        console.log("loaded");
         app.ticker.add(delta => loop(delta));
     } 
 }

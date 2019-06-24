@@ -1,6 +1,13 @@
+import {Howl, Howler} from 'howler';
 
+Howler.mute(false);
 
-const filenames = [
+const urlFailSound = "/sounds/Explosion4.wav";
+const urlSuccessSound = "/sounds/Explosion4.wav";
+
+const relativaPathTyping = "/sounds/eklee-KeyPresses-cc0-opengameart/wav44100/";
+
+const urlTypingSounds = [
     "eklee-KeyPressMac01.wav",
     "eklee-KeyPressMac02.wav",
     "eklee-KeyPressMac03.wav",
@@ -8,12 +15,51 @@ const filenames = [
     "eklee-KeyPressMac05.wav",
     "eklee-KeyPressMac06.wav",
     "eklee-KeyPressMac07.wav",
+    "eklee-KeyPressOld01.wav",
+    "eklee-KeyPressOld02.wav",
+    "eklee-KeyPressOld03.wav",
+    "eklee-KeyPressOld04.wav",
+    "eklee-KeyPressOld05.wav"
 ]
 
-const audioObjects = filenames.map(name => new Audio("/eklee-KeyPresses-cc0-opengameart/wav44100/" + name));
+var addedSounds = 0;
+var loadedSounds = 0;
 
+const addSound = (url : string) : Howl => {
+    addedSounds++;
+    return new Howl({
+        src: url,
+        onload: () => loadedSounds++
+    })
+}
 
-export class Soundmanager {
-    play() {
+const typingSounds = urlTypingSounds.map(name => addSound(relativaPathTyping + name));
+
+const failSound = addSound(urlFailSound);
+
+const successSound = addSound(urlSuccessSound);
+
+Howler.volume(0.2);
+
+const sleep = async (ms : number) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export const waitForSoundsLoaded = async () => {
+    while(loadedSounds !== addedSounds)  {
+        console.log("waiting");
+        await sleep(100);
     }
+}
+
+export const playTypingSound = () => {
+    typingSounds[Math.floor(Math.random() * typingSounds.length)].play();
+}
+
+export const playFailSound = () => {
+    failSound.play();
+}
+
+export const playSuccessSoud = () => {
+    successSound.play();
 }

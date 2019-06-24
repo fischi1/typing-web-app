@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
-import { GameObject, GameContext } from "./GameObject";
-import { Soundmanager } from '../SoundManager';
+import { playTypingSound } from '../SoundManager';
+import { GameContext, GameObject } from "./GameObject";
 
 export class Letter extends GameObject{
     character : string;
@@ -31,7 +31,7 @@ export class Letter extends GameObject{
         if(this.subLetter) {
             if(gameContext.timeSinceStart > this.index * 0.1 && this.subLetter.sprite.alpha === 0) {
                 this.subLetter.show();
-                new Soundmanager().play();
+                playTypingSound();
             }
         }
     }
