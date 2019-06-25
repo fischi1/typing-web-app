@@ -1,9 +1,7 @@
 import { useReducer, useRef } from "react";
 import useKeyEvents from "../hooks/useKeyEvents";
 
-type KeyStateType = {
-    [key: number] : boolean
-}
+type KeyStateType = Record<number, boolean>;
 
 type ActionType = {
     type: "keydown" | "keyup",
@@ -24,16 +22,25 @@ function reducer(state : KeyStateType, action : ActionType) : KeyStateType {
     return ret;
 }
 
-function useGermanKeysState() : KeyStateType {
+type KeyStateParams = {
+    onKeyDown?(key : string): void,
+    onKeyUp?(key : string): void
+}
+
+function useGermanKeysState(params : KeyStateParams) : KeyStateType {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const keyUpRef = useRef<any>();
     const keyDownRef = useRef<any>();
 
     keyDownRef.current = (e : KeyboardEvent) => {
+        if(!!params.onKeyDown)
+            params.onKeyDown(e.key);
         dispatch({type: "keydown", keyCode: e.keyCode});
     };
     keyUpRef.current = (e : KeyboardEvent) => {    
+        if(!!params.onKeyUp)
+            params.onKeyUp(e.key);
         dispatch({type: "keyup", keyCode: e.keyCode});
     };
 

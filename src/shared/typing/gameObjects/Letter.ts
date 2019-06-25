@@ -1,8 +1,8 @@
 import * as PIXI from 'pixi.js';
-import { playTypingSound } from '../SoundManager';
-import { GameContext, GameObject } from "./GameObject";
+import { GameContext } from "./GameObject";
+import { PixiSprite } from './PixiSprite';
 
-export class Letter extends GameObject{
+export class Letter extends PixiSprite{
     character : string;
     index: number;
     subLetter? : Letter;
@@ -18,6 +18,7 @@ export class Letter extends GameObject{
     }
 
     init(gameContext : GameContext) {
+        super.init(gameContext);
         this.sprite.scale.x = 0.3;
         this.sprite.scale.y = 0.3;
         this.startX = this.sprite.x;
@@ -28,12 +29,6 @@ export class Letter extends GameObject{
     }
 
     update(gameContext : GameContext) : void {
-        if(this.subLetter) {
-            if(gameContext.timeSinceStart > this.index * 0.1 && this.subLetter.sprite.alpha === 0) {
-                this.subLetter.show();
-                playTypingSound();
-            }
-        }
     }
 
     show() {

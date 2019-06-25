@@ -1,6 +1,9 @@
+import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import React, { FC, useEffect } from 'react';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import useGermanKeysState from '../keyboard/useGermanKeysState';
 import { init } from './initTyping';
+import { ttKeyPressed } from './typeTracking';
+import { playTypingSound } from './SoundManager';
 
 const styles = () => createStyles({
     container: {
@@ -13,6 +16,11 @@ type Props = {
 const TypingCanvas : FC<Props> = (props) => {    
     const { classes } = props;
 
+    useGermanKeysState({onKeyDown: key => {
+        playTypingSound();
+        ttKeyPressed(key);
+    }})
+
     useEffect(() => {
         init();
         return(() => {
@@ -20,9 +28,9 @@ const TypingCanvas : FC<Props> = (props) => {
         });
     }, [])
 
-    return (
+    return (<>
         <div className={classes.container} id="typing-area-container" />
-    );
+    </>);
 }
 
 export default withStyles(styles)(TypingCanvas);

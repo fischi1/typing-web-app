@@ -3,12 +3,15 @@ import * as PIXI from 'pixi.js';
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
 import dog from "../../assets/images/dog.gif";
 import { GameContext, GameObject } from './gameObjects/GameObject';
+import { TypeTracker } from './gameObjects/TypeTracker';
 import { Word } from './gameObjects/Word';
 import generateGOs, { LetterGenerationParamsType } from './generateGOs';
 import initWordPositions, { InitWordPositionsParams } from './initWordPositions';
 import pixiColorHelper from './pixiColorHelper';
-import { XMLHelper } from './XMLHelper';
 import { waitForSoundsLoaded } from './SoundManager';
+import { XMLHelper } from './XMLHelper';
+import { TimeDisplay } from './gameObjects/TimeDisplay';
+import { DebugCat } from './gameObjects/DebugCat';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -21,28 +24,24 @@ const areaRatio = areaWidth / areaHeight;
 //Aliases
 let Application = PIXI.Application,
     loader = PIXI.Loader.shared,
-    Sprite = PIXI.Sprite,
-    Text = PIXI.Text;
+    Sprite = PIXI.Sprite;
 
-var cat : PIXI.Sprite;
-var debugTimeText : PIXI.Text;
 var app : PIXI.Application;
 
 var htmlCanvasContainer : HTMLElement | null;
 
 const words : Word[] = [];
 const gameObjects : GameObject[] = [];
-var gameContext : GameContext = {deltaTime: 0, timeSinceStart : 0, addGameObject : go => gameObjects.push(go)};
+var gameContext : GameContext = {deltaTime: 0, timeSinceStart : 0, addGameObject : go => gameObjects.push(go), app: null as any};
 
 export async function init() {
     const fontXMLtext = await (await fetch(bitmapFontXML)).text();
     const fontXML = new DOMParser().parseFromString(fontXMLtext, "text/xml");
     const xmlHelper = new XMLHelper(fontXML);
-    console.log("biggestWidth: " + xmlHelper.biggestWidth);
 
     let type = "WebGL";
     if(!PIXI.utils.isWebGLSupported()){
-      type = "canvas"
+        type = "canvas"
     }
     PIXI.utils.skipHello();
     PIXI.utils.sayHello(type);
@@ -53,6 +52,7 @@ export async function init() {
         width: areaWidth,
         height: areaHeight,
     });
+    gameContext.app = app;
     
     resizeCanvas();
 
@@ -73,14 +73,9 @@ export async function init() {
     //This `setup` function will run when the image has loaded
     async function setup(loader : PIXI.Loader, resources : any) {
 
-        //Create the cat sprite
-        cat = new Sprite(resources.dog.texture);
         var fontTexture = resources.bitmapFontTexture.texture as PIXI.Texture;
         
-        //Add the cat to the stage
-        app.stage.addChild(cat);
-        cat.scale.x = 0.5;
-        cat.scale.y = 0.5;
+        gameObjects.push(new DebugCat(new Sprite(resources.dog.texture)))
 
         //init text
         var letterParams : LetterGenerationParamsType = {
@@ -100,47 +95,22 @@ export async function init() {
             rightMargin: 20
         };
         initWordPositions(initWordPositionsParams);
-        console.log("letters: " + gameObjects.length);
 
-        gameObjects.forEach(go => {
-            app.stage.addChild(go.sprite);
-        });
-
-        const style = new PIXI.TextStyle({
-            fontFamily: "Arial",
-            fontSize: "15px",
-            fill: 0xffffff,
-            wordWrap: true
-        });
-        debugTimeText = new Text('time', style);
-        debugTimeText.x = 0;
-        debugTimeText.y = 0;
-        app.stage.addChild(debugTimeText);
+        gameObjects.push(new TypeTracker());
+        gameObjects.push(new TimeDisplay());
 
         //preparing done, init go
         gameObjects.forEach(go => go.init(gameContext));
-        console.log("waiting for load");
         await waitForSoundsLoaded();
-        console.log("loaded");
         app.ticker.add(delta => loop(delta));
     } 
 }
 
 var time = 0;
-var dir = 1;
 
 function loop(delta : number) {
     var deltaS = delta * 0.01;
     time += deltaS;
-    
-    debugTimeText.text = "" + Math.floor(time);
-
-    if(cat.x > app.view.width || cat.x < 0)
-        dir *= -1;
-
-    cat.rotation = Math.PI * time;
-    cat.x += deltaS * 200 * dir;
-    cat.y = Math.sin(time * 8)  * 250 + 300;
 
     gameContext.deltaTime = deltaS;
     gameContext.timeSinceStart = time;

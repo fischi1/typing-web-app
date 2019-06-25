@@ -15,7 +15,7 @@ type Props = {
 const GermanKeyboardController : FC<Props> = (props : Props) => {
     const {classes} = props;    
 
-    const keysState = useGermanKeysState();
+    const keysState = useGermanKeysState({});
 
     return <>
         <div className={classes.container}>
