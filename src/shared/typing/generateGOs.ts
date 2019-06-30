@@ -28,16 +28,14 @@ const generateGOs = (text : string, additionalParams : LetterGenerationParamsTyp
 const generateForWord = (wordText : string, additionalParams : LetterGenerationParamsType, letters : Letter[]) => {
     var word : Word = {letters:[], text : wordText};
     for(let i = 0; i < wordText.length; i++) {
-        additionalParams.fontTexture.frame = additionalParams.xmlHelper.getRectangle(wordText.charCodeAt(i));
-
-        let letter = new Letter(counter, wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
+        let letter = new Letter(counter, wordText.charAt(i), generateLetterSprite(wordText.charCodeAt(i), additionalParams));
 
         word.letters.push(letter);
         letters.push(letter);
         additionalParams.gameObjects.push(letter);
 
         if(additionalParams.generateSubletter) {
-            let subLetter = new Letter(counter, wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
+            let subLetter = new Letter(counter, wordText.charAt(i), generateLetterSprite(wordText.charCodeAt(i), additionalParams));
             letter.subLetter = subLetter;
             additionalParams.gameObjects.push(subLetter);
         }
@@ -47,6 +45,11 @@ const generateForWord = (wordText : string, additionalParams : LetterGenerationP
     counter++;
     if(additionalParams.words)
         additionalParams.words.push(word);
+}
+
+export const generateLetterSprite = (charCode : number, additionalParams : LetterGenerationParamsType) => {
+    additionalParams.fontTexture.frame = additionalParams.xmlHelper.getRectangle(charCode);
+    return PIXI.Sprite.from(additionalParams.fontTexture.clone());
 }
 
 export default generateGOs;

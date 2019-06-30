@@ -2,6 +2,8 @@ import * as PIXI from 'pixi.js';
 import { GameContext } from "./GameObject";
 import { PixiSprite } from './PixiSprite';
 import pixiColorHelper from '../pixiColorHelper';
+import { letterScaling } from '../initTyping';
+import { Cursor } from './Cursor';
 
 export type LetterStatus = 
     "normal" | "selected" | "valid" | "invalid" | "invisible";
@@ -24,13 +26,17 @@ export class Letter extends PixiSprite{
 
     init(gameContext : GameContext) {
         super.init(gameContext);
-        this.sprite.scale.x = 0.3;
-        this.sprite.scale.y = 0.3;
+        this.sprite.scale.x = letterScaling;
+        this.sprite.scale.y = letterScaling;
         this.startX = this.sprite.x;
         this.startY = this.sprite.y;
 
         if(this.subLetter)
             this.subLetter.setStatus("invisible");
+
+        if(this.index === 0){
+            Cursor.instance.setPosition(this.sprite.position.x, this.sprite.position.y);
+        }
     }
 
     update(gameContext : GameContext) : void {

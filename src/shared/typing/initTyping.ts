@@ -7,12 +7,13 @@ import { GameContext, GameObject } from './gameObjects/GameObject';
 import { TimeDisplay } from './gameObjects/TimeDisplay';
 import { TypeTracker } from './gameObjects/TypeTracker';
 import { Word } from './gameObjects/Word';
-import generateGOs, { LetterGenerationParamsType } from './generateGOs';
+import generateGOs, { LetterGenerationParamsType, generateLetterSprite } from './generateGOs';
 import initWordPositions, { InitWordPositionsParams } from './initWordPositions';
 import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
 import { ErrorLetterPool } from './gameObjects/ErrorLetterPool';
+import { Cursor } from './gameObjects/Cursor';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -21,6 +22,7 @@ const testText = "Far far away, behind the word mountains, far from the countrie
 const areaWidth = 1190;
 const areaHeight = 500;
 const areaRatio = areaWidth / areaHeight;
+export const letterScaling = 0.3;
 
 //Aliases
 let Application = PIXI.Application,
@@ -87,6 +89,7 @@ export async function init() {
             generateSubletter: true
         };
         generateGOs(testText,  letterParams); //returns letter[]
+        
         //init error letters
         letterParams = {
             words: null,
@@ -98,10 +101,11 @@ export async function init() {
             generateGOs("########################################",  letterParams)
         );
         gameObjects.push(errorLetterPool);
+
         const initWordPositionsParams : InitWordPositionsParams = { 
             words: words,
-            letterWidth: xmlHelper.biggestWidth * 0.3,
-            letterHeight: 450 * 0.3,
+            letterWidth: xmlHelper.biggestWidth * letterScaling,
+            letterHeight: 450 * letterScaling,
             canvasWidth: areaWidth,
             xOffset: 20,
             yOffset: 0,
@@ -109,8 +113,9 @@ export async function init() {
         };
         initWordPositions(initWordPositionsParams);
 
-        gameObjects.push(new TypeTracker(words));
+        gameObjects.push(new TypeTracker(words, initWordPositionsParams.letterWidth));
         gameObjects.push(new TimeDisplay());
+        gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
 
         //preparing done, init go
         gameObjects.forEach(go => go.init(gameContext));

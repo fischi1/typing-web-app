@@ -15,7 +15,7 @@ export class ErrorLetterPool extends GameObject{
     constructor(letters : Letter[]) {
         super();
         if(ErrorLetterPool.instance) 
-            console.error("ErrorLetterPool should only exists once!!!");
+            console.error("ErrorLetterPool should only exist once!!!");
         else 
             ErrorLetterPool.instance = this;
 
