@@ -1,9 +1,9 @@
 import { Howl, Howler } from 'howler';
 
-Howler.mute(true);
+Howler.mute(false);
 
 const urlFailSound = "/sounds/Explosion4.wav";
-const urlSuccessSound = "/sounds/Explosion4.wav";
+const urlSuccessSound = "/sounds/Pickup_Coin66.wav";
 
 const relativaPathTyping = "/sounds/eklee-KeyPresses-cc0-opengameart/wav44100/";
 
@@ -36,8 +36,10 @@ const addSound = (url : string) : Howl => {
 const typingSounds = urlTypingSounds.map(name => addSound(relativaPathTyping + name));
 
 const failSound = addSound(urlFailSound);
+failSound.volume(0.5);
 
 const successSound = addSound(urlSuccessSound);
+successSound.volume(0.5);
 
 Howler.volume(0.2);
 
@@ -60,6 +62,6 @@ export const playFailSound = () => {
     failSound.play();
 }
 
-export const playSuccessSoud = () => {
+export const playSuccessSound = () => {
     successSound.play();
 }

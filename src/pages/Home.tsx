@@ -1,10 +1,9 @@
+import { createStyles, Theme, Typography, WithStyles, withStyles } from "@material-ui/core";
 import React, { FC } from "react";
-import { createStyles, Theme, WithStyles, withStyles, Typography } from "@material-ui/core";
 import { RouteComponentProps } from "react-router";
-import Page from "../shared/Page";
 import GermanKeyboardController from "../shared/keyboard/GermanKeyboardController";
+import Page from "../shared/Page";
 import TypingCanvas from "../shared/typing/TypingCanvas";
-import { highlightColors } from "../highlightColors";
 
 const styles = (theme: Theme) => createStyles({
     container: {
@@ -12,12 +11,12 @@ const styles = (theme: Theme) => createStyles({
         height: "27vw"
     },
     left: {
-        backgroundColor: highlightColors.gray,
+        //backgroundColor: highlightColors.gray,
         flex: "0 0 20%"
     }, center: {
         flex: "0 0 60%"
     }, right: {
-        backgroundColor: highlightColors.red,
+        //backgroundColor: highlightColors.red,
         flex: "0 0 20%"
     }
 });

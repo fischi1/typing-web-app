@@ -37,7 +37,7 @@ export class ErrorLetterPool extends GameObject{
         for(var i = 0; i < this.errorLetters.length; i++) {
             if(this.errorLetters[i].status === "free") {
                 this.errorLetters[i].status = "used";
-                console.log("giving out letter: " + i);
+                //console.log("giving out letter: " + i);
                 return this.errorLetters[i].letter;
             }
         }
@@ -47,7 +47,7 @@ export class ErrorLetterPool extends GameObject{
     returnLetter(letter : Letter) : void {
         var found = this.errorLetters.find((elem, i) => {
             if(elem.letter === letter) {
-                console.log("returning letter: " + i);
+                //console.log("returning letter: " + i);
                 return true;
             }
             return false;
