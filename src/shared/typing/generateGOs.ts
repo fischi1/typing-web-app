@@ -2,46 +2,51 @@ import * as PIXI from 'pixi.js';
 import { GameObject } from './gameObjects/GameObject';
 import { Letter } from "./gameObjects/Letter";
 import { Word } from "./gameObjects/Word";
-import pixiColorHelper from './pixiColorHelper';
 import { XMLHelper } from './XMLHelper';
 
 export type LetterGenerationParamsType = {
-    words: Word[],
+    words: Word[] | null,
     gameObjects : GameObject[],
     fontTexture: PIXI.Texture,
-    xmlHelper: XMLHelper
+    xmlHelper: XMLHelper,
+    generateSubletter?: boolean
 }
 
 var counter = 0;
 
-export default function generateGOs(text : string, additionalParams : LetterGenerationParamsType) : Letter[] {
+const generateGOs = (text : string, additionalParams : LetterGenerationParamsType) : Letter[] => {
     const splitText = text.split(" ");
     const letters : Letter[] = [];
 
     splitText.forEach(wordText => {
-        generateForWord(wordText, additionalParams)
+        generateForWord(wordText, additionalParams, letters);
     });
 
     return letters;
 }
 
-function generateForWord(wordText : string, additionalParams : LetterGenerationParamsType) {
-    var word : Word = {letters:[]};
+const generateForWord = (wordText : string, additionalParams : LetterGenerationParamsType, letters : Letter[]) => {
+    var word : Word = {letters:[], text : wordText};
     for(let i = 0; i < wordText.length; i++) {
         additionalParams.fontTexture.frame = additionalParams.xmlHelper.getRectangle(wordText.charCodeAt(i));
 
         let letter = new Letter(counter, wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
-        let subLetter = new Letter(counter, wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
-        subLetter.sprite.tint = pixiColorHelper.green;
-        letter.subLetter = subLetter;
 
         word.letters.push(letter);
-
+        letters.push(letter);
         additionalParams.gameObjects.push(letter);
-        additionalParams.gameObjects.push(subLetter);
+
+        if(additionalParams.generateSubletter) {
+            let subLetter = new Letter(counter, wordText.charAt(i), PIXI.Sprite.from(additionalParams.fontTexture.clone()));
+            letter.subLetter = subLetter;
+            additionalParams.gameObjects.push(subLetter);
+        }
 
         counter++;
     }
     counter++;
-    additionalParams.words.push(word);
+    if(additionalParams.words)
+        additionalParams.words.push(word);
 }
+
+export default generateGOs;

@@ -2,7 +2,9 @@
 import * as PIXI from 'pixi.js';
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
 import dog from "../../assets/images/dog.gif";
+import { DebugCat } from './gameObjects/DebugCat';
 import { GameContext, GameObject } from './gameObjects/GameObject';
+import { TimeDisplay } from './gameObjects/TimeDisplay';
 import { TypeTracker } from './gameObjects/TypeTracker';
 import { Word } from './gameObjects/Word';
 import generateGOs, { LetterGenerationParamsType } from './generateGOs';
@@ -10,8 +12,7 @@ import initWordPositions, { InitWordPositionsParams } from './initWordPositions'
 import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
-import { TimeDisplay } from './gameObjects/TimeDisplay';
-import { DebugCat } from './gameObjects/DebugCat';
+import { ErrorLetterPool } from './gameObjects/ErrorLetterPool';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -82,9 +83,21 @@ export async function init() {
             words: words,
             gameObjects: gameObjects,
             fontTexture,
+            xmlHelper,
+            generateSubletter: true
+        };
+        generateGOs(testText,  letterParams); //returns letter[]
+        //init error letters
+        letterParams = {
+            words: null,
+            gameObjects: gameObjects,
+            fontTexture,
             xmlHelper
         };
-        var letters = generateGOs(testText,  letterParams);
+        var errorLetterPool = new ErrorLetterPool(
+            generateGOs("########################################",  letterParams)
+        );
+        gameObjects.push(errorLetterPool);
         const initWordPositionsParams : InitWordPositionsParams = { 
             words: words,
             letterWidth: xmlHelper.biggestWidth * 0.3,
@@ -96,7 +109,7 @@ export async function init() {
         };
         initWordPositions(initWordPositionsParams);
 
-        gameObjects.push(new TypeTracker());
+        gameObjects.push(new TypeTracker(words));
         gameObjects.push(new TimeDisplay());
 
         //preparing done, init go

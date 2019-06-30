@@ -3,7 +3,6 @@ import React, { FC, useEffect } from 'react';
 import useGermanKeysState from '../keyboard/useGermanKeysState';
 import { init } from './initTyping';
 import { ttKeyPressed } from './typeTracking';
-import { playTypingSound } from './SoundManager';
 
 const styles = () => createStyles({
     container: {
@@ -17,7 +16,6 @@ const TypingCanvas : FC<Props> = (props) => {
     const { classes } = props;
 
     useGermanKeysState({onKeyDown: key => {
-        playTypingSound();
         ttKeyPressed(key);
     }})
 

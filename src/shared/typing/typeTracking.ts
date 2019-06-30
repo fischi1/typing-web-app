@@ -1,36 +1,20 @@
-
-var curWord = "";
-
 export type ListenerFunction = {
-    (newWord : string, oldWord : string, key : string) : boolean
+    (key: string) : void
 }
 
-var typingShouldPass : ListenerFunction | null;
+var onKeyDown : ListenerFunction | null;
 
-export const registerForStatus = (func:ListenerFunction) => {
-    typingShouldPass = func;
+export const registerListener = (func:ListenerFunction) => {
+    onKeyDown = func;
 }
 
-export const unregisterForStatus  = () => {
-    typingShouldPass = null;
+export const unregisterListener  = () => {
+    onKeyDown = null;
 }
 
 export const ttKeyPressed = (key : string) => {
-    if(!typingShouldPass)
+    if(!onKeyDown)
         return;
 
-    var newWord = curWord;
-
-    if(key.length === 1) {
-        if(key === " " )
-            newWord = "";
-        else
-            newWord += key;
-    }
-    else if(key === "Backspace")
-        if(curWord.length > 0)
-            newWord = curWord.substring(0, curWord.length - 1);
-
-    if(typingShouldPass(newWord, curWord, key))
-        curWord = newWord;
+    onKeyDown(key);
 }
