@@ -4,7 +4,8 @@ import { PixiSprite } from './PixiSprite';
 import pixiColorHelper from '../pixiColorHelper';
 import { letterScaling } from '../initTyping';
 import { Cursor } from './Cursor';
-import { Vector2, vec2Zero, pixiPointToVec, vecToPixiPoint, vec2 } from './Vector2';
+import { Vector2, vec2Zero, pixiPointToVec, vecToPixiPoint, vec2, add } from './Vector2';
+import { RowOffsetManager } from './RowOffsetManager';
 
 export type LetterStatus = 
     "normal" | "selected" | "valid" | "invalid" | "invisible";
@@ -14,6 +15,8 @@ export class Letter extends PixiSprite{
     character : string;
     index: number;
     subLetter? : Letter;
+
+    curPos : Vector2 = vec2Zero();
 
     private startPosition : Vector2 = vec2Zero();
     
@@ -28,16 +31,19 @@ export class Letter extends PixiSprite{
         super.init(gameContext);
         this.sprite.scale = vecToPixiPoint(vec2(letterScaling));
         this.startPosition = pixiPointToVec(this.sprite.position);
+        this.curPos = pixiPointToVec(this.sprite.position);
 
         if(this.subLetter)
             this.subLetter.setStatus("invisible");
 
         if(this.index === 0){
-            Cursor.instance.setPosition(pixiPointToVec(this.sprite.position));
+            Cursor.instance.setPosition(this.curPos);
         }
     }
 
     update(gameContext : GameContext) : void {
+        this.sprite.position = vecToPixiPoint(add(this.curPos, RowOffsetManager.instance.offset));
+        this.sprite.position.x += Math.sin(gameContext.timeSinceStart * 50) * 3;
     }
 
     show() {
@@ -46,6 +52,10 @@ export class Letter extends PixiSprite{
 
     hide() {
         this.sprite.alpha = 0;
+    }
+
+    setPos(pos : Vector2) {
+        this.curPos = pos;
     }
 
     setStatus(status : LetterStatus) {

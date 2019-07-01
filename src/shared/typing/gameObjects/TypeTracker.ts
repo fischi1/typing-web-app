@@ -4,8 +4,8 @@ import { Cursor } from "./Cursor";
 import { ErrorLetterPool } from "./ErrorLetterPool";
 import { GameContext, GameObject } from "./GameObject";
 import { Letter } from "./Letter";
-import { pixiPointToVec } from "./Vector2";
 import { Word } from "./Word";
+import { RowOffsetManager } from "./RowOffsetManager";
 
 export class TypeTracker extends GameObject{
 
@@ -74,6 +74,7 @@ export class TypeTracker extends GameObject{
         this.curWord.letters.forEach(letter => letter.setStatus("selected"));
         this.lastInvalidLetters = 0;
         this.lastValidLetters = 0;
+        RowOffsetManager.instance.setRow(this.curWord.row);
         playSuccessSound();
     }    
     
@@ -95,7 +96,7 @@ export class TypeTracker extends GameObject{
                         let errorLetter = ErrorLetterPool.instance.getLetter();
                         if(errorLetter) {
                             errorLetter.setStatus("invalid");
-                            errorLetter.sprite.position = subLetter.sprite.position;
+                            errorLetter.setPos(subLetter.curPos);
                             this.errorLetters[i] = errorLetter;
                         }
                     }
@@ -108,11 +109,11 @@ export class TypeTracker extends GameObject{
         if(i < this.curWord.letters.length) { //before the last letter for word
             subLetter = this.curWord.letters[i].subLetter;
             if(subLetter)
-                Cursor.instance.setPosition(pixiPointToVec(subLetter.sprite.position));
+                Cursor.instance.setPosition(subLetter.curPos);
         } else { //after the last letter of the word
             subLetter = this.curWord.letters[this.curWord.letters.length-1].subLetter;
             if(subLetter)
-                Cursor.instance.setPosition({x: subLetter.sprite.position.x + this.letterWidth, y: subLetter.sprite.position.y});
+                Cursor.instance.setPosition({x: subLetter.curPos.x + this.letterWidth, y: subLetter.curPos.y});
         }
 
         while(i < this.curWord.text.length) {

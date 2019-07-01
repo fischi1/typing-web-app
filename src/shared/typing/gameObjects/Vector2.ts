@@ -24,3 +24,9 @@ export const vec2 = (val : number) : Vector2 => {
 export const add = (vecA: Vector2, vecB: Vector2) : Vector2 => {
     return {x: vecA.x + vecB.x, y: vecA.y + vecB.y};
 }
+
+export const lerp = (from: Vector2, to: Vector2, t : number) : Vector2 => {
+    t = Math.min(1, t);
+    t = Math.max(0, t);
+    return {x: to.x * t +  from.x * (1-t), y: to.y * t +  from.y * (1-t)}
+}

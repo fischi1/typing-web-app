@@ -1,19 +1,25 @@
 import { GameContext, GameObject } from "./GameObject";
-import * as PIXI from 'pixi.js';
-import { Vector2, vec2Zero } from "./Vector2";
+import { vec2Zero, Vector2, lerp } from "./Vector2";
 
 export class RowOffsetManager extends GameObject{
-
     static instance : RowOffsetManager;
 
     offset : Vector2 = vec2Zero();
+    snap = 6;
 
-    constructor() {
-        super();        
+    private speed = -5;
+    private row = 0;
+    private lineHeight = 0;
+    private actualOffset : Vector2 = vec2Zero();
+
+    constructor(lineHeight : number) {
+        super(); 
         if(RowOffsetManager.instance) 
             console.error("ErrorLetterPool should only exist once!!!");
-        else 
+        else
             RowOffsetManager.instance = this;
+
+        this.lineHeight = lineHeight;
     }
 
     init(gameContext : GameContext) {
@@ -21,8 +27,17 @@ export class RowOffsetManager extends GameObject{
     }
 
     update(gameContext : GameContext) : void {
+        if(this.row > 0)
+            this.actualOffset.y = -(this.row-1) * this.lineHeight - this.lineHeight * 0.5;
+
+        this.offset = lerp(this.offset, this.actualOffset, gameContext.deltaTime * this.snap);
+        //this.offset.y = Math.sin(gameContext.timeSinceStart * this.speed) * 200 + 100;
     }
 
     destroy(gameContext : GameContext) : void {
+    }
+
+    setRow(row: number) {
+        this.row = row;
     }
 }

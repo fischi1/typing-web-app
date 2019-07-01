@@ -1,10 +1,11 @@
 import * as PIXI from 'pixi.js';
 import { letterScaling } from '../initTyping';
-import { GameContext } from "./GameObject";
-import { PixiSprite } from './PixiSprite';
 import pixiColorHelper from '../pixiColorHelper';
 import { playFailSound } from '../SoundManager';
-import { Vector2, vec2Zero, pixiPointToVec, vec2, vecToPixiPoint, add } from './Vector2';
+import { GameContext } from "./GameObject";
+import { PixiSprite } from './PixiSprite';
+import { RowOffsetManager } from './RowOffsetManager';
+import { add, vec2, vec2Zero, vecToPixiPoint, Vector2 } from './Vector2';
 
 export class Cursor extends PixiSprite {
     static instance : Cursor;
@@ -12,18 +13,17 @@ export class Cursor extends PixiSprite {
     blinkingSpeed = 0.2;
     offset : Vector2 = {x: -5, y: -19};
     blinkingSpeedModifier = 0.25;
-    bumpAnimationDuration = 0.6;
+    bumpAnimationDuration = 0.3;
 
     private startBlinkingSpeed = this.blinkingSpeed;
-    private startPos : Vector2 = vec2Zero();
+    private curPos : Vector2 = vec2Zero();
     private blinkTimer = 0;
     private bumpAnimationTimer = 0;
     private hidden = false;
     private state : "normal" | "bump" = "bump";
 
     constructor(sprite: PIXI.Sprite) {
-        super(sprite);
-        
+        super(sprite);        
         if(Cursor.instance) 
             console.error("Letter should only exist once!!!");
         else 
@@ -33,7 +33,6 @@ export class Cursor extends PixiSprite {
     init(gameContext : GameContext) {
         super.init(gameContext);
         this.sprite.scale = vecToPixiPoint(vec2(letterScaling * 1.5));
-        this.startPos = pixiPointToVec(this.sprite.position);
     }
 
     update(gameContext : GameContext) : void {
@@ -49,6 +48,8 @@ export class Cursor extends PixiSprite {
                 this.switchToNormal();
             }
         }
+
+        this.sprite.position = vecToPixiPoint(add(this.curPos, RowOffsetManager.instance.offset));
     }
 
     toggleVisibility() {
@@ -60,7 +61,7 @@ export class Cursor extends PixiSprite {
     }
 
     setPosition(position: Vector2) {
-        this.sprite.position = vecToPixiPoint(add(this.offset, position));
+        this.curPos = add(this.offset, position);
     }
 
     bump() {        

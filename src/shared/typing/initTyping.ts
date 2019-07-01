@@ -14,10 +14,12 @@ import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
 import { ErrorLetterPool } from './gameObjects/ErrorLetterPool';
 import { Cursor } from './gameObjects/Cursor';
+import { RowOffsetManager } from './gameObjects/RowOffsetManager';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
 const testText = "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.";
+const easyText = "asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf";
 
 const areaWidth = 1190;
 const areaHeight = 500;
@@ -88,7 +90,7 @@ export async function init() {
             xmlHelper,
             generateSubletter: true
         };
-        generateGOs(testText,  letterParams); //returns letter[]
+        generateGOs(easyText,  letterParams); //returns letter[]
         
         //init error letters
         letterParams = {
@@ -115,6 +117,7 @@ export async function init() {
         gameObjects.push(new TypeTracker(words, initWordPositionsParams.letterWidth));
         gameObjects.push(new TimeDisplay());
         gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
+        gameObjects.push(new RowOffsetManager(initWordPositionsParams.letterHeight));
 
         //preparing done, init go
         gameObjects.forEach(go => go.init(gameContext));
