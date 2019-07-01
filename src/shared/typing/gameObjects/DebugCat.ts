@@ -1,5 +1,6 @@
 import { GameContext } from "./GameObject";
 import { PixiSprite } from './PixiSprite';
+import { vecToPixiPoint, vec2 } from "./Vector2";
 
 export class DebugCat extends PixiSprite{
 
@@ -8,8 +9,7 @@ export class DebugCat extends PixiSprite{
     init(gameContext : GameContext) {
         super.init(gameContext);
         
-        this.sprite.scale.x = 0.3;
-        this.sprite.scale.y = 0.3;
+        this.sprite.scale = vecToPixiPoint(vec2(0.3));
         this.sprite.alpha = 0.5;
     }
 

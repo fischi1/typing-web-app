@@ -4,19 +4,18 @@ import { GameContext } from "./GameObject";
 import { PixiSprite } from './PixiSprite';
 import pixiColorHelper from '../pixiColorHelper';
 import { playFailSound } from '../SoundManager';
+import { Vector2, vec2Zero, pixiPointToVec, vec2, vecToPixiPoint, add } from './Vector2';
 
 export class Cursor extends PixiSprite {
     static instance : Cursor;
     
     blinkingSpeed = 0.2;
-    yOffset = -19;
-    xOffset = -5;
+    offset : Vector2 = {x: -5, y: -19};
     blinkingSpeedModifier = 0.25;
     bumpAnimationDuration = 0.6;
 
     private startBlinkingSpeed = this.blinkingSpeed;
-    private startX = 0;
-    private startY = 0;
+    private startPos : Vector2 = vec2Zero();
     private blinkTimer = 0;
     private bumpAnimationTimer = 0;
     private hidden = false;
@@ -33,10 +32,8 @@ export class Cursor extends PixiSprite {
 
     init(gameContext : GameContext) {
         super.init(gameContext);
-        this.sprite.scale.x = letterScaling * 1.5;
-        this.sprite.scale.y = letterScaling * 1.5;
-        this.startX = this.sprite.position.x;
-        this.startY = this.sprite.position.y;
+        this.sprite.scale = vecToPixiPoint(vec2(letterScaling * 1.5));
+        this.startPos = pixiPointToVec(this.sprite.position);
     }
 
     update(gameContext : GameContext) : void {
@@ -62,9 +59,8 @@ export class Cursor extends PixiSprite {
     destroy(gameContext : GameContext) : void {
     }
 
-    setPosition(x : number, y : number) {
-        this.sprite.x = x + this.xOffset;
-        this.sprite.y = y + this.yOffset;
+    setPosition(position: Vector2) {
+        this.sprite.position = vecToPixiPoint(add(this.offset, position));
     }
 
     bump() {        

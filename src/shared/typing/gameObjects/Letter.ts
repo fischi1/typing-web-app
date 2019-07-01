@@ -4,6 +4,7 @@ import { PixiSprite } from './PixiSprite';
 import pixiColorHelper from '../pixiColorHelper';
 import { letterScaling } from '../initTyping';
 import { Cursor } from './Cursor';
+import { Vector2, vec2Zero, pixiPointToVec, vecToPixiPoint, vec2 } from './Vector2';
 
 export type LetterStatus = 
     "normal" | "selected" | "valid" | "invalid" | "invisible";
@@ -14,8 +15,7 @@ export class Letter extends PixiSprite{
     index: number;
     subLetter? : Letter;
 
-    private startX = 0;
-    private startY = 0;
+    private startPosition : Vector2 = vec2Zero();
     
     constructor(index: number, character : string, sprite : PIXI.Sprite) {
         super(sprite);
@@ -26,16 +26,14 @@ export class Letter extends PixiSprite{
 
     init(gameContext : GameContext) {
         super.init(gameContext);
-        this.sprite.scale.x = letterScaling;
-        this.sprite.scale.y = letterScaling;
-        this.startX = this.sprite.x;
-        this.startY = this.sprite.y;
+        this.sprite.scale = vecToPixiPoint(vec2(letterScaling));
+        this.startPosition = pixiPointToVec(this.sprite.position);
 
         if(this.subLetter)
             this.subLetter.setStatus("invisible");
 
         if(this.index === 0){
-            Cursor.instance.setPosition(this.sprite.position.x, this.sprite.position.y);
+            Cursor.instance.setPosition(pixiPointToVec(this.sprite.position));
         }
     }
 

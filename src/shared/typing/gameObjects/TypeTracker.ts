@@ -1,10 +1,11 @@
+import { playFailSound, playSuccessSound, playTypingSound } from "../SoundManager";
 import { ListenerFunction, registerListener, unregisterListener } from "../typeTracking";
 import { Cursor } from "./Cursor";
 import { ErrorLetterPool } from "./ErrorLetterPool";
 import { GameContext, GameObject } from "./GameObject";
 import { Letter } from "./Letter";
+import { pixiPointToVec } from "./Vector2";
 import { Word } from "./Word";
-import { playTypingSound, playFailSound, playSuccessSound } from "../SoundManager";
 
 export class TypeTracker extends GameObject{
 
@@ -107,11 +108,11 @@ export class TypeTracker extends GameObject{
         if(i < this.curWord.letters.length) { //before the last letter for word
             subLetter = this.curWord.letters[i].subLetter;
             if(subLetter)
-                Cursor.instance.setPosition(subLetter.sprite.position.x, subLetter.sprite.y);
+                Cursor.instance.setPosition(pixiPointToVec(subLetter.sprite.position));
         } else { //after the last letter of the word
             subLetter = this.curWord.letters[this.curWord.letters.length-1].subLetter;
             if(subLetter)
-                Cursor.instance.setPosition(subLetter.sprite.position.x + this.letterWidth, subLetter.sprite.y);
+                Cursor.instance.setPosition({x: subLetter.sprite.position.x + this.letterWidth, y: subLetter.sprite.position.y});
         }
 
         while(i < this.curWord.text.length) {

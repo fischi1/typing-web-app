@@ -1,28 +1,32 @@
 import { Word } from "./gameObjects/Word";
+import { Vector2 } from "./gameObjects/Vector2";
 
 export type InitWordPositionsParams = {
     words: Word[],
     letterWidth: number,
     letterHeight: number,
     canvasWidth: number,
-    xOffset: number,
-    yOffset: number,
+    offset: Vector2
     rightMargin: number
 };
 
 const initWordPositions = (params : InitWordPositionsParams) => {
-    const {words, letterWidth, letterHeight, canvasWidth, xOffset, yOffset, rightMargin} = params;
+    const {words, letterWidth, letterHeight, canvasWidth, offset, rightMargin} = params;
 
-    var xPos = xOffset;
-    var yPos = yOffset;
+    var xPos = offset.x;
+    var yPos = offset.y;
+    var row = 0;
     
     words.forEach(word => {
         var wordLength = word.letters.length * letterWidth;
         
         if(xPos + rightMargin + wordLength > canvasWidth) {
             yPos += letterHeight;
-            xPos = xOffset;
+            xPos = offset.x;
+            row++;
         }
+
+        word.row = row;
 
         word.letters.forEach(letter => {
             letter.sprite.x = xPos;

@@ -26,7 +26,7 @@ const generateGOs = (text : string, additionalParams : LetterGenerationParamsTyp
 }
 
 const generateForWord = (wordText : string, additionalParams : LetterGenerationParamsType, letters : Letter[]) => {
-    var word : Word = {letters:[], text : wordText};
+    var word : Word = {letters:[], text : wordText, row: 0};
     for(let i = 0; i < wordText.length; i++) {
         let letter = new Letter(counter, wordText.charAt(i), generateLetterSprite(wordText.charCodeAt(i), additionalParams));
 
