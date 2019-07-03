@@ -68,14 +68,19 @@ export class TypeTracker extends GameObject{
     }
 
     nextWord() {
-        this.curInput = "";
-        this.curWord.letters.forEach(letter => letter.setStatus("valid"));
-        this.curWord = this.words[++this.wordIndex];
-        this.curWord.letters.forEach(letter => letter.setStatus("selected"));
-        this.lastInvalidLetters = 0;
-        this.lastValidLetters = 0;
-        RowOffsetManager.instance.setRow(this.curWord.row);
-        playSuccessSound();
+        this.wordIndex++;
+        if(this.wordIndex < this.words.length) {
+            this.curInput = "";
+            this.curWord.letters.forEach(letter => letter.setStatus("valid"));
+            this.curWord = this.words[this.wordIndex];
+            this.curWord.letters.forEach(letter => letter.setStatus("selected"));
+            this.lastInvalidLetters = 0;
+            this.lastValidLetters = 0;
+            RowOffsetManager.instance.setRow(this.curWord.row);
+            playSuccessSound();
+        } else {
+            console.log("done");
+        }
     }    
     
     updateCurrentWord() {

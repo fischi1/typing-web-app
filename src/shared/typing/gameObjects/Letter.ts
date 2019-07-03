@@ -43,7 +43,6 @@ export class Letter extends PixiSprite{
 
     update(gameContext : GameContext) : void {
         this.sprite.position = vecToPixiPoint(add(this.curPos, RowOffsetManager.instance.offset));
-        this.sprite.position.x += Math.sin(gameContext.timeSinceStart * 50) * 3;
     }
 
     show() {

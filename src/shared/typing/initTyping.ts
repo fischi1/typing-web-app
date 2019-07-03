@@ -100,7 +100,7 @@ export async function init() {
             xmlHelper
         };
         var errorLetterPool = new ErrorLetterPool(
-            generateGOs("########################################",  letterParams) //str should be as long as the longest word, should be moved to go
+            generateGOs("########################################",  letterParams) //str should be as long as the longest word, should be moved to a go
         );
         gameObjects.push(errorLetterPool);
 
