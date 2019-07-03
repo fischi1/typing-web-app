@@ -21,10 +21,11 @@ const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 const testText = "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.";
 const easyText = "asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf";
 
-const areaWidth = 1190;
+//area for words: 1190
+const areaWidth = 1920;
 const areaHeight = 500;
 const areaRatio = areaWidth / areaHeight;
-export const letterScaling = 0.3;
+export const letterScaling = 0.25;
 
 //Aliases
 let Application = PIXI.Application,
@@ -109,8 +110,8 @@ export async function init() {
             letterWidth: xmlHelper.biggestWidth * letterScaling,
             letterHeight: 450 * letterScaling,
             canvasWidth: areaWidth,
-            offset: {x: 20, y: 0},
-            rightMargin: 20
+            offset: {x: 365, y: 0},
+            rightMargin: 365
         };
         initWordPositions(initWordPositionsParams);
 
@@ -150,7 +151,7 @@ function resizeCanvas() {
         htmlCanvasContainer = document.getElementById("typing-area-container");
     } 
     if(htmlCanvasContainer) {
-        const width = window.innerWidth * 0.6;
+        const width = window.innerWidth;
         app.renderer.view.style.width = width + "px";
         app.renderer.view.style.height = width / areaRatio + "px";
     }
