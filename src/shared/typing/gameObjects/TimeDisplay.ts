@@ -1,33 +1,27 @@
 import { GameContext, GameObject } from "./GameObject";
-import * as PIXI from 'pixi.js';
+import { defaultTextStyle, Text } from "./Text";
 
 export class TimeDisplay extends GameObject{
-    children: GameObject[] = [];
     
-    debugTimeText : PIXI.Text;
+    textObject : Text;
 
-    constructor() {
+    constructor(gameContext : GameContext) {
         super();
-
-        const style = new PIXI.TextStyle({
-            fontFamily: "Arial",
-            fontSize: "15px",
-            fill: 0xffffff,
-            wordWrap: true
-        });
-        this.debugTimeText = new PIXI.Text('time', style);
+        const textStyle = defaultTextStyle;
+        textStyle.fontSize=15;
+        textStyle.fontFamily="Verdana";
+        this.textObject = new Text("Text", {x:0, y:0}, 0, textStyle);
+        gameContext.addGameObject(this.textObject);
     }
 
     init(gameContext : GameContext) : void {
-        this.debugTimeText.x = 0;
-        this.debugTimeText.y = 0;
-        this.debugTimeText.text = "0";
-        gameContext.app.stage.addChild(this.debugTimeText);
     }
 
     update(gameContext : GameContext) : void {
-        this.debugTimeText.text = "" + Math.floor(gameContext.timeSinceStart);
+        const floorTime = Math.floor(gameContext.timeSinceStart);
+        this.textObject.pixiText.text = floorTime+ "." + Math.floor((gameContext.timeSinceStart - floorTime) * 10);
     }
 
-    destroy(gameContext : GameContext) : void {}
+    destroy(gameContext : GameContext) : void {
+    }
 }

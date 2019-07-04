@@ -2,19 +2,19 @@
 import * as PIXI from 'pixi.js';
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
 import dog from "../../assets/images/dog.gif";
+import { Cursor } from './gameObjects/Cursor';
 import { DebugCat } from './gameObjects/DebugCat';
+import { ErrorLetterPool } from './gameObjects/ErrorLetterPool';
 import { GameContext, GameObject } from './gameObjects/GameObject';
+import { RowOffsetManager } from './gameObjects/RowOffsetManager';
 import { TimeDisplay } from './gameObjects/TimeDisplay';
 import { TypeTracker } from './gameObjects/TypeTracker';
 import { Word } from './gameObjects/Word';
-import generateGOs, { LetterGenerationParamsType, generateLetterSprite } from './generateGOs';
+import generateGOs, { generateLetterSprite, LetterGenerationParamsType } from './generateGOs';
 import initWordPositions, { InitWordPositionsParams } from './initWordPositions';
 import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
-import { ErrorLetterPool } from './gameObjects/ErrorLetterPool';
-import { Cursor } from './gameObjects/Cursor';
-import { RowOffsetManager } from './gameObjects/RowOffsetManager';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -110,13 +110,13 @@ export async function init() {
             letterWidth: xmlHelper.biggestWidth * letterScaling,
             letterHeight: 450 * letterScaling,
             canvasWidth: areaWidth,
-            offset: {x: 365, y: 0},
-            rightMargin: 365
+            offset: {x: 510, y: 0},
+            rightMargin: 510
         };
         initWordPositions(initWordPositionsParams);
 
         gameObjects.push(new TypeTracker(words, initWordPositionsParams.letterWidth));
-        gameObjects.push(new TimeDisplay());
+        gameObjects.push(new TimeDisplay(gameContext));
         gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
         gameObjects.push(new RowOffsetManager(initWordPositionsParams.letterHeight));
 

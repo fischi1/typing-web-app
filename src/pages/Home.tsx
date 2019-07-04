@@ -21,8 +21,6 @@ const Home : FC<Props> = (props : Props) => {
             <TypingCanvas />
         </div>
         <br/>
-        <br/>
-        <br/>
         <GermanKeyboardController />
     </Page>; 
 }

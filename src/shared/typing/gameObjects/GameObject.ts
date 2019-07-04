@@ -7,8 +7,6 @@ export type GameContext = {
 }
 
 export abstract class GameObject{
-    children: GameObject[] = [];
-
     init(gameContext : GameContext) : void {}
 
     update(gameContext : GameContext) : void {}
