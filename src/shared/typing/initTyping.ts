@@ -19,14 +19,17 @@ import { ProgressBar } from './gameObjects/ProgressBar';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
-const testText = "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.";
-const easyText = "asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf";
+// const testText = "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.";
+const testText = "asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf";
 
-//area for words: 1190
+
 const areaWidth = 1920;
 const areaHeight = 500;
+const typingAreaWidth = 900;
+const typingBgWidth = 950;
+const typingOffset = (areaWidth - typingAreaWidth) / 2;
 const areaRatio = areaWidth / areaHeight;
-export const letterScaling = 0.25;
+export const letterScaling = 0.2;
 
 //Aliases
 let Application = PIXI.Application,
@@ -81,6 +84,12 @@ export async function init() {
     async function setup(loader : PIXI.Loader, resources : any) {
 
         var fontTexture = resources.bitmapFontTexture.texture as PIXI.Texture;
+
+        const typingBackgroundRect = new PIXI.Graphics();
+        typingBackgroundRect.beginFill(pixiColorHelper.darkgray);
+        typingBackgroundRect.drawRect((areaWidth - typingBgWidth) / 2, 0, typingBgWidth, areaHeight);
+        typingBackgroundRect.endFill();
+        app.stage.addChild(typingBackgroundRect);
         
         gameObjects.push(new DebugCat(new Sprite(resources.dog.texture)))
 
@@ -92,7 +101,7 @@ export async function init() {
             xmlHelper,
             generateSubletter: true
         };
-        generateGOs(easyText,  letterParams); //returns letter[]
+        generateGOs(testText,  letterParams); //returns letter[]
         
         //init error letters
         letterParams = {
@@ -111,8 +120,8 @@ export async function init() {
             letterWidth: xmlHelper.biggestWidth * letterScaling,
             letterHeight: 450 * letterScaling,
             canvasWidth: areaWidth,
-            offset: {x: 510, y: 0},
-            rightMargin: 510
+            offset: {x: typingOffset, y: 0},
+            rightMargin: typingOffset
         };
         initWordPositions(initWordPositionsParams);
 
@@ -120,7 +129,7 @@ export async function init() {
         gameObjects.push(new TimeDisplay(gameContext));
         gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
         gameObjects.push(new RowOffsetManager(initWordPositionsParams.letterHeight));
-        gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:250, y:0}, {x:10, y: app.view.height}, gameContext));
+        gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:250, y:0}, {x:15, y: app.view.height}, gameContext));
 
         //preparing done, init go
         gameObjects.forEach(go => go.init(gameContext));
