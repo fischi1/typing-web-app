@@ -15,6 +15,7 @@ import initWordPositions, { InitWordPositionsParams } from './initWordPositions'
 import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
+import { ProgressBar } from './gameObjects/ProgressBar';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -62,7 +63,7 @@ export async function init() {
     
     resizeCanvas();
 
-    app.renderer.backgroundColor = pixiColorHelper.darkgray;
+    app.renderer.backgroundColor = pixiColorHelper.black;
 
     //Add the canvas that Pixi automatically created for you to the HTML document
     const container = document.getElementById("typing-area-container");
@@ -119,6 +120,7 @@ export async function init() {
         gameObjects.push(new TimeDisplay(gameContext));
         gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
         gameObjects.push(new RowOffsetManager(initWordPositionsParams.letterHeight));
+        gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:250, y:0}, {x:10, y: app.view.height}, gameContext));
 
         //preparing done, init go
         gameObjects.forEach(go => go.init(gameContext));

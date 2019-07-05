@@ -1,4 +1,6 @@
 export const highlightColors = {
+    white: "#ffffff",
+    black: "#000000",
     yellow: "#f4b41b",
     blue: "#3cacd7",
     red: "#e6482e",
@@ -7,5 +9,4 @@ export const highlightColors = {
     deer: "#bf7958",
     gray: "#808080",
     darkgray: "#1a1a1a",
-    white: "#ffffff"
 }
