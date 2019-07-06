@@ -16,6 +16,7 @@ import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
 import { ProgressBar } from './gameObjects/ProgressBar';
+import drawRect from './drawRect';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -27,6 +28,7 @@ const areaWidth = 1920;
 const areaHeight = 500;
 const typingAreaWidth = 900;
 const typingBgWidth = 950;
+const topBarHeight = 50;
 const typingOffset = (areaWidth - typingAreaWidth) / 2;
 const areaRatio = areaWidth / areaHeight;
 export const letterScaling = 0.2;
@@ -86,9 +88,8 @@ export async function init() {
         var fontTexture = resources.bitmapFontTexture.texture as PIXI.Texture;
 
         const typingBackgroundRect = new PIXI.Graphics();
-        typingBackgroundRect.beginFill(pixiColorHelper.darkgray);
-        typingBackgroundRect.drawRect((areaWidth - typingBgWidth) / 2, 0, typingBgWidth, areaHeight);
-        typingBackgroundRect.endFill();
+        drawRect(typingBackgroundRect, pixiColorHelper.darkgray, 
+            {x: (areaWidth - typingBgWidth) / 2, y:0 }, {x: typingBgWidth, y: areaHeight} );
         app.stage.addChild(typingBackgroundRect);
         
         gameObjects.push(new DebugCat(new Sprite(resources.dog.texture)))
@@ -120,7 +121,7 @@ export async function init() {
             letterWidth: xmlHelper.biggestWidth * letterScaling,
             letterHeight: 450 * letterScaling,
             canvasWidth: areaWidth,
-            offset: {x: typingOffset, y: 0},
+            offset: {x: typingOffset, y: topBarHeight},
             rightMargin: typingOffset
         };
         initWordPositions(initWordPositionsParams);

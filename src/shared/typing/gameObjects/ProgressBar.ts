@@ -2,6 +2,7 @@ import * as PIXI from "pixi.js";
 import { GameContext, GameObject } from "./GameObject";
 import { lerp, clamp } from "../../functions/mathHelper";
 import { Vector2 } from "./Vector2";
+import drawRect from "../drawRect";
 
 
 export class ProgressBar extends GameObject{
@@ -30,9 +31,7 @@ export class ProgressBar extends GameObject{
         this.activeColor = activeColor;
         this.notActiveColor = notActiveColor;      
 
-        this.barNotActiveGraphics.beginFill(this.notActiveColor);
-        this.barNotActiveGraphics.drawRect(position.x, position.y, bounds.x, bounds.y);
-        this.barNotActiveGraphics.endFill();
+        drawRect(this.barNotActiveGraphics, this.notActiveColor, position, bounds);
 
         gameContext.app.stage.addChild(this.barNotActiveGraphics);
         gameContext.app.stage.addChild(this.barActiveGraphics);
@@ -57,10 +56,8 @@ export class ProgressBar extends GameObject{
     }
 
     draw() {
-        this.barActiveGraphics.clear();
-        this.barActiveGraphics.beginFill(this.activeColor);
-        this.barActiveGraphics.drawRect(this.position.x, this.position.y + this.currentHeight, this.bounds.x, this.bounds.y - this.currentHeight);
-        this.barActiveGraphics.endFill();
+        drawRect(this.barActiveGraphics, this.activeColor, 
+            {x: this.position.x, y: this.position.y + this.currentHeight}, {x: this.bounds.x, y: this.bounds.y - this.currentHeight});
     }
 
     setValue(val : number) {
