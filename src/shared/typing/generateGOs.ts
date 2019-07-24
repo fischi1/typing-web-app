@@ -9,7 +9,8 @@ export type LetterGenerationParamsType = {
     gameObjects : GameObject[],
     fontTexture: PIXI.Texture,
     xmlHelper: XMLHelper,
-    generateSubletter?: boolean
+    generateSubletter?: boolean,
+    container: PIXI.Container
 }
 
 var counter = 0;
@@ -28,14 +29,14 @@ const generateGOs = (text : string, additionalParams : LetterGenerationParamsTyp
 const generateForWord = (wordText : string, additionalParams : LetterGenerationParamsType, letters : Letter[]) => {
     var word : Word = {letters:[], text : wordText, row: 0};
     for(let i = 0; i < wordText.length; i++) {
-        let letter = new Letter(counter, wordText.charAt(i), generateLetterSprite(wordText.charCodeAt(i), additionalParams));
+        let letter = new Letter(counter, wordText.charAt(i), generateLetterSprite(wordText.charCodeAt(i), additionalParams), additionalParams.container);
 
         word.letters.push(letter);
         letters.push(letter);
         additionalParams.gameObjects.push(letter);
 
         if(additionalParams.generateSubletter) {
-            let subLetter = new Letter(counter, wordText.charAt(i), generateLetterSprite(wordText.charCodeAt(i), additionalParams));
+            let subLetter = new Letter(counter, wordText.charAt(i), generateLetterSprite(wordText.charCodeAt(i), additionalParams), additionalParams.container);
             letter.subLetter = subLetter;
             additionalParams.gameObjects.push(subLetter);
         }

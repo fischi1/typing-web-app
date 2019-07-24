@@ -20,8 +20,8 @@ export class Letter extends PixiSprite{
 
     private startPosition : Vector2 = vec2Zero();
     
-    constructor(index: number, character : string, sprite : PIXI.Sprite) {
-        super(sprite);
+    constructor(index: number, character : string, sprite : PIXI.Sprite, container : PIXI.Container) {
+        super(sprite, container);
         this.index = index;
         this.character = character;
         this.sprite = sprite;

@@ -17,6 +17,7 @@ import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
 import { ProgressBar } from './gameObjects/ProgressBar';
 import drawRect from './drawRect';
+import { PixiContainer } from './gameObjects/PixiContainer';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -86,21 +87,30 @@ export async function init() {
     async function setup(loader : PIXI.Loader, resources : any) {
 
         var fontTexture = resources.bitmapFontTexture.texture as PIXI.Texture;
+        
+        gameObjects.push(new DebugCat(new Sprite(resources.dog.texture)));
 
         const typingBackgroundRect = new PIXI.Graphics();
         drawRect(typingBackgroundRect, pixiColorHelper.darkgray, 
-            {x: (areaWidth - typingBgWidth) / 2, y:0 }, {x: typingBgWidth, y: areaHeight} );
+            {x: (areaWidth - typingBgWidth) / 2, y:topBarHeight }, {x: typingBgWidth, y: areaHeight - topBarHeight} );
         app.stage.addChild(typingBackgroundRect);
         
-        gameObjects.push(new DebugCat(new Sprite(resources.dog.texture)))
+        const typingContainerRect = new PIXI.Graphics();
+        drawRect(typingContainerRect, pixiColorHelper.white, 
+            {x: (areaWidth - typingBgWidth) / 2, y:topBarHeight }, {x: typingBgWidth, y: areaHeight - topBarHeight} );
+        app.stage.addChild(typingContainerRect);
+
+        const letterContainerGO = new PixiContainer(new PIXI.Container(), typingContainerRect);
+        gameObjects.push(letterContainerGO);
 
         //init text
         var letterParams : LetterGenerationParamsType = {
-            words: words,
-            gameObjects: gameObjects,
+            words : words,
+            gameObjects : gameObjects,
             fontTexture,
             xmlHelper,
-            generateSubletter: true
+            generateSubletter : true,
+            container : letterContainerGO.container
         };
         generateGOs(testText,  letterParams); //returns letter[]
         
@@ -109,7 +119,8 @@ export async function init() {
             words: null,
             gameObjects: gameObjects,
             fontTexture,
-            xmlHelper
+            xmlHelper,
+            container : letterContainerGO.container
         };
         var errorLetterPool = new ErrorLetterPool(
             generateGOs("########################################",  letterParams) //str should be as long as the longest word, should be moved to a go
@@ -150,6 +161,7 @@ function loop(delta : number) {
 
     gameObjects.forEach(go => {
         go.update(gameContext);
+        
     });
 }
 
