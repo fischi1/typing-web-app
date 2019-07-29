@@ -1,7 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { GameContext, GameObject } from "./GameObject";
 
-
 export class PixiContainer extends GameObject {
 
     container : PIXI.Container;
@@ -12,14 +11,11 @@ export class PixiContainer extends GameObject {
         this.container = container;
         this.graphicMask = mask;
     }
-    
+
     init(gameContext : GameContext) : void {
         gameContext.app.stage.addChild(this.container);
         this.container.mask = this.graphicMask;
     }
-
-    switch = false;
-    timer = 0;
 
     update(gameContext : GameContext) : void {
     }
