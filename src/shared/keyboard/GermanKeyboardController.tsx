@@ -1,6 +1,6 @@
-import React, { FC } from "react";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core";
-import GermanKeyboardSVG from "./GermanKeyboardSVG";
+import React, { FC } from "react";
+import GermanKeyBoardImage from "./GermanKeyboardImage/GermanKeyboardImage";
 import useGermanKeysState from "./useGermanKeysState";
 
 const styles = () => createStyles({
@@ -16,10 +16,11 @@ const GermanKeyboardController : FC<Props> = (props : Props) => {
     const {classes} = props;    
 
     const keysState = useGermanKeysState({});
+    console.log(keysState);
 
     return <>
         <div className={classes.container}>
-            <GermanKeyboardSVG keys={keysState}/>
+            <GermanKeyBoardImage />
         </div>
     </>;
 }
