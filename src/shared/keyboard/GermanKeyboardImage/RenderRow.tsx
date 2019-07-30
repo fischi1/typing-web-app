@@ -1,18 +1,20 @@
 import { createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
 import React, { FC, useEffect, useState } from "react";
+import { KeySprite } from "./imageUrls";
 
 const styles = (theme: Theme) => createStyles({
 });
 
 type Props = {
-    imgUrls: string[],
+    imgUrls: KeySprite[],
     widthMod: number,
-    y: number
+    y: number,
+    keysState : Record<number, boolean>
 } & WithStyles<typeof styles>;
 
 type ImgInfo = {
     width : number,
-    url : string
+    keySprite : KeySprite
 }
 
 const RenderRow : FC<Props> = (props : Props) => {
@@ -22,16 +24,16 @@ const RenderRow : FC<Props> = (props : Props) => {
         const newLetters : ImgInfo[] = [];
         var numElems = props.imgUrls.length;
 
-        props.imgUrls.forEach(url => {
+        props.imgUrls.forEach(keyData => {
             var img = new Image();
             img.onload = () => {
-                const newLetter = {url: url, width: img.width * props.widthMod};
+                const newLetter = {keySprite: keyData, width: img.width * props.widthMod};
                 newLetters.push(newLetter);
                 numElems--;
                 if(numElems === 0)
                     setLettersAfterDone();
             }
-            img.src = url;
+            img.src = keyData.spriteUrl;
         });
 
         const setLettersAfterDone = () => {
@@ -43,8 +45,13 @@ const RenderRow : FC<Props> = (props : Props) => {
 
     return <>
         {letters.map((letter, i) => {
-                const ret = <img key={i} src={letter.url} alt="" style={{left:x, top : props.y * props.widthMod, width: letter.width}}/>;
+                const xPos = x;
                 x += letter.width
+
+                if(props.keysState[letter.keySprite.keyCode])
+                    return null;
+
+                const ret = <img key={i} src={letter.keySprite.spriteUrl} alt="" style={{left:xPos, top : props.y * props.widthMod, width: letter.width}}/>;
                 return ret;
             }
         )}

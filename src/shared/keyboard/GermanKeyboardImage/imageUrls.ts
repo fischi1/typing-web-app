@@ -63,12 +63,84 @@ import spr_space from "../../../assets/images/keyboard/space.png";
 import spr_menu from "../../../assets/images/keyboard/menu.png";
 import spr_rstrg from "../../../assets/images/keyboard/rstrg.png";
 
-export const row1Urls = [spr_caret, spr_1, spr_2, spr_3, spr_4, spr_5, spr_6, spr_7, spr_8, spr_9, spr_0, spr_sz, spr_after_sz, spr_backspace];
+export type KeySprite = {
+    spriteUrl : string,
+    keyCode: number
+}
 
-export const row2Urls = [spr_tab, spr_q, spr_w, spr_e, spr_r, spr_t, spr_z, spr_u, spr_i, spr_o, spr_p, spr_ue, spr_plus, spr_enter];
+export const row1Urls : KeySprite[] = [
+    {spriteUrl: spr_caret, keyCode: 220},
+    {spriteUrl: spr_1, keyCode: 49},
+    {spriteUrl: spr_2, keyCode: 50},
+    {spriteUrl: spr_3, keyCode: 51},
+    {spriteUrl: spr_4, keyCode: 52},
+    {spriteUrl: spr_5, keyCode: 53},
+    {spriteUrl: spr_6, keyCode: 54},
+    {spriteUrl: spr_7, keyCode: 55},
+    {spriteUrl: spr_8, keyCode: 56},
+    {spriteUrl: spr_9, keyCode: 57},
+    {spriteUrl: spr_0, keyCode: 48},
+    {spriteUrl: spr_sz, keyCode: 219},
+    {spriteUrl: spr_after_sz, keyCode: 221},
+    {spriteUrl: spr_backspace, keyCode: 8}
+];
 
-export const row3Urls = [spr_caps, spr_a, spr_s, spr_d, spr_f, spr_g, spr_h, spr_j, spr_k, spr_l, spr_oe, spr_ae, spr_hash];
+export const row2Urls = [
+    {spriteUrl: spr_tab, keyCode: 9},
+    {spriteUrl: spr_q, keyCode: 81},
+    {spriteUrl: spr_w, keyCode: 87},
+    {spriteUrl: spr_e, keyCode: 69},
+    {spriteUrl: spr_r, keyCode: 82},
+    {spriteUrl: spr_t, keyCode: 84},
+    {spriteUrl: spr_z, keyCode: 90},
+    {spriteUrl: spr_u, keyCode: 85},
+    {spriteUrl: spr_i, keyCode: 73},
+    {spriteUrl: spr_o, keyCode: 79},
+    {spriteUrl: spr_p, keyCode: 80},
+    {spriteUrl: spr_ue, keyCode: 186},
+    {spriteUrl: spr_plus, keyCode: 187},
+    {spriteUrl: spr_enter, keyCode: 13}
+];
 
-export const row4Urls = [spr_lshift, spr_angle_brackets, spr_y, spr_x, spr_c, spr_v, spr_b, spr_n, spr_m, spr_comma, spr_dot, spr_dash, spr_rshift];
+export const row3Urls = [
+    {spriteUrl: spr_caps, keyCode: 20},
+    {spriteUrl: spr_a, keyCode: 65},
+    {spriteUrl: spr_s, keyCode: 83},
+    {spriteUrl: spr_d, keyCode: 68},
+    {spriteUrl: spr_f, keyCode: 70},
+    {spriteUrl: spr_g, keyCode: 71},
+    {spriteUrl: spr_h, keyCode: 72},
+    {spriteUrl: spr_j, keyCode: 74},
+    {spriteUrl: spr_k, keyCode: 75},
+    {spriteUrl: spr_l, keyCode: 76},
+    {spriteUrl: spr_oe, keyCode: 192},
+    {spriteUrl: spr_ae, keyCode: 222},
+    {spriteUrl: spr_hash, keyCode: 191}
+];
 
-export const row5Urls = [spr_strg, spr_win, spr_alt, spr_space, spr_alt, spr_win, spr_menu, spr_rstrg];
+export const row4Urls = [
+    {spriteUrl: spr_lshift, keyCode: 16},
+    {spriteUrl: spr_angle_brackets, keyCode: 226},
+    {spriteUrl: spr_y, keyCode: 89},
+    {spriteUrl: spr_x, keyCode: 88},
+    {spriteUrl: spr_c, keyCode: 67},
+    {spriteUrl: spr_v, keyCode: 86},
+    {spriteUrl: spr_b, keyCode: 66},
+    {spriteUrl: spr_n, keyCode: 78},
+    {spriteUrl: spr_m, keyCode: 77},
+    {spriteUrl: spr_comma, keyCode: 188},
+    {spriteUrl: spr_dot, keyCode: 190},
+    {spriteUrl: spr_dash, keyCode: 189},
+    {spriteUrl: spr_rshift, keyCode: 1}
+];
+
+export const row5Urls = [
+    {spriteUrl: spr_strg, keyCode: 17},
+    {spriteUrl: spr_win, keyCode: 91},
+    {spriteUrl: spr_alt, keyCode: 18},
+    {spriteUrl: spr_space, keyCode: 32},
+    {spriteUrl: spr_alt, keyCode: 1},
+    {spriteUrl: spr_win, keyCode: 92},
+    {spriteUrl: spr_menu, keyCode: 93},
+    {spriteUrl: spr_rstrg, keyCode: 1}
+];

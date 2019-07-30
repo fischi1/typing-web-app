@@ -16,11 +16,17 @@ const GermanKeyboardController : FC<Props> = (props : Props) => {
     const {classes} = props;    
 
     const keysState = useGermanKeysState({});
-    console.log(keysState);
+    // const keys = Object.keys(keysState);
+    // var numbers : Record<number, boolean> = {};
+    // keys.forEach(key => {
+    //     if(keysState[+key])
+    //         numbers[+key] = keysState[+key];
+    // })
+    // console.log(numbers);
 
     return <>
         <div className={classes.container}>
-            <GermanKeyBoardImage />
+            <GermanKeyBoardImage keysState={keysState} />
         </div>
     </>;
 }
