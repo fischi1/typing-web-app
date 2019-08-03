@@ -1,5 +1,6 @@
 import { GameContext, GameObject } from "./GameObject";
 import { vec2Zero, Vector2, lerp } from "./Vector2";
+import forceToNull from "../../functions/forceToNull";
 
 export class RowOffsetManager extends GameObject{
     static instance : RowOffsetManager;
@@ -15,7 +16,7 @@ export class RowOffsetManager extends GameObject{
     constructor(lineHeight : number) {
         super(); 
         if(RowOffsetManager.instance) 
-            console.error("ErrorLetterPool should only exist once!!!");
+            console.error("RowOffsetManager should only exist once!!!");
         else
             RowOffsetManager.instance = this;
 
@@ -35,6 +36,7 @@ export class RowOffsetManager extends GameObject{
     }
 
     destroy(gameContext : GameContext) : void {
+        RowOffsetManager.instance = forceToNull<RowOffsetManager>();
     }
 
     setRow(row: number) {

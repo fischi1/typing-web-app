@@ -6,6 +6,7 @@ import { GameContext } from "./GameObject";
 import { PixiSprite } from './PixiSprite';
 import { RowOffsetManager } from './RowOffsetManager';
 import { add, vec2, vec2Zero, vecToPixiPoint, Vector2 } from './Vector2';
+import forceToNull from '../../functions/forceToNull';
 
 export class Cursor extends PixiSprite {
     static instance : Cursor;
@@ -25,7 +26,7 @@ export class Cursor extends PixiSprite {
     constructor(sprite: PIXI.Sprite) {
         super(sprite);        
         if(Cursor.instance) 
-            console.error("Letter should only exist once!!!");
+            console.error("Cursor should only exist once!!!");
         else 
             Cursor.instance = this;
     }
@@ -58,6 +59,7 @@ export class Cursor extends PixiSprite {
     }
 
     destroy(gameContext : GameContext) : void {
+        Cursor.instance = forceToNull<Cursor>();
     }
 
     setPosition(position: Vector2) {

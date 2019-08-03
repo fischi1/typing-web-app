@@ -1,6 +1,6 @@
 import { Howl, Howler } from 'howler';
 
-Howler.mute(false);
+Howler.mute(true);
 
 const urlFailSound = "/sounds/Explosion4.wav";
 const urlSuccessSound = "/sounds/Pickup_Coin66.wav";

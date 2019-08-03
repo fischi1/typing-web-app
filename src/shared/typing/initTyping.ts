@@ -45,6 +45,7 @@ var htmlCanvasContainer : HTMLElement | null;
 const words : Word[] = [];
 const gameObjects : GameObject[] = [];
 var gameContext : GameContext = {deltaTime: 0, timeSinceStart : 0, addGameObject : go => gameObjects.push(go), app: null as any};
+var running = true;
 
 export async function init() {
     const fontXMLtext = await (await fetch(bitmapFontXML)).text();
@@ -85,7 +86,7 @@ export async function init() {
     //This `setup` function will run when the image has loaded
     async function setup(loader : PIXI.Loader, resources : any) {
 
-        var fontTexture = resources.bitmapFontTexture.texture as PIXI.Texture;
+        var fontTexture = resources.bitmapFontTexture.texture.baseTexture as PIXI.BaseTexture;
         
         gameObjects.push(new DebugCat(new Sprite(resources.dog.texture)));
 
@@ -149,9 +150,32 @@ export async function init() {
     } 
 }
 
+export function destroy() {
+    console.log("begin destroy");
+    running = false;
+
+    gameObjects.forEach(go => go.destroy(gameContext));
+
+    app.stage.destroy();
+    app.renderer.destroy(true);
+    //app.destroy();
+
+    const textures : Record<string, PIXI.Texture> = PIXI.utils.TextureCache;
+    for (let key in textures) {
+        textures[key].destroy();
+    }
+
+    PIXI.utils.clearTextureCache();
+    
+    loader.reset();
+    console.log("end destroy");
+}
+
 var time = 0;
 
 function loop(delta : number) {
+    if(!running)
+        return;
     var deltaS = delta * 0.01;
     time += deltaS;
 
@@ -159,8 +183,9 @@ function loop(delta : number) {
     gameContext.timeSinceStart = time;
 
     gameObjects.forEach(go => {
-        go.update(gameContext);
-        
+        if(!running)
+            return;
+        go.update(gameContext);        
     });
 }
 

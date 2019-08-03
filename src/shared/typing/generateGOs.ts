@@ -7,7 +7,7 @@ import { XMLHelper } from './XMLHelper';
 export type LetterGenerationParamsType = {
     words: Word[] | null,
     gameObjects : GameObject[],
-    fontTexture: PIXI.Texture,
+    fontTexture: PIXI.BaseTexture,
     xmlHelper: XMLHelper,
     generateSubletter?: boolean,
     container: PIXI.Container
@@ -49,8 +49,8 @@ const generateForWord = (wordText : string, additionalParams : LetterGenerationP
 }
 
 export const generateLetterSprite = (charCode : number, additionalParams : LetterGenerationParamsType) => {
-    additionalParams.fontTexture.frame = additionalParams.xmlHelper.getRectangle(charCode);
-    return PIXI.Sprite.from(additionalParams.fontTexture.clone());
+    const frameRect = additionalParams.xmlHelper.getRectangle(charCode);
+    return new PIXI.Sprite(new PIXI.Texture(additionalParams.fontTexture, frameRect));
 }
 
 export default generateGOs;

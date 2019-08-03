@@ -1,5 +1,6 @@
 import { GameContext, GameObject } from "./GameObject";
 import { Letter } from "./Letter";
+import forceToNull from "../../functions/forceToNull";
 
 export type InvalidLetter = {
     status : "used" | "free",
@@ -31,6 +32,7 @@ export class ErrorLetterPool extends GameObject{
     }
 
     destroy(gameContext : GameContext) : void {
+        ErrorLetterPool.instance = forceToNull<ErrorLetterPool>();
     }
 
     getLetter() : Letter | null {

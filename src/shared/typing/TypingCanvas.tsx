@@ -1,7 +1,7 @@
 import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import React, { FC, useEffect } from 'react';
 import useGermanKeysState from '../keyboard/useGermanKeysState';
-import { init } from './initTyping';
+import { init, destroy } from './initTyping';
 import { ttKeyPressed } from './typeTracking';
 
 const styles = () => createStyles({
@@ -22,7 +22,7 @@ const TypingCanvas : FC<Props> = (props) => {
     useEffect(() => {
         init();
         return(() => {
-            
+            destroy();
         });
     }, [])
 
