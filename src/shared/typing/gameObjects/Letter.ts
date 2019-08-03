@@ -14,6 +14,7 @@ export type LetterStatus =
 export class Letter extends PixiSprite{
     character : string;
     index: number;
+    //letter used for text written by the user
     subLetter? : Letter;
 
     curPos : Vector2 = vec2Zero();
@@ -36,7 +37,7 @@ export class Letter extends PixiSprite{
         if(this.subLetter)
             this.subLetter.setStatus("invisible");
 
-        if(this.index === 0){
+        if(this.index === 0 && !this.subLetter && this.character !== "#"){
             Cursor.instance.setPosition(this.curPos);
         }
     }
