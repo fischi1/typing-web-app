@@ -37,7 +37,6 @@ export class Cursor extends PixiSprite {
     }
 
     update(gameContext : GameContext) : void {
-        console.log(this.sprite.position);
         this.blinkTimer+=gameContext.deltaTime;
         if(this.blinkTimer >= this.blinkingSpeed) {
             this.blinkTimer = 0;

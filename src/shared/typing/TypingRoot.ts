@@ -33,6 +33,13 @@ const typingOffset = (areaWidth - typingAreaWidth) / 2;
 const areaRatio = areaWidth / areaHeight;
 export const letterScaling = 0.2;
 
+let type = "WebGL";
+if(!PIXI.utils.isWebGLSupported()){
+    type = "canvas"
+}
+PIXI.utils.skipHello();
+PIXI.utils.sayHello(type);
+
 class TypingRoot {
 
     app : PIXI.Application = new PIXI.Application({ 
@@ -62,14 +69,7 @@ class TypingRoot {
 
         const fontXMLtext = await (await fetch(bitmapFontXML)).text();
         const fontXML = new DOMParser().parseFromString(fontXMLtext, "text/xml");
-        const xmlHelper = new XMLHelper(fontXML);
-
-        let type = "WebGL";
-        if(!PIXI.utils.isWebGLSupported()){
-            type = "canvas"
-        }
-        PIXI.utils.skipHello();
-        PIXI.utils.sayHello(type);
+        const xmlHelper = new XMLHelper(fontXML);        
 
         this.gameContext.app = this.app;
 
