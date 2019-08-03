@@ -19,6 +19,8 @@ const generateGOs = (text : string, additionalParams : LetterGenerationParamsTyp
     const splitText = text.split(" ");
     const letters : Letter[] = [];
 
+    counter = 0;
+
     splitText.forEach(wordText => {
         generateForWord(wordText, additionalParams, letters);
     });

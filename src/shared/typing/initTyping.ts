@@ -33,174 +33,184 @@ const typingOffset = (areaWidth - typingAreaWidth) / 2;
 const areaRatio = areaWidth / areaHeight;
 export const letterScaling = 0.2;
 
-//Aliases
-let Application = PIXI.Application,
-    loader = PIXI.Loader.shared,
-    Sprite = PIXI.Sprite;
+class TypingRoot {
 
-var app : PIXI.Application;
-
-var htmlCanvasContainer : HTMLElement | null;
-
-const words : Word[] = [];
-const gameObjects : GameObject[] = [];
-var gameContext : GameContext = {deltaTime: 0, timeSinceStart : 0, addGameObject : go => gameObjects.push(go), app: null as any};
-var running = true;
-
-export async function init() {
-    const fontXMLtext = await (await fetch(bitmapFontXML)).text();
-    const fontXML = new DOMParser().parseFromString(fontXMLtext, "text/xml");
-    const xmlHelper = new XMLHelper(fontXML);
-
-    let type = "WebGL";
-    if(!PIXI.utils.isWebGLSupported()){
-        type = "canvas"
-    }
-    PIXI.utils.skipHello();
-    PIXI.utils.sayHello(type);
-
-    app = new Application({ 
+    app : PIXI.Application = new PIXI.Application({ 
         antialias: true,
         transparent: false,
         width: areaWidth,
         height: areaHeight,
-    });
-    gameContext.app = app;
+    }); 
+
+    loader = new PIXI.Loader();
+
+    htmlCanvasContainer : HTMLElement | null = null;
+
+    words : Word[] = [];
+    gameObjects : GameObject[] = [];
+    gameContext : GameContext = {deltaTime: 0, timeSinceStart : 0, addGameObject : go => this.gameObjects.push(go), app: null as any};
     
-    resizeCanvas();
+    running = true;
+    time = 0;
 
-    app.renderer.backgroundColor = pixiColorHelper.black;
-
-    //Add the canvas that Pixi automatically created for you to the HTML document
-    const container = document.getElementById("typing-area-container");
-    if(!container)
-        return;        
-    container.appendChild(app.view);
-
-    //load an image and run the `setup` function when it's done
-    loader
-        .add("dog", dog)
-        .add("bitmapFontTexture", bitmapFontTexture)
-    .load(setup);
-
-    //This `setup` function will run when the image has loaded
-    async function setup(loader : PIXI.Loader, resources : any) {
-
-        var fontTexture = resources.bitmapFontTexture.texture.baseTexture as PIXI.BaseTexture;
-        
-        gameObjects.push(new DebugCat(new Sprite(resources.dog.texture)));
-
-        const typingBackgroundRect = new PIXI.Graphics();
-        drawRect(typingBackgroundRect, pixiColorHelper.darkgray, 
-            {x: (areaWidth - typingBgWidth) / 2, y:topBarHeight }, {x: typingBgWidth, y: areaHeight - topBarHeight} );
-        app.stage.addChild(typingBackgroundRect);
-        
-        const typingContainerRect = new PIXI.Graphics();
-        drawRect(typingContainerRect, pixiColorHelper.white, 
-            {x: (areaWidth - typingBgWidth) / 2, y:topBarHeight }, {x: typingBgWidth, y: areaHeight - topBarHeight} );
-        app.stage.addChild(typingContainerRect);
-
-        const letterContainerGO = new PixiContainer(new PIXI.Container(), typingContainerRect);
-        gameObjects.push(letterContainerGO);
-
-        //init text
-        var letterParams : LetterGenerationParamsType = {
-            words : words,
-            gameObjects : gameObjects,
-            fontTexture,
-            xmlHelper,
-            generateSubletter : true,
-            container : letterContainerGO.container
-        };
-        generateGOs(testText,  letterParams); //returns letter[]
-        
-        //init error letters
-        letterParams = {
-            words: null,
-            gameObjects: gameObjects,
-            fontTexture,
-            xmlHelper,
-            container : letterContainerGO.container
-        };
-        var errorLetterPool = new ErrorLetterPool(
-            generateGOs("########################################",  letterParams) //str should be as long as the longest word, should be moved to a go
-        );
-        gameObjects.push(errorLetterPool);
-
-        const initWordPositionsParams : InitWordPositionsParams = { 
-            words: words,
-            letterWidth: xmlHelper.biggestWidth * letterScaling,
-            letterHeight: 450 * letterScaling,
-            canvasWidth: areaWidth,
-            offset: {x: typingOffset, y: topBarHeight},
-            rightMargin: typingOffset
-        };
-        initWordPositions(initWordPositionsParams);
-
-        gameObjects.push(new TypeTracker(words, initWordPositionsParams.letterWidth));
-        gameObjects.push(new TimeDisplay(gameContext));
-        gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
-        gameObjects.push(new RowOffsetManager(initWordPositionsParams.letterHeight));
-        gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:250, y:0}, {x:15, y: app.view.height}, gameContext));
-
-        //preparing done, init go
-        gameObjects.forEach(go => go.init(gameContext));
-        await waitForSoundsLoaded();
-        app.ticker.add(delta => loop(delta));
-    } 
-}
-
-export function destroy() {
-    console.log("begin destroy");
-    running = false;
-
-    gameObjects.forEach(go => go.destroy(gameContext));
-
-    app.stage.destroy();
-    app.renderer.destroy(true);
-    //app.destroy();
-
-    const textures : Record<string, PIXI.Texture> = PIXI.utils.TextureCache;
-    for (let key in textures) {
-        textures[key].destroy();
+    constructor() {
+        this.init();
     }
 
-    PIXI.utils.clearTextureCache();
-    
-    loader.reset();
-    console.log("end destroy");
-}
+    async init() {
+        window.addEventListener("resize", this.handleResize, true);
 
-var time = 0;
+        const fontXMLtext = await (await fetch(bitmapFontXML)).text();
+        const fontXML = new DOMParser().parseFromString(fontXMLtext, "text/xml");
+        const xmlHelper = new XMLHelper(fontXML);
 
-function loop(delta : number) {
-    if(!running)
-        return;
-    var deltaS = delta * 0.01;
-    time += deltaS;
+        let type = "WebGL";
+        if(!PIXI.utils.isWebGLSupported()){
+            type = "canvas"
+        }
+        PIXI.utils.skipHello();
+        PIXI.utils.sayHello(type);
 
-    gameContext.deltaTime = deltaS;
-    gameContext.timeSinceStart = time;
+        this.gameContext.app = this.app;
 
-    gameObjects.forEach(go => {
-        if(!running)
+        this.resizeCanvas();
+
+        this.app.renderer.backgroundColor = pixiColorHelper.black;
+
+        //Add the canvas that Pixi automatically created for you to the HTML document
+        const container = document.getElementById("typing-area-container");
+        if(!container)
+            return;        
+        container.appendChild(this.app.view);
+
+
+        //This `setup` function will run when the image has loaded
+        var setup = async (loader : PIXI.Loader, resources : any) => {
+
+            var fontTexture = resources.bitmapFontTexture.texture.baseTexture as PIXI.BaseTexture;
+            
+            this.gameObjects.push(new DebugCat(new PIXI.Sprite(resources.dog.texture)));
+
+            const typingBackgroundRect = new PIXI.Graphics();
+            drawRect(typingBackgroundRect, pixiColorHelper.darkgray, 
+                {x: (areaWidth - typingBgWidth) / 2, y:topBarHeight }, {x: typingBgWidth, y: areaHeight - topBarHeight} );
+            this.app.stage.addChild(typingBackgroundRect);
+            
+            const typingContainerRect = new PIXI.Graphics();
+            drawRect(typingContainerRect, pixiColorHelper.white, 
+                {x: (areaWidth - typingBgWidth) / 2, y:topBarHeight }, {x: typingBgWidth, y: areaHeight - topBarHeight} );
+            this.app.stage.addChild(typingContainerRect);
+
+            const letterContainerGO = new PixiContainer(new PIXI.Container(), typingContainerRect);
+            this.gameObjects.push(letterContainerGO);
+
+            //init text
+            var letterParams : LetterGenerationParamsType = {
+                words : this.words,
+                gameObjects : this.gameObjects,
+                fontTexture,
+                xmlHelper,
+                generateSubletter : true,
+                container : letterContainerGO.container
+            };
+            generateGOs(testText,  letterParams); //returns letter[]
+            
+            //init error letters
+            letterParams = {
+                words: null,
+                gameObjects: this.gameObjects,
+                fontTexture,
+                xmlHelper,
+                container : letterContainerGO.container
+            };
+            var errorLetterPool = new ErrorLetterPool(
+                generateGOs("########################################",  letterParams) //str should be as long as the longest word, should be moved to a go
+            );
+            this.gameObjects.push(errorLetterPool);
+
+            const initWordPositionsParams : InitWordPositionsParams = { 
+                words: this.words,
+                letterWidth: xmlHelper.biggestWidth * letterScaling,
+                letterHeight: 450 * letterScaling,
+                canvasWidth: areaWidth,
+                offset: {x: typingOffset, y: topBarHeight},
+                rightMargin: typingOffset
+            };
+            initWordPositions(initWordPositionsParams);
+
+            this.gameObjects.push(new TypeTracker(this.words, initWordPositionsParams.letterWidth));
+            this.gameObjects.push(new TimeDisplay(this.gameContext));
+            this.gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
+            this.gameObjects.push(new RowOffsetManager(initWordPositionsParams.letterHeight));
+            this.gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:250, y:0}, {x:15, y: this.app.view.height}, this.gameContext));
+
+            //preparing done, init go
+            this.gameObjects.forEach(go => go.init(this.gameContext));
+            await waitForSoundsLoaded();
+            this.app.ticker.add(delta => this.loop(delta));
+        } 
+        
+        //load an image and run the `setup` function when it's done
+        this.loader
+            .add("dog", dog)
+            .add("bitmapFontTexture", bitmapFontTexture)
+        .load(setup);
+    }
+
+    destroy() {
+        console.log("begin destroy");
+        this.running = false;
+
+        this.gameObjects.forEach(go => go.destroy(this.gameContext));
+
+        this.app.stage.destroy();
+        this.app.renderer.destroy(true);
+        //app.destroy();
+
+        const textures : Record<string, PIXI.Texture> = PIXI.utils.TextureCache;
+        for (let key in textures) {
+            textures[key].destroy();
+        }
+
+        PIXI.utils.clearTextureCache();
+
+        this.loader.reset();
+        window.removeEventListener("resize", this.handleResize, true);
+        console.log("end destroy");
+    }
+
+    loop(delta : number) {
+        if(!this.running)
             return;
-        go.update(gameContext);        
-    });
-}
+        var deltaS = delta * 0.01;
+        this.time += deltaS;
 
-window.addEventListener("resize", handleResize);
-function handleResize() {   
-    resizeCanvas();
-}
+        this.gameContext.deltaTime = deltaS;
+        this.gameContext.timeSinceStart = this.time;
 
-function resizeCanvas() {
-    if(!htmlCanvasContainer) {
-        htmlCanvasContainer = document.getElementById("typing-area-container");
-    } 
-    if(htmlCanvasContainer) {
-        const width = window.innerWidth;
-        app.renderer.view.style.width = width + "px";
-        app.renderer.view.style.height = width / areaRatio + "px";
+        this.gameObjects.forEach(go => {
+            if(!this.running)
+                return;
+            go.update(this.gameContext);        
+        });
+    }
+
+    handleResize = () => {   
+        console.log(this.resizeCanvas);
+        if(this.resizeCanvas)
+            this.resizeCanvas();
+    }
+
+    resizeCanvas() {
+        if(!this.htmlCanvasContainer) {
+            this.htmlCanvasContainer = document.getElementById("typing-area-container");
+        } 
+        if(this.htmlCanvasContainer) {
+            const width = window.innerWidth;
+            this.app.renderer.view.style.width = width + "px";
+            this.app.renderer.view.style.height = width / areaRatio + "px";
+        }
     }
 }
+
+export default TypingRoot;
