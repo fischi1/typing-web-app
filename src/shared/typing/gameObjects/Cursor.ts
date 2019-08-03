@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { letterScaling } from '../initTyping';
+import { letterScaling } from '../TypingRoot';
 import pixiColorHelper from '../pixiColorHelper';
 import { playFailSound } from '../SoundManager';
 import { GameContext } from "./GameObject";
@@ -37,6 +37,7 @@ export class Cursor extends PixiSprite {
     }
 
     update(gameContext : GameContext) : void {
+        console.log(this.sprite.position);
         this.blinkTimer+=gameContext.deltaTime;
         if(this.blinkTimer >= this.blinkingSpeed) {
             this.blinkTimer = 0;

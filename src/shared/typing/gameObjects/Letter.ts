@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 import { GameContext } from "./GameObject";
 import { PixiSprite } from './PixiSprite';
 import pixiColorHelper from '../pixiColorHelper';
-import { letterScaling } from '../initTyping';
+import { letterScaling } from '../TypingRoot';
 import { Cursor } from './Cursor';
 import { Vector2, vec2Zero, pixiPointToVec, vecToPixiPoint, vec2, add } from './Vector2';
 import { RowOffsetManager } from './RowOffsetManager';
