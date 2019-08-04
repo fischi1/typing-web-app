@@ -1,4 +1,4 @@
-import { createStyles, Theme, Typography, WithStyles, withStyles } from "@material-ui/core";
+import { createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
 import React, { FC } from "react";
 import { RouteComponentProps } from "react-router";
 import GermanKeyboardController from "../shared/keyboard/GermanKeyboardController";
@@ -17,7 +17,7 @@ const Home : FC<Props> = (props : Props) => {
     const {classes} = props;
     return <Page>
         <div className={classes.container}>  
-            <Typography>Info on top</Typography>
+            {/* <Typography>Info on top</Typography> */}
             <TypingCanvas />
         </div>
         <br/>

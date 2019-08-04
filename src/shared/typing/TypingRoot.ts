@@ -18,11 +18,9 @@ import { XMLHelper } from './XMLHelper';
 import { ProgressBar } from './gameObjects/ProgressBar';
 import drawRect from './drawRect';
 import { PixiContainer } from './gameObjects/PixiContainer';
+import { GameInfoType } from './GameInfoType';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
-
-// const testText = "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.";
-const testText = "asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf";
 
 const areaWidth = 1920;
 const areaHeight = 500;
@@ -57,10 +55,14 @@ class TypingRoot {
     gameObjects : GameObject[] = [];
     gameContext : GameContext = {deltaTime: 0, timeSinceStart : 0, addGameObject : go => this.gameObjects.push(go), app: null as any};
     
+    gameInfo : GameInfoType;
+
     running = true;
     time = 0;
 
-    constructor() {
+
+    constructor(gameInfo : GameInfoType) {
+        this.gameInfo = gameInfo;
         this.init();
     }
 
@@ -113,7 +115,7 @@ class TypingRoot {
                 generateSubletter : true,
                 container : letterContainerGO.container
             };
-            generateGOs(testText,  letterParams); //returns letter[]
+            generateGOs(this.gameInfo.text,  letterParams); //returns letter[]
             
             //init error letters
             letterParams = {
@@ -196,7 +198,6 @@ class TypingRoot {
     }
 
     handleResize = () => {   
-        console.log(this.resizeCanvas);
         if(this.resizeCanvas)
             this.resizeCanvas();
     }
