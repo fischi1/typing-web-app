@@ -19,6 +19,8 @@ import { ProgressBar } from './gameObjects/ProgressBar';
 import drawRect from './drawRect';
 import { PixiContainer } from './gameObjects/PixiContainer';
 import { GameInfoType } from './GameInfoType';
+import { MultiplierDisplay } from './gameObjects/MultiplierDisplay';
+import FontFaceObserver from "fontfaceobserver";
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -140,11 +142,15 @@ class TypingRoot {
             };
             initWordPositions(initWordPositionsParams);
 
+            //tracking of the user
             this.gameObjects.push(new TypeTracker(this.words, initWordPositionsParams.letterWidth));
-            this.gameObjects.push(new TimeDisplay(this.gameContext));
             this.gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
             this.gameObjects.push(new RowOffsetManager(initWordPositionsParams.letterHeight));
-            this.gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:250, y:0}, {x:15, y: this.app.view.height}, this.gameContext));
+
+            //UI
+            this.gameObjects.push(new TimeDisplay(this.gameContext));
+            this.gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:250, y:topBarHeight}, {x:15, y: this.app.view.height - topBarHeight}, this.gameContext));
+            this.gameObjects.push(new MultiplierDisplay());
 
             //preparing done, init go
             this.gameObjects.forEach(go => go.init(this.gameContext));
@@ -156,13 +162,23 @@ class TypingRoot {
         this.loader
             .add("dog", dog)
             .add("bitmapFontTexture", bitmapFontTexture)
-        .load(setup);
+        .load((loader : PIXI.Loader, resources : any) => {
+
+            var m5x7 = new FontFaceObserver('m5x7', {
+                weight: 400
+            });
+
+            Promise.all([m5x7]).then(() => {
+                setup(loader, resources);
+            });
+            
+        });
     }
 
     destroy() {
         console.log("begin destroy");
         this.running = false;
-
+ 
         this.gameObjects.forEach(go => go.destroy(this.gameContext));
 
         this.app.stage.destroy();

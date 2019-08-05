@@ -1,5 +1,6 @@
 import { GameContext, GameObject } from "./GameObject";
-import { defaultTextStyle, Text } from "./Text";
+import { getDefaultTextStyle, Text } from "./Text";
+import { highlightColors } from "../../../highlightColors";
 
 export class TimeDisplay extends GameObject{
     
@@ -7,9 +8,10 @@ export class TimeDisplay extends GameObject{
 
     constructor(gameContext : GameContext) {
         super();
-        const textStyle = defaultTextStyle;
-        textStyle.fontSize=15;
+        const textStyle = getDefaultTextStyle();
+        textStyle.fontSize=25;
         textStyle.fontFamily="Verdana";
+        textStyle.stroke = highlightColors.gray;
         this.textObject = new Text("Text", {x:0, y:0}, 0, textStyle);
         gameContext.addGameObject(this.textObject);
     }

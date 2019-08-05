@@ -3,11 +3,13 @@ import { GameContext, GameObject } from "./GameObject";
 import { vecToPixiPoint, Vector2 } from "./Vector2";
 import pixiColorHelper from "../pixiColorHelper";
 
-export const defaultTextStyle = new PIXI.TextStyle({
-    fontFamily: "m5x7",
-    fontSize: 40,
-    fill: pixiColorHelper.white
-})
+export const getDefaultTextStyle = () => {
+    return new PIXI.TextStyle({
+        fontFamily: "m5x7",
+        fontSize: 40,
+        fill: pixiColorHelper.white
+    });
+}
 
 export class Text extends GameObject{
     pixiText : PIXI.Text;
