@@ -21,6 +21,7 @@ import { PixiContainer } from './gameObjects/PixiContainer';
 import { GameInfoType } from './GameInfoType';
 import { MultiplierDisplay } from './gameObjects/MultiplierDisplay';
 import FontFaceObserver from "fontfaceobserver";
+import { FlawlessDisplay } from './gameObjects/FlawlessDisplay';
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -149,8 +150,9 @@ class TypingRoot {
 
             //UI
             this.gameObjects.push(new TimeDisplay(this.gameContext));
-            this.gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:250, y:topBarHeight}, {x:15, y: this.app.view.height - topBarHeight}, this.gameContext));
+            this.gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:190, y:topBarHeight}, {x:10, y: this.app.view.height - topBarHeight}, this.gameContext));
             this.gameObjects.push(new MultiplierDisplay());
+            this.gameObjects.push(new FlawlessDisplay());
 
             //preparing done, init go
             this.gameObjects.forEach(go => go.init(this.gameContext));

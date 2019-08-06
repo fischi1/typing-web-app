@@ -6,10 +6,9 @@ export class MultiplierDisplay extends Text{
     
     constructor() {
         var textStyle = getDefaultTextStyle();
-        console.log(textStyle);
         textStyle.fontSize = 60;
-        super("3.7", {x: (1920 - 950) * 0.5, y: 7}, 0, textStyle);
-
+        super("3.7", {x: (1920 - 950) * 0.5, y: 8}, 0, textStyle);
+        
         this.timer = 0;
         this.up = false;
         this.value = 3.7;
@@ -25,7 +24,7 @@ export class MultiplierDisplay extends Text{
 
     update(gameContext : GameContext) : void {
         this.timer += gameContext.deltaTime;
-        if(this.timer >= 0.08) {
+        if(this.timer >= 0.05) {
             this.timer = 0;
 
             if(this.up){

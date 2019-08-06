@@ -6,7 +6,7 @@ import pixiColorHelper from "../pixiColorHelper";
 export const getDefaultTextStyle = () => {
     return new PIXI.TextStyle({
         fontFamily: "m5x7",
-        fontSize: 40,
+        fontSize: 50,
         fill: pixiColorHelper.white
     });
 }
