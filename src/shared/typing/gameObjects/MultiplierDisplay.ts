@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 import { GameContext } from "./GameObject";
 import { Text, getDefaultTextStyle } from './Text';
 

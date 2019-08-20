@@ -1,11 +1,17 @@
 
+import FontFaceObserver from "fontfaceobserver";
 import * as PIXI from 'pixi.js';
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
 import dog from "../../assets/images/dog.gif";
+import drawRect from './drawRect';
+import { GameInfoType } from './GameInfoType';
 import { Cursor } from './gameObjects/Cursor';
 import { DebugCat } from './gameObjects/DebugCat';
 import { ErrorLetterPool } from './gameObjects/ErrorLetterPool';
+import { FlawlessDisplay } from './gameObjects/FlawlessDisplay';
 import { GameContext, GameObject } from './gameObjects/GameObject';
+import { MultiplierDisplay } from './gameObjects/MultiplierDisplay';
+import { PixiContainer } from './gameObjects/PixiContainer';
 import { RowOffsetManager } from './gameObjects/RowOffsetManager';
 import { TimeDisplay } from './gameObjects/TimeDisplay';
 import { TypeTracker } from './gameObjects/TypeTracker';
@@ -15,13 +21,7 @@ import initWordPositions, { InitWordPositionsParams } from './initWordPositions'
 import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
-import { ProgressBar } from './gameObjects/ProgressBar';
-import drawRect from './drawRect';
-import { PixiContainer } from './gameObjects/PixiContainer';
-import { GameInfoType } from './GameInfoType';
-import { MultiplierDisplay } from './gameObjects/MultiplierDisplay';
-import FontFaceObserver from "fontfaceobserver";
-import { FlawlessDisplay } from './gameObjects/FlawlessDisplay';
+import { MultiplierCountdown } from "./gameObjects/MultiplierCountdown";
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -33,6 +33,17 @@ const topBarHeight = 50;
 const typingOffset = (areaWidth - typingAreaWidth) / 2;
 const areaRatio = areaWidth / areaHeight;
 export const letterScaling = 0.2;
+
+export const canvasOptions = {
+    areaWidth : areaWidth,
+    areaHeight : areaHeight,
+    typingAreaWidth : typingAreaWidth,
+    typingBgWidth : typingBgWidth,
+    topBarHeight : topBarHeight,
+    typingOffset : typingOffset,
+    areaRatio : areaRatio,
+    letterScaling : letterScaling
+}
 
 let type = "WebGL";
 if(!PIXI.utils.isWebGLSupported()){
@@ -150,7 +161,7 @@ class TypingRoot {
 
             //UI
             this.gameObjects.push(new TimeDisplay(this.gameContext));
-            this.gameObjects.push(new ProgressBar(pixiColorHelper.green, pixiColorHelper.gray, {x:190, y:topBarHeight}, {x:10, y: this.app.view.height - topBarHeight}, this.gameContext));
+            this.gameObjects.push(new MultiplierCountdown(this.gameContext));
             this.gameObjects.push(new MultiplierDisplay());
             this.gameObjects.push(new FlawlessDisplay());
 

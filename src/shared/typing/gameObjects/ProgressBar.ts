@@ -19,7 +19,7 @@ export class ProgressBar extends GameObject{
     private position : Vector2;
     private bounds : Vector2;
 
-    constructor(activeColor : number, notActiveColor : number, position : Vector2, bounds : Vector2, gameContext : GameContext) {
+    constructor(activeColor : number, notActiveColor : number, position : Vector2, bounds : Vector2) {
         super();
         this.position = position;
         this.bounds = bounds;
@@ -32,12 +32,11 @@ export class ProgressBar extends GameObject{
         this.notActiveColor = notActiveColor;      
 
         drawRect(this.barNotActiveGraphics, this.notActiveColor, position, bounds);
-
-        gameContext.app.stage.addChild(this.barNotActiveGraphics);
-        gameContext.app.stage.addChild(this.barActiveGraphics);
     }
 
-    init(gameContext : GameContext) : void {        
+    init(gameContext : GameContext) : void {      
+        gameContext.app.stage.addChild(this.barNotActiveGraphics);
+        gameContext.app.stage.addChild(this.barActiveGraphics);  
     }
 
     update(gameContext : GameContext) : void {
