@@ -2,6 +2,10 @@
 import FontFaceObserver from "fontfaceobserver";
 import * as PIXI from 'pixi.js';
 import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
+import damageDisplay from "../../assets/images/damageDisplay.png";
+import dest1 from "../../assets/images/dest1.png";
+import dest2 from "../../assets/images/dest2.png";
+import dest3 from "../../assets/images/dest3.png";
 import dog from "../../assets/images/dog.gif";
 import drawRect from './drawRect';
 import { GameInfoType } from './GameInfoType';
@@ -22,6 +26,7 @@ import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
 import { MultiplierCountdown } from "./gameObjects/MultiplierCountdown";
+import { LivesDisplay } from "./gameObjects/LivesDisplay";
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -164,6 +169,13 @@ class TypingRoot {
             this.gameObjects.push(new MultiplierCountdown(this.gameContext));
             this.gameObjects.push(new MultiplierDisplay());
             this.gameObjects.push(new FlawlessDisplay());
+            this.gameObjects.push(new LivesDisplay(
+                new PIXI.Sprite(resources.damageDisplay.texture),
+                [resources.dest1.texture.baseTexture as PIXI.BaseTexture,
+                resources.dest2.texture.baseTexture as PIXI.BaseTexture,
+                resources.dest3.texture.baseTexture as PIXI.BaseTexture],
+                this.gameContext
+            ))
 
             //preparing done, init go
             this.gameObjects.forEach(go => go.init(this.gameContext));
@@ -175,6 +187,10 @@ class TypingRoot {
         this.loader
             .add("dog", dog)
             .add("bitmapFontTexture", bitmapFontTexture)
+            .add("damageDisplay", damageDisplay)
+            .add("dest1", dest1)
+            .add("dest2", dest2)
+            .add("dest3", dest3)
         .load((loader : PIXI.Loader, resources : any) => {
 
             var m5x7 = new FontFaceObserver('m5x7', {
