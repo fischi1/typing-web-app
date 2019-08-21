@@ -10,6 +10,8 @@ export class MultiplierCountdown extends GameObject{
     progressBar : ProgressBar;
     textObject : Text
 
+    private debugTimer = 0;
+
     constructor(gameContext : GameContext) {
         super();
 
@@ -33,6 +35,11 @@ export class MultiplierCountdown extends GameObject{
     }
 
     update(gameContext : GameContext) : void {
+        this.debugTimer += gameContext.deltaTime;
+        if(this.debugTimer > 0.125 / (2 * 2)) {
+            this.debugTimer = 0;
+            this.progressBar.setValue(Math.random());
+        }
     }
 
     destroy(gameContext : GameContext) : void {

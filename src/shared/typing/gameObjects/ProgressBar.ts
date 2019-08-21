@@ -13,7 +13,6 @@ export class ProgressBar extends GameObject{
     private activeColor : number;
     private notActiveColor : number;
 
-    private debugTimer = 0;
     private actualHeight = 0;
     private currentHeight = 0;
     private position : Vector2;
@@ -40,12 +39,6 @@ export class ProgressBar extends GameObject{
     }
 
     update(gameContext : GameContext) : void {
-        this.debugTimer += gameContext.deltaTime;
-        if(this.debugTimer > 1) {
-            this.debugTimer = 0;
-            this.setValue(Math.random());
-        }
-
         this.currentHeight = lerp(this.currentHeight, this.actualHeight, gameContext.deltaTime * 30);
 
         this.draw();
