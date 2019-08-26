@@ -11,7 +11,7 @@ export class FlawlessDisplay extends GameObject{
     maxValueLabel : Text;
     curValueLabel : Text;
 
-    constructor() {
+    constructor(gameContext : GameContext) {
         super();
 
         const textStyle = getDefaultTextStyle();
@@ -28,15 +28,16 @@ export class FlawlessDisplay extends GameObject{
         this.maxValueLabel.pixiText.anchor.x = 0.5;
         this.curValueLabel = new Text("3", add(basPos, {x: 110, y: 80}), 0, textStyle);
         this.curValueLabel.pixiText.anchor.x = 0.5;
+
+        gameContext.addGameObject(this.flawlessLabel);
+        gameContext.addGameObject(this.maxLabel);
+        gameContext.addGameObject(this.curLabel);
+        gameContext.addGameObject(this.maxValueLabel);
+        gameContext.addGameObject(this.curValueLabel);
     }
 
     init(gameContext : GameContext) {
         super.init(gameContext);
-        this.flawlessLabel.init(gameContext);
-        this.maxLabel.init(gameContext);
-        this.curLabel.init(gameContext);
-        this.maxValueLabel.init(gameContext);
-        this.curValueLabel.init(gameContext);
     }
 
     update(gameContext : GameContext) : void {

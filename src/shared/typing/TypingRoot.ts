@@ -6,14 +6,18 @@ import damageDisplay from "../../assets/images/damageDisplay.png";
 import dest1 from "../../assets/images/dest1.png";
 import dest2 from "../../assets/images/dest2.png";
 import dest3 from "../../assets/images/dest3.png";
+import diamond from "../../assets/images/diamond.png";
 import dog from "../../assets/images/dog.gif";
 import drawRect from './drawRect';
 import { GameInfoType } from './GameInfoType';
 import { Cursor } from './gameObjects/Cursor';
 import { DebugCat } from './gameObjects/DebugCat';
+import { EarnedSoFarDisplay } from "./gameObjects/EarnedSoFarDisplay";
 import { ErrorLetterPool } from './gameObjects/ErrorLetterPool';
 import { FlawlessDisplay } from './gameObjects/FlawlessDisplay';
 import { GameContext, GameObject } from './gameObjects/GameObject';
+import { LivesDisplay } from "./gameObjects/LivesDisplay";
+import { MultiplierCountdown } from "./gameObjects/MultiplierCountdown";
 import { MultiplierDisplay } from './gameObjects/MultiplierDisplay';
 import { PixiContainer } from './gameObjects/PixiContainer';
 import { RowOffsetManager } from './gameObjects/RowOffsetManager';
@@ -25,8 +29,6 @@ import initWordPositions, { InitWordPositionsParams } from './initWordPositions'
 import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
-import { MultiplierCountdown } from "./gameObjects/MultiplierCountdown";
-import { LivesDisplay } from "./gameObjects/LivesDisplay";
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -107,7 +109,6 @@ class TypingRoot {
 
         //This `setup` function will run when the image has loaded
         var setup = async (loader : PIXI.Loader, resources : any) => {
-
             var fontTexture = resources.bitmapFontTexture.texture.baseTexture as PIXI.BaseTexture;
             
             this.gameObjects.push(new DebugCat(new PIXI.Sprite(resources.dog.texture)));
@@ -168,14 +169,24 @@ class TypingRoot {
             this.gameObjects.push(new TimeDisplay(this.gameContext));
             this.gameObjects.push(new MultiplierCountdown(this.gameContext));
             this.gameObjects.push(new MultiplierDisplay());
-            this.gameObjects.push(new FlawlessDisplay());
+            this.gameObjects.push(new FlawlessDisplay(this.gameContext));
+
+            
+            (resources.damageDisplay.texture.baseTexture as PIXI.BaseTexture).scaleMode = PIXI.SCALE_MODES.NEAREST;
+            (resources.dest1.texture.baseTexture as PIXI.BaseTexture).scaleMode = PIXI.SCALE_MODES.NEAREST;
+            (resources.dest2.texture.baseTexture as PIXI.BaseTexture).scaleMode = PIXI.SCALE_MODES.NEAREST;
+            (resources.dest3.texture.baseTexture as PIXI.BaseTexture).scaleMode = PIXI.SCALE_MODES.NEAREST;
             this.gameObjects.push(new LivesDisplay(
                 new PIXI.Sprite(resources.damageDisplay.texture),
                 [resources.dest1.texture.baseTexture as PIXI.BaseTexture,
                 resources.dest2.texture.baseTexture as PIXI.BaseTexture,
                 resources.dest3.texture.baseTexture as PIXI.BaseTexture],
                 this.gameContext
-            ))
+            ));
+
+            (resources.diamond.texture.baseTexture as PIXI.BaseTexture).scaleMode = PIXI.SCALE_MODES.NEAREST;
+            this.gameObjects.push(new EarnedSoFarDisplay(new PIXI.Sprite(resources.diamond.texture), this.gameContext));
+
 
             //preparing done, init go
             this.gameObjects.forEach(go => go.init(this.gameContext));
@@ -191,6 +202,7 @@ class TypingRoot {
             .add("dest1", dest1)
             .add("dest2", dest2)
             .add("dest3", dest3)
+            .add("diamond", diamond)
         .load((loader : PIXI.Loader, resources : any) => {
 
             var m5x7 = new FontFaceObserver('m5x7', {
