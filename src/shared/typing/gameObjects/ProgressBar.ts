@@ -4,7 +4,9 @@ import { lerp, clamp } from "../../functions/mathHelper";
 import { Vector2 } from "./Vector2";
 import drawRect from "../drawRect";
 
-
+/**
+ * used by MultiplierDisplay
+ */
 export class ProgressBar extends GameObject{
 
     private barActiveGraphics : PIXI.Graphics;

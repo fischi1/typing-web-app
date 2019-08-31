@@ -2,6 +2,9 @@ import { GameContext, GameObject } from "./GameObject";
 import { getDefaultTextStyle, Text } from "./Text";
 import { highlightColors } from "../../../highlightColors";
 
+/**
+ * Debug timer top left
+ */
 export class TimeDisplay extends GameObject{
     
     textObject : Text;
