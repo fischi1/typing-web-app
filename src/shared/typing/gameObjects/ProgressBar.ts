@@ -5,7 +5,7 @@ import { Vector2 } from "./Vector2";
 import drawRect from "../drawRect";
 
 /**
- * used by MultiplierDisplay
+ * used by MultiplierCountdown
  */
 export class ProgressBar extends GameObject{
 
@@ -55,6 +55,6 @@ export class ProgressBar extends GameObject{
     }
 
     setValue(val : number) {
-        this.actualHeight = this.bounds.y * clamp(val);
+        this.actualHeight = this.bounds.y * clamp(1 - val);
     }
 }
