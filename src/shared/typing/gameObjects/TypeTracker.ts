@@ -108,9 +108,8 @@ export class TypeTracker extends GameObject{
             RowOffsetManager.instance.setRow(this.curWord.row);
             playSuccessSound();
         } else {
-            console.log("done");
             this.wordCorrectRegistered.forEach(func => func(this.curWord));
-            this.active = false;
+            this.gameDone();
         }
     }    
     
@@ -216,5 +215,18 @@ export class TypeTracker extends GameObject{
         this.active = true;
         Cursor.instance.active = true;
         this.letterContainer.show();
+    }
+
+    gameDone() {
+        console.log("GAME FINISHED!");
+        this.active = false;
+    }
+
+    /**
+     * called by LivesDisplay if no lives are left
+     */
+    gameOver() {
+        console.log("GAME OVER!");
+        this.active = false;
     }
 }

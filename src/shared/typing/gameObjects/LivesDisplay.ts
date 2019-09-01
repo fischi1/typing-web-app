@@ -2,10 +2,13 @@ import * as PIXI from 'pixi.js';
 import { GameContext, GameObject } from "./GameObject";
 import { PixiSprite } from "./PixiSprite";
 import { vecToPixiPoint, vec2 } from "./Vector2";
+import { TypeTracker } from './TypeTracker';
 
 
 
 export class LivesDisplay extends GameObject{
+
+    readonly tilesPerError = 3;
 
     readonly scaling = 0.75;
     readonly widthInTiles = 9;
@@ -14,11 +17,11 @@ export class LivesDisplay extends GameObject{
     readonly posY = 60;
     readonly tileWidth = 48;
 
-    display : PixiSprite;
+    private display : PixiSprite;
 
-    coverTiles : PixiSprite[];
+    private coverTiles : PixiSprite[];
 
-    coveredTilesNum = 0;
+    private coveredTilesNum = 0;
 
     constructor(display : PIXI.Sprite, destTextures : PIXI.BaseTexture[], gameContext : GameContext) {
         super();
@@ -52,20 +55,10 @@ export class LivesDisplay extends GameObject{
 
     init(gameContext : GameContext) {
         super.init(gameContext);
+        TypeTracker.instance.registerErrorListener(this.errorCallback);
     }
 
-    counter = 0;
-
     update(gameContext : GameContext) : void {
-        this.counter += gameContext.deltaTime;
-
-        if(this.counter >= 0.1) {
-            this.counter = 0;
-            if(this.coveredTilesNum + 2 > this.coverTiles.length)
-                this.setCoveredTiles(0);
-            else
-                this.setCoveredTiles(this.coveredTilesNum + 2);
-        }
     }
 
     destroy(gameContext : GameContext) : void {
@@ -81,6 +74,12 @@ export class LivesDisplay extends GameObject{
             i++;
         });
 
+    }
+
+    errorCallback = () => {
+        this.setCoveredTiles(this.coveredTilesNum +  this.tilesPerError);
+        if(this.coveredTilesNum >= this.coverTiles.length)
+            TypeTracker.instance.gameOver();
     }
 
 }

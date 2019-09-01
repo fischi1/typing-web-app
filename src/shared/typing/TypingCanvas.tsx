@@ -3,6 +3,8 @@ import React, { FC, useEffect } from 'react';
 import useGermanKeysState from '../keyboard/useGermanKeysState';
 import TypingRoot from './TypingRoot';
 import { ttKeyPressed } from './typeTracking';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { GameResultType } from './GameResultType';
 
 
 
@@ -16,27 +18,38 @@ const styles = () => createStyles({
 });
 
 type Props = {
-} & WithStyles<typeof styles>;
+}
+& WithStyles<typeof styles>
+& RouteComponentProps;
 
 const TypingCanvas : FC<Props> = (props) => {    
     const { classes } = props;
 
     useGermanKeysState({onKeyDown: key => {
         ttKeyPressed(key);
-    }})
+    }});
 
     useEffect(() => {
+
+        const gameComplete = (result : GameResultType) : void=> {
+            console.log(result);
+            props.history.push("about");
+        };
+
         const typing = new TypingRoot({
-            text: testText
+            text: testText,
+            doneFunction : gameComplete
         });
+
         return(() => {
             typing.destroy();
         });
-    }, [])
+        
+    }, [props.history])
 
     return (<>
         <div className={classes.container} id="typing-area-container" />
     </>);
 }
 
-export default withStyles(styles)(TypingCanvas);
+export default withRouter(withStyles(styles)(TypingCanvas));
