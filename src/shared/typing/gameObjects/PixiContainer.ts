@@ -21,5 +21,13 @@ export class PixiContainer extends GameObject {
     }
 
     destroy(gameContext : GameContext) : void {}
+
+    hide() {
+        this.container.alpha = 0;
+    }
+
+    show() {
+        this.container.alpha = 1;
+    }
 }
     

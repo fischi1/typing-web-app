@@ -36,7 +36,7 @@ export class MultiplierCountdown extends GameObject{
     }
 
     init(gameContext : GameContext) : void {       
-        this.resetTimer(1);
+        this.resetTimer(20);
     }
 
     update(gameContext : GameContext) : void {

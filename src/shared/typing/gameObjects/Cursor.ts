@@ -1,15 +1,17 @@
 import * as PIXI from 'pixi.js';
-import { letterScaling } from '../TypingRoot';
+import forceToNull from '../../functions/forceToNull';
 import pixiColorHelper from '../pixiColorHelper';
 import { playFailSound } from '../SoundManager';
+import { letterScaling } from '../TypingRoot';
 import { GameContext } from "./GameObject";
 import { PixiSprite } from './PixiSprite';
 import { RowOffsetManager } from './RowOffsetManager';
 import { add, vec2, vec2Zero, vecToPixiPoint, Vector2 } from './Vector2';
-import forceToNull from '../../functions/forceToNull';
 
 export class Cursor extends PixiSprite {
     static instance : Cursor;
+
+    active = false;
     
     blinkingSpeed = 0.2;
     offset : Vector2 = {x: -5, y: -19};
@@ -24,7 +26,8 @@ export class Cursor extends PixiSprite {
     private state : "normal" | "bump" = "bump";
 
     constructor(sprite: PIXI.Sprite) {
-        super(sprite);        
+        super(sprite);     
+                
         if(Cursor.instance) 
             console.error("Cursor should only exist once!!!");
         else 
@@ -34,9 +37,14 @@ export class Cursor extends PixiSprite {
     init(gameContext : GameContext) {
         super.init(gameContext);
         this.sprite.scale = vecToPixiPoint(vec2(letterScaling * 1.5));
+        this.toggleVisibility();
     }
 
     update(gameContext : GameContext) : void {
+
+        if(!this.active)
+            return;
+
         this.blinkTimer+=gameContext.deltaTime;
         if(this.blinkTimer >= this.blinkingSpeed) {
             this.blinkTimer = 0;

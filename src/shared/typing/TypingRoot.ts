@@ -29,6 +29,7 @@ import initWordPositions, { InitWordPositionsParams } from './initWordPositions'
 import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
+import { StartCountdown } from "./gameObjects/StartCountdown";
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -125,6 +126,7 @@ class TypingRoot {
 
             const letterContainerGO = new PixiContainer(new PIXI.Container(), typingContainerRect);
             this.gameObjects.push(letterContainerGO);
+            letterContainerGO.hide();
 
             //init text
             var letterParams : LetterGenerationParamsType = {
@@ -146,7 +148,7 @@ class TypingRoot {
                 container : letterContainerGO.container
             };
             var errorLetterPool = new ErrorLetterPool(
-                generateGOs("########################################",  letterParams) //str should be as long as the longest word, should be moved to a go
+                generateGOs("########################################",  letterParams) //str should be as long as the longest word
             );
             this.gameObjects.push(errorLetterPool);
 
@@ -161,7 +163,7 @@ class TypingRoot {
             initWordPositions(initWordPositionsParams);
 
             //tracking of the user
-            this.gameObjects.push(new TypeTracker(this.words, initWordPositionsParams.letterWidth));
+            this.gameObjects.push(new TypeTracker(this.words, initWordPositionsParams.letterWidth, letterContainerGO));
             this.gameObjects.push(new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams)));
             this.gameObjects.push(new RowOffsetManager(initWordPositionsParams.letterHeight));
 
@@ -170,6 +172,7 @@ class TypingRoot {
             this.gameObjects.push(new MultiplierCountdown(this.gameContext));
             this.gameObjects.push(new MultiplierDisplay());
             this.gameObjects.push(new FlawlessDisplay(this.gameContext));
+            this.gameObjects.push(new StartCountdown(this.gameContext));
 
             
             (resources.damageDisplay.texture.baseTexture as PIXI.BaseTexture).scaleMode = PIXI.SCALE_MODES.NEAREST;

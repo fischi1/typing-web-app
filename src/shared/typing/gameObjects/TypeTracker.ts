@@ -4,12 +4,18 @@ import { Cursor } from "./Cursor";
 import { ErrorLetterPool } from "./ErrorLetterPool";
 import { GameContext, GameObject } from "./GameObject";
 import { Letter } from "./Letter";
-import { Word } from "./Word";
+import { PixiContainer } from "./PixiContainer";
 import { RowOffsetManager } from "./RowOffsetManager";
+import { Word } from "./Word";
+import forceToNull from "../../functions/forceToNull";
 
 export class TypeTracker extends GameObject{
 
+    static instance : TypeTracker;
+
     words : Word[];
+
+    active = false;
 
     private wordIndex = -1;
     private curWord : Word;
@@ -19,12 +25,19 @@ export class TypeTracker extends GameObject{
 
     private lastValidLetters = 0;
     private lastInvalidLetters = 0;
+    private letterContainer : PixiContainer
 
-    constructor(words : Word[], letterWidth : number) {
+    constructor(words : Word[], letterWidth : number, letterContainer : PixiContainer) {
         super();
         this.words = words;
         this.curWord = words[0];
         this.letterWidth = letterWidth;
+        this.letterContainer = letterContainer;
+
+        if(TypeTracker.instance)
+            console.error("TypeTracker.instance is already set");
+        else
+            TypeTracker.instance = this;
     }
 
     init(gameContext : GameContext) {
@@ -37,9 +50,14 @@ export class TypeTracker extends GameObject{
 
     destroy(gameContext : GameContext) {
         unregisterListener();
+        TypeTracker.instance = forceToNull();
     }    
 
     typingListener : ListenerFunction = (key) => {
+
+        if(!this.active)
+            return;
+
         if(key === " ") {
             if(this.curWord.text === this.curInput)
                 this.nextWord();
@@ -154,5 +172,14 @@ export class TypeTracker extends GameObject{
 
         this.lastInvalidLetters = invalidLetters;
         this.lastValidLetters = validLetters;
+    }
+
+    /**
+     * Called by StartCountdown
+     */
+    startGame() {
+        this.active = true;
+        Cursor.instance.active = true;
+        this.letterContainer.show();
     }
 }
