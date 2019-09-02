@@ -36,7 +36,7 @@ export class MultiplierCountdown extends GameObject{
     }
 
     init(gameContext : GameContext) : void {       
-        this.resetTimer(20);
+        this.resetTimer(0.3);
     }
 
     update(gameContext : GameContext) : void {
@@ -46,10 +46,10 @@ export class MultiplierCountdown extends GameObject{
             if(!this.reachedZero) {
                 this.reachedZero = true;
                 //callback
-                this.resetTimer(1);
+                this.resetTimer(0.3);
             }
         }
-        this.textObject.pixiText.text = this.curTime.toFixed(1);
+        this.textObject.pixiText.text = this.curTime.toFixed(2);
         this.progressBar.setValue(this.curTime / this.curMaxTime);
     }
 
