@@ -4,6 +4,7 @@ import { GameContext, GameObject } from "./GameObject";
 import { ProgressBar } from "./ProgressBar";
 import { getDefaultTextStyle, Text } from "./Text";
 import { WordListenerFunction, TypeTracker } from "./TypeTracker";
+import { MultiplierDisplay } from "./MultiplierDisplay";
 
 
 export class MultiplierCountdown extends GameObject{
@@ -39,7 +40,7 @@ export class MultiplierCountdown extends GameObject{
     }
 
     init(gameContext : GameContext) : void {       
-        this.progressBar.setValue(.5);
+        this.progressBar.setValue(1);
     }
 
     update(gameContext : GameContext) : void {
@@ -49,7 +50,8 @@ export class MultiplierCountdown extends GameObject{
             if(!this.reachedZero) {
                 this.reachedZero = true;
                 //callback
-                console.log("reached zero");
+                // console.log("reached zero");
+                MultiplierDisplay.instance.decrease();
             }
         }
         this.textObject.pixiText.text = this.curTime.toFixed(2);
@@ -68,7 +70,7 @@ export class MultiplierCountdown extends GameObject{
 
     wordCompleteCallback : WordListenerFunction = (currentWord, nextWord) => {
         if(nextWord) {
-            this.resetTimer(nextWord.letters.length * 0.25);
+            this.resetTimer(nextWord.letters.length * 0.15);
         }
     }
 }
