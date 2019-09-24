@@ -3,6 +3,7 @@ import { canvasOptions } from "../TypingRoot";
 import { GameContext, GameObject } from "./GameObject";
 import { ProgressBar } from "./ProgressBar";
 import { getDefaultTextStyle, Text } from "./Text";
+import { WordListenerFunction, TypeTracker } from "./TypeTracker";
 
 
 export class MultiplierCountdown extends GameObject{
@@ -14,7 +15,7 @@ export class MultiplierCountdown extends GameObject{
 
     curMaxTime = 0;
     curTime = 0;
-    reachedZero = false;
+    reachedZero = true;
 
     constructor(gameContext : GameContext) {
         super();
@@ -33,10 +34,12 @@ export class MultiplierCountdown extends GameObject{
         this.textObject = new Text("0.0", {x:145, y:290}, -90, textStyle);
 
         gameContext.addGameObject(this.textObject);
+
+        TypeTracker.instance.registerWordCorrectListener(this.wordCompleteCallback);
     }
 
     init(gameContext : GameContext) : void {       
-        this.resetTimer(0.3);
+        this.progressBar.setValue(.5);
     }
 
     update(gameContext : GameContext) : void {
@@ -46,7 +49,7 @@ export class MultiplierCountdown extends GameObject{
             if(!this.reachedZero) {
                 this.reachedZero = true;
                 //callback
-                this.resetTimer(0.3);
+                console.log("reached zero");
             }
         }
         this.textObject.pixiText.text = this.curTime.toFixed(2);
@@ -61,5 +64,11 @@ export class MultiplierCountdown extends GameObject{
         this.curMaxTime = timeVal;
         this.curTime = timeVal;
         this.progressBar.setValue(1);
+    }
+
+    wordCompleteCallback : WordListenerFunction = (currentWord, nextWord) => {
+        if(nextWord) {
+            this.resetTimer(nextWord.letters.length * 0.25);
+        }
     }
 }

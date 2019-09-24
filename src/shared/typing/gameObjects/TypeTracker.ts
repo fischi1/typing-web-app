@@ -9,6 +9,8 @@ import { RowOffsetManager } from "./RowOffsetManager";
 import { Word } from "./Word";
 import forceToNull from "../../functions/forceToNull";
 
+export type WordListenerFunction =  {(currentWord : Word | null, nextWord : Word | null) : void};
+
 export class TypeTracker extends GameObject{
 
     static instance : TypeTracker;
@@ -27,7 +29,7 @@ export class TypeTracker extends GameObject{
     private lastInvalidLetters = 0;
     private letterContainer : PixiContainer
 
-    private wordCorrectRegistered : {(word : Word) : void;}[] = [];
+    private wordCorrectRegistered : WordListenerFunction[] = [];
     private errorRegistered : {() : void}[] = [];
 
     constructor(words : Word[], letterWidth : number, letterContainer : PixiContainer) {
@@ -45,7 +47,6 @@ export class TypeTracker extends GameObject{
 
     init(gameContext : GameContext) {
         registerListener(this.typingListener);
-        this.nextWord();
     }
 
     update(gameContext : GameContext) {
@@ -96,8 +97,10 @@ export class TypeTracker extends GameObject{
         this.wordIndex++;
         if(this.wordIndex < this.words.length) {
             
-            if(this.wordIndex > 0)
-                this.wordCorrectRegistered.forEach(func => func(this.curWord));
+            if(this.wordIndex === 0)
+                this.wordCorrectRegistered.forEach(func => func(null, this.words[this.wordIndex]));
+            else
+                this.wordCorrectRegistered.forEach(func => func(this.curWord, this.words[this.wordIndex]));
 
             this.curInput = "";
             this.curWord.letters.forEach(letter => letter.setStatus("valid"));
@@ -108,7 +111,7 @@ export class TypeTracker extends GameObject{
             RowOffsetManager.instance.setRow(this.curWord.row);
             playSuccessSound();
         } else {
-            this.wordCorrectRegistered.forEach(func => func(this.curWord));
+            this.wordCorrectRegistered.forEach(func => func(this.curWord, null));
             this.gameDone();
         }
     }    
@@ -196,7 +199,7 @@ export class TypeTracker extends GameObject{
      * registers a callback function when a word was typed correctly
      * @param func 
      */
-    registerWordCorrectListener(func : (word : Word) => void) {
+    registerWordCorrectListener(func : WordListenerFunction) {
         this.wordCorrectRegistered.push(func);
     }
 
@@ -215,6 +218,7 @@ export class TypeTracker extends GameObject{
         this.active = true;
         Cursor.instance.active = true;
         this.letterContainer.show();
+        this.nextWord();
     }
 
     gameDone() {

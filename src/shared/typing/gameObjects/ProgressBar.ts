@@ -55,6 +55,7 @@ export class ProgressBar extends GameObject{
     }
 
     setValue(val : number) {
-        this.actualHeight = this.bounds.y * clamp(1 - val);
+        if(!isNaN(val))
+            this.actualHeight = this.bounds.y * clamp(1 - val);
     }
 }

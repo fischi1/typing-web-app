@@ -1,9 +1,8 @@
-import { GameContext, GameObject } from "./GameObject";
-import { Text, getDefaultTextStyle } from './Text';
 import pixiColorHelper from '../pixiColorHelper';
-import { Vector2, add } from './Vector2';
-import { Word } from "./Word";
-import { TypeTracker } from "./TypeTracker";
+import { GameContext, GameObject } from "./GameObject";
+import { getDefaultTextStyle, Text } from './Text';
+import { TypeTracker, WordListenerFunction } from "./TypeTracker";
+import { add, Vector2 } from './Vector2';
 
 export class FlawlessDisplay extends GameObject{
 
@@ -60,7 +59,7 @@ export class FlawlessDisplay extends GameObject{
         this.updateText();
     }
 
-    wordCompleteCallback = (word: Word) => {
+    wordCompleteCallback : WordListenerFunction = (currentWord, nextWord) => {
         if(!this.wordAlreadyWrong)
             this.curValue++;
 

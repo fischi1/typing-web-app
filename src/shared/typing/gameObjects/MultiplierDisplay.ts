@@ -9,8 +9,6 @@ export class MultiplierDisplay extends Text{
     readonly maxFontsize : number;
 
     value : number;
-    timer : number;
-    up : boolean;
 
     constructor() {
         var textStyle = getDefaultTextStyle();
@@ -18,9 +16,6 @@ export class MultiplierDisplay extends Text{
         super("3.7", {x: (1920 - 950) * 0.5, y: 53}, 0, textStyle);
 
         this.pixiText.anchor.y = 1;
-        
-        this.timer = 0;
-        this.up = false;
 
         this.minMultiplier = 1;
         this.maxMultiplier = 3;
@@ -28,6 +23,7 @@ export class MultiplierDisplay extends Text{
         this.maxFontsize = 70;
 
         this.value = this.minMultiplier;
+        this.updateText();
     }
 
     init(gameContext : GameContext) {
@@ -35,29 +31,17 @@ export class MultiplierDisplay extends Text{
     }
 
     update(gameContext : GameContext) : void {
-        this.timer += gameContext.deltaTime;
-        if(this.timer >= 0.02) {
-            this.timer = 0;
+    }
 
-            if(this.up){
-                this.value += 0.1;
-            }  else {
-                this.value -= 0.1;
-            }
-
-            if(this.value < this.minMultiplier) {
-                this.value = this.minMultiplier;
-                this.up = !this.up;
-            } else if(this.value > this.maxMultiplier) {
-                this.value = this.maxMultiplier;
-                this.up = !this.up;
-            }
-
-            this.pixiText.text = this.value.toFixed(1) + "x";
-            const diff = this.maxMultiplier - this.minMultiplier;
-            this.pixiText.style = this.getFontSizeStyle((this.value - this.minMultiplier)/(diff));
-
+    updateText() {
+        if(this.value === 1) {
+            this.pixiText.alpha = 0;
+            return;
         }
+        this.pixiText.alpha = 1;
+        this.pixiText.text = this.value.toFixed(1) + "x";
+        const diff = this.maxMultiplier - this.minMultiplier;
+        this.pixiText.style = this.getFontSizeStyle((this.value - this.minMultiplier)/(diff));
     }
 
     getFontSizeStyle(sizeMultiplier : number) {
