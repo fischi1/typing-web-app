@@ -39,7 +39,8 @@ const TypingCanvas : FC<Props> = (props) => {
 
         const typing = new TypingRoot({
             text: testText,
-            doneFunction : gameComplete
+            doneFunction : gameComplete,
+            pointsPerLetter : 5
         });
 
         return(() => {

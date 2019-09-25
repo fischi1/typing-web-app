@@ -51,6 +51,8 @@ export class MultiplierCountdown extends GameObject{
                 this.reachedZero = true;
                 //callback
                 // console.log("reached zero");
+                if(MultiplierDisplay.instance.value !== MultiplierDisplay.instance.minMultiplier)
+                    this.resetTimer(this.curMaxTime);
                 MultiplierDisplay.instance.decrease();
             }
         }

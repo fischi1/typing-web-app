@@ -1,6 +1,6 @@
 import { GameContext } from "./GameObject";
 import { getDefaultTextStyle, Text } from './Text';
-import { TypeTracker } from "./TypeTracker";
+import { TypeTracker, WordListenerFunction } from "./TypeTracker";
 
 
 
@@ -31,7 +31,7 @@ export class MultiplierDisplay extends Text{
         this.minMultiplier = 1;
         this.maxMultiplier = 3;
         this.increaseStep = 0.1;
-        this.decreaseStep = 0.2;
+        this.decreaseStep = 0.3;
         this.minFontsize = 35;
         this.maxFontsize = 70;        
 
@@ -40,7 +40,7 @@ export class MultiplierDisplay extends Text{
         else
             MultiplierDisplay.instance = this;
 
-        this.value = this.minMultiplier - this.increaseStep;
+        this.value = this.minMultiplier;
         this.updateText();
     }
 
@@ -72,15 +72,15 @@ export class MultiplierDisplay extends Text{
         return textStyle;
     }        
 
-    increase = () => {
-        console.log("increase");
+    increase : WordListenerFunction = (currentWord, nextWord) => {
+        if(!currentWord)
+            return;
         this.value += this.increaseStep;
         this.value = Math.min(this.value, this.maxMultiplier);
         this.updateText();
     }
 
     decrease = () => {
-        console.log("decrease");
         this.value -= this.decreaseStep;
         this.value = Math.max(this.value, this.minMultiplier);
         this.updateText();

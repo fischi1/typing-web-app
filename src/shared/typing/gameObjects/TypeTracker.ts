@@ -78,7 +78,7 @@ export class TypeTracker extends GameObject{
             }
         }
 
-        console.log(this.curInput.replace(/\s/g, "~"));
+        //console.log(this.curInput.replace(/\s/g, "~"));
 
         this.updateCurrentWord();
     };
