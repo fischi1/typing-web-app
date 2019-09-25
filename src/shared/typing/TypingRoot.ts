@@ -30,6 +30,7 @@ import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
 import { StartCountdown } from "./gameObjects/StartCountdown";
+import { StatTracker } from "./gameObjects/StatTracker";
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -231,6 +232,7 @@ class TypingRoot {
         )
       );
       this.gameObjects.push(new MultiplierDisplay());
+      this.gameObjects.push(new StatTracker())
 
       //preparing done, init go
       this.gameObjects.forEach(go => go.init(this.gameContext));
