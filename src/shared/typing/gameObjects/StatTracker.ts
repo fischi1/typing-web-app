@@ -1,6 +1,6 @@
-import { GameContext, GameObject } from "./GameObject";
-import { TypeTracker, WordListenerFunction, LetterCorrectListenerFunction } from "./TypeTracker";
 import forceToNull from "../../functions/forceToNull";
+import { GameContext, GameObject } from "./GameObject";
+import { LetterListenerFunction, TypeTracker, WordListenerFunction } from "./TypeTracker";
 
 export class StatTracker extends GameObject {
     
@@ -8,8 +8,13 @@ export class StatTracker extends GameObject {
 
     lastTime = new Date();
 
+    //wpm
     charactersTyped = 0;
     timeTakenSoFar = 0;
+
+    //accuracy
+    letterProgess = 0;
+    letterStatus : boolean[] = [];
 
     constructor() {
         super();
@@ -22,6 +27,10 @@ export class StatTracker extends GameObject {
         TypeTracker.instance.registerWordCorrectListener(this.nextWord);
         TypeTracker.instance.registerErrorListener(this.letterError);
         TypeTracker.instance.registerLetterListener(this.letterCorrect);
+
+        for(let i = 0; i < gameContext.gameInfo.text.length; i++) {
+            this.letterStatus[i] = true;
+        }
     }
 
     update(gameContext : GameContext) : void {
@@ -47,20 +56,42 @@ export class StatTracker extends GameObject {
         this.charactersTyped += current.letters.length;
 
         // console.log("WPM: " + this.getWPM());
+        // console.log("Accuracy: " + this.getAccuracy());
 
     }
 
-    letterCorrect : LetterCorrectListenerFunction = (curIndex) => {
-        console.log("letterCorrect: " + curIndex);
+    letterCorrect : LetterListenerFunction = (curIndex) => {
+        let index = curIndex -1;
+        // console.log("letterCorect: " + (curIndex-1));
+        if(curIndex > this.letterProgess)
+            this.letterProgess = index;
     }
 
-    letterError = () => {
-        console.log("letterError")
+    letterError : LetterListenerFunction = (curIndex) => {
+        // console.warn("letterError: " + (curIndex-1));
+        let index = curIndex -1;
+        if(index < 0)
+            index = 0;
+        this.letterStatus[index] = false;
     }
 
     getWPM() {
         var msFor5Chars = (this.timeTakenSoFar / this.charactersTyped) * 5;
         var mFor5Chars = msFor5Chars / 1000 / 60
         return 1 / (mFor5Chars);
+    }
+
+    getAccuracy() {
+        let lettersCorrect = this.letterProgess;
+        let letterIncorrect = 0;
+
+        for(let i = 0; i < this.letterProgess; i++) {
+            if(!this.letterStatus[i]) {
+                lettersCorrect--;
+                letterIncorrect++;
+            }
+        }
+
+        return 1 - letterIncorrect / lettersCorrect;
     }
 }

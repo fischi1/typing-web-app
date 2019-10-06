@@ -10,7 +10,7 @@ import { Word } from "./Word";
 import forceToNull from "../../functions/forceToNull";
 
 export type WordListenerFunction =  {(currentWord : Word | null, nextWord : Word | null) : void};
-export type LetterCorrectListenerFunction = {(curIndex : number) : void};
+export type LetterListenerFunction = {(curIndex : number) : void};
 
 export class TypeTracker extends GameObject{
 
@@ -25,14 +25,15 @@ export class TypeTracker extends GameObject{
     private errorLetters : Record<number, Letter | null> = {};
     private curInput = "";
     private letterWidth : number;
+    private letterIndex = 0;
 
     private lastValidLetters = 0;
     private lastInvalidLetters = 0;
     private letterContainer : PixiContainer
 
     private wordCorrectRegistered : WordListenerFunction[] = [];
-    private errorRegistered : {() : void}[] = [];
-    private letterCorrectRegistered : LetterCorrectListenerFunction[] = [];
+    private errorRegistered : LetterListenerFunction[] = [];
+    private letterCorrectRegistered : LetterListenerFunction[] = [];
 
     constructor(words : Word[], letterWidth : number, letterContainer : PixiContainer) {
         super();
@@ -105,7 +106,7 @@ export class TypeTracker extends GameObject{
                 this.wordCorrectRegistered.forEach(func => func(this.curWord, this.words[this.wordIndex]));
 
             if(this.wordIndex < this.words.length && this.wordIndex !== 0) {
-                this.letterCorrect(this.curWord.letters[this.curWord.letters.length -1].index + 1);
+                this.letterCorrect(this.letterIndex + 1);
             }
 
             this.curInput = "";
@@ -149,16 +150,22 @@ export class TypeTracker extends GameObject{
             i++;
         }
 
-        //position cursor
+        var curLetter : Letter | undefined;
+        //position cursor and find the current index for the letter
         if(i < this.curWord.letters.length) { //before the last letter for word
-            subLetter = this.curWord.letters[i].subLetter;
+            curLetter = this.curWord.letters[i];
+            subLetter = curLetter.subLetter;
+            this.letterIndex = curLetter.index;
             if(subLetter)
                 Cursor.instance.setPosition(subLetter.curPos);
         } else { //after the last letter of the word
-            subLetter = this.curWord.letters[this.curWord.letters.length-1].subLetter;
+            curLetter = this.curWord.letters[this.curWord.letters.length-1];
+            subLetter = curLetter.subLetter;
+            this.letterIndex = curLetter.index + 1;
             if(subLetter)
                 Cursor.instance.setPosition({x: subLetter.curPos.x + this.letterWidth, y: subLetter.curPos.y});
         }
+        // console.log("letterIndex: " + this.letterIndex);
 
         while(i < this.curWord.text.length) {
             subLetter = this.curWord.letters[i].subLetter;
@@ -179,7 +186,7 @@ export class TypeTracker extends GameObject{
         //sounds and events
         if(validLetters > this.lastValidLetters) {
             playTypingSound();
-            this.letterCorrect(this.curWord.letters[validLetters - 1].index);
+            this.letterCorrect(this.letterIndex);
         } else if(validLetters < this.lastValidLetters) {
             //backspace
             playTypingSound();
@@ -203,7 +210,7 @@ export class TypeTracker extends GameObject{
 
     error() {
         //console.error("typing error");
-        this.errorRegistered.forEach(func => func());
+        this.errorRegistered.forEach(func => func(this.getLetterIndex()));
     }
 
     /**
@@ -214,12 +221,19 @@ export class TypeTracker extends GameObject{
         this.wordCorrectRegistered.push(func);
     }
 
-    registerErrorListener(func: () => void) {
+    registerErrorListener(func: LetterListenerFunction) {
         this.errorRegistered.push(func);
     }
 
-    registerLetterListener(func: LetterCorrectListenerFunction) {
+    registerLetterListener(func: LetterListenerFunction) {
         this.letterCorrectRegistered.push(func);
+    }
+
+    /**
+     * @returns the index of the current letter
+     */
+    getLetterIndex() {
+        return this.letterIndex;    
     }
 
     /**
