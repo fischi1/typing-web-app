@@ -10,6 +10,7 @@ import { Word } from "./Word";
 import forceToNull from "../../functions/forceToNull";
 
 export type WordListenerFunction =  {(currentWord : Word | null, nextWord : Word | null) : void};
+export type LetterCorrectListenerFunction = {(curIndex : number) : void};
 
 export class TypeTracker extends GameObject{
 
@@ -31,6 +32,7 @@ export class TypeTracker extends GameObject{
 
     private wordCorrectRegistered : WordListenerFunction[] = [];
     private errorRegistered : {() : void}[] = [];
+    private letterCorrectRegistered : LetterCorrectListenerFunction[] = [];
 
     constructor(words : Word[], letterWidth : number, letterContainer : PixiContainer) {
         super();
@@ -102,6 +104,10 @@ export class TypeTracker extends GameObject{
             else
                 this.wordCorrectRegistered.forEach(func => func(this.curWord, this.words[this.wordIndex]));
 
+            if(this.wordIndex < this.words.length && this.wordIndex !== 0) {
+                this.letterCorrect(this.curWord.letters[this.curWord.letters.length -1].index + 1);
+            }
+
             this.curInput = "";
             this.curWord.letters.forEach(letter => letter.setStatus("valid"));
             this.curWord = this.words[this.wordIndex];
@@ -117,7 +123,7 @@ export class TypeTracker extends GameObject{
     }    
     
     updateCurrentWord() {
-        var i = 0
+        var i = 0;
         var subLetter : Letter | undefined;
         var validLetters = 0;
         var invalidLetters = 0;
@@ -173,14 +179,15 @@ export class TypeTracker extends GameObject{
         //sounds and events
         if(validLetters > this.lastValidLetters) {
             playTypingSound();
+            this.letterCorrect(this.curWord.letters[validLetters - 1].index);
         } else if(validLetters < this.lastValidLetters) {
             //backspace
             playTypingSound();
         }
 
         if(invalidLetters > this.lastInvalidLetters) {
-            this.error();
             playFailSound();
+            this.error();
         } else if(invalidLetters < this.lastInvalidLetters) {
             //backspace on error
             playTypingSound();
@@ -188,6 +195,10 @@ export class TypeTracker extends GameObject{
 
         this.lastInvalidLetters = invalidLetters;
         this.lastValidLetters = validLetters;
+    }
+
+    letterCorrect(curIndex : number) {
+        this.letterCorrectRegistered.forEach(func => func(curIndex));
     }
 
     error() {
@@ -203,12 +214,12 @@ export class TypeTracker extends GameObject{
         this.wordCorrectRegistered.push(func);
     }
 
-    /**
-     * 
-     * @param func 
-     */
     registerErrorListener(func: () => void) {
         this.errorRegistered.push(func);
+    }
+
+    registerLetterListener(func: LetterCorrectListenerFunction) {
+        this.letterCorrectRegistered.push(func);
     }
 
     /**

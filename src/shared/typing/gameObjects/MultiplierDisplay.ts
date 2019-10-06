@@ -1,6 +1,7 @@
 import { GameContext } from "./GameObject";
 import { getDefaultTextStyle, Text } from './Text';
 import { TypeTracker, WordListenerFunction } from "./TypeTracker";
+import forceToNull from "../../functions/forceToNull";
 
 
 
@@ -52,6 +53,10 @@ export class MultiplierDisplay extends Text{
     }
 
     update(gameContext : GameContext) : void {
+    }
+
+    destroy(gameContext : GameContext) : void {
+        MultiplierDisplay.instance = forceToNull();
     }
 
     updateText() {

@@ -65,7 +65,7 @@ export class EarnedSoFarDisplay extends GameObject{
 
         const pointsToAdd = Math.round(this.pointsPerLetter * MultiplierDisplay.instance.value);
 
-        console.log("pointsToAdd:" + pointsToAdd);
+        // console.log("pointsToAdd:" + pointsToAdd);
 
         this.value += pointsToAdd;
         this.updateText();

@@ -1,30 +1,43 @@
-import { GameObject, GameContext } from "./GameObject";
-import { WordListenerFunction, TypeTracker } from "./TypeTracker";
-import { throwStatement } from "@babel/types";
+import { GameContext, GameObject } from "./GameObject";
+import { TypeTracker, WordListenerFunction, LetterCorrectListenerFunction } from "./TypeTracker";
+import forceToNull from "../../functions/forceToNull";
 
 export class StatTracker extends GameObject {
     
+    static instance : StatTracker;
+
     lastTime = new Date();
 
     charactersTyped = 0;
     timeTakenSoFar = 0;
 
+    constructor() {
+        super();
+        if(!!StatTracker.instance)
+            console.error("StatTracker.instance already set!!!");
+        StatTracker.instance = this;
+    }
+
     init(gameContext : GameContext) : void {      
         TypeTracker.instance.registerWordCorrectListener(this.nextWord);
+        TypeTracker.instance.registerErrorListener(this.letterError);
+        TypeTracker.instance.registerLetterListener(this.letterCorrect);
     }
 
     update(gameContext : GameContext) : void {
     }
 
     destroy(gameContext : GameContext) : void {
+        StatTracker.instance = forceToNull();
     }
 
     nextWord : WordListenerFunction = (current, next) => {
 
-        if(!current)
-            return;
-        
         const newTime = new Date();
+
+        if(!current){            
+            return;
+        }        
 
         const timeTakenForWord = newTime.getTime() - this.lastTime.getTime();
 
@@ -33,8 +46,16 @@ export class StatTracker extends GameObject {
         this.timeTakenSoFar += timeTakenForWord;
         this.charactersTyped += current.letters.length;
 
-        console.log("WPM: " + this.getWPM());
+        // console.log("WPM: " + this.getWPM());
 
+    }
+
+    letterCorrect : LetterCorrectListenerFunction = (curIndex) => {
+        console.log("letterCorrect: " + curIndex);
+    }
+
+    letterError = () => {
+        console.log("letterError")
     }
 
     getWPM() {
