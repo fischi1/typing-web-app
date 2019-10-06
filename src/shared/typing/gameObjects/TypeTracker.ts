@@ -8,6 +8,7 @@ import { PixiContainer } from "./PixiContainer";
 import { RowOffsetManager } from "./RowOffsetManager";
 import { Word } from "./Word";
 import forceToNull from "../../functions/forceToNull";
+import { GameResultReasonType } from "../GameResultType";
 
 export type WordListenerFunction =  {(currentWord : Word | null, nextWord : Word | null) : void};
 export type LetterListenerFunction = {(curIndex : number) : void};
@@ -35,12 +36,16 @@ export class TypeTracker extends GameObject{
     private errorRegistered : LetterListenerFunction[] = [];
     private letterCorrectRegistered : LetterListenerFunction[] = [];
 
-    constructor(words : Word[], letterWidth : number, letterContainer : PixiContainer) {
+    private gameDone : {(reason : GameResultReasonType) : void};
+
+    constructor(words : Word[], letterWidth : number, letterContainer : PixiContainer, gameDone : {(reason : GameResultReasonType) : void}) {
         super();
         this.words = words;
         this.curWord = words[0];
         this.letterWidth = letterWidth;
         this.letterContainer = letterContainer;
+
+        this.gameDone = gameDone;
 
         if(TypeTracker.instance)
             console.error("TypeTracker.instance is already set");
@@ -119,7 +124,7 @@ export class TypeTracker extends GameObject{
             playSuccessSound();
         } else {
             this.wordCorrectRegistered.forEach(func => func(this.curWord, null));
-            this.gameDone();
+            this.finished();
         }
     }    
     
@@ -246,16 +251,18 @@ export class TypeTracker extends GameObject{
         this.nextWord();
     }
 
-    gameDone() {
+    finished() {
         console.log("GAME FINISHED!");
         this.active = false;
+        this.gameDone("DONE");
     }
 
     /**
      * called by LivesDisplay if no lives are left
      */
-    gameOver() {
+    failure() {
         console.log("GAME OVER!");
         this.active = false;
+        this.gameDone("GAME_OVER");
     }
 }

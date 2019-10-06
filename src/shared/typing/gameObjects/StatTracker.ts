@@ -81,6 +81,9 @@ export class StatTracker extends GameObject {
         return 1 / (mFor5Chars);
     }
 
+    /**
+     * TODO must be NaN checked
+     */
     getAccuracy() {
         let lettersCorrect = this.letterProgess;
         let letterIncorrect = 0;

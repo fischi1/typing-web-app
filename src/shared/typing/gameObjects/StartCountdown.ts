@@ -7,7 +7,7 @@ export class StartCountdown extends GameObject {
 
     countdownText : Text;
 
-    countdownSeconds = 1;
+    countdownSeconds = process.env.NODE_ENV !== 'production' ? 1 : 3;
     startSize = 500;
     endSize = 250;
 

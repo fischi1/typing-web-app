@@ -31,6 +31,7 @@ import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
 import { StartCountdown } from "./gameObjects/StartCountdown";
 import { StatTracker } from "./gameObjects/StatTracker";
+import { GameResultReasonType, GameResultType } from "./GameResultType";
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -185,14 +186,17 @@ class TypingRoot {
         //tracking of the user
         this.gameObjects.push(
             new TypeTracker(
-            this.words,
-            initWordPositionsParams.letterWidth,
-            letterContainerGO
+                this.words,
+                initWordPositionsParams.letterWidth,
+                letterContainerGO,
+                this.gameDone
             )
         );
+
         this.gameObjects.push(
             new Cursor(generateLetterSprite("|".charCodeAt(0), letterParams))
         );
+
         this.gameObjects.push(
             new RowOffsetManager(initWordPositionsParams.letterHeight)
         );
@@ -261,7 +265,6 @@ class TypingRoot {
     }
 
     destroy() {
-        console.log("begin destroy");
         this.running = false;
 
         this.gameObjects.forEach(go => go.destroy(this.gameContext));
@@ -279,7 +282,6 @@ class TypingRoot {
 
         this.loader.reset();
         window.removeEventListener("resize", this.handleResize, true);
-        console.log("end destroy");
     }
 
     loop(delta: number) {
@@ -312,6 +314,18 @@ class TypingRoot {
             this.app.renderer.view.style.width = width + "px";
             this.app.renderer.view.style.height = width / areaRatio + "px";
         }
+    }
+
+    gameDone = (reason : GameResultReasonType) => {
+
+        const result : GameResultType = {
+            resultType: reason,
+            accuracy: StatTracker.instance.getAccuracy(),
+            wpm: StatTracker.instance.getWPM(),
+            maxStreak: FlawlessDisplay.instance.getMaxStreak()
+        }
+
+        this.gameInfo.doneFunction(result);
     }
 }
 

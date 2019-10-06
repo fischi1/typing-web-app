@@ -3,8 +3,11 @@ import { GameContext, GameObject } from "./GameObject";
 import { getDefaultTextStyle, Text } from './Text';
 import { TypeTracker, WordListenerFunction } from "./TypeTracker";
 import { add, Vector2 } from './Vector2';
+import forceToNull from '../../functions/forceToNull';
 
 export class FlawlessDisplay extends GameObject{
+
+    static instance: FlawlessDisplay;
 
     private flawlessLabel : Text;
     private maxLabel : Text;
@@ -39,6 +42,10 @@ export class FlawlessDisplay extends GameObject{
         gameContext.addGameObject(this.curLabel);
         gameContext.addGameObject(this.maxValueLabel);
         gameContext.addGameObject(this.curValueLabel);
+
+        if(!!FlawlessDisplay.instance)
+            console.error("FlawlessDisplay.instance is already set");
+        FlawlessDisplay.instance = this;
     }
 
     init(gameContext : GameContext) {
@@ -51,6 +58,7 @@ export class FlawlessDisplay extends GameObject{
     }
 
     destroy(gameContext : GameContext) : void {
+        FlawlessDisplay.instance = forceToNull();
     }
 
     errorCallback = () => {
@@ -60,6 +68,10 @@ export class FlawlessDisplay extends GameObject{
     }
 
     wordCompleteCallback : WordListenerFunction = (currentWord, nextWord) => {
+
+        if(!currentWord)
+            return;
+
         if(!this.wordAlreadyWrong)
             this.curValue++;
 
@@ -74,5 +86,9 @@ export class FlawlessDisplay extends GameObject{
     updateText(){
         this.curValueLabel.pixiText.text = this.curValue + "";
         this.maxValueLabel.pixiText.text = this.maxValue + "";
+    }
+
+    getMaxStreak() {
+        return this.maxValue;
     }
 }

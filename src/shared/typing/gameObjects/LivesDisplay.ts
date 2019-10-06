@@ -79,7 +79,7 @@ export class LivesDisplay extends GameObject{
     errorCallback = () => {
         this.setCoveredTiles(this.coveredTilesNum +  this.tilesPerError);
         if(this.coveredTilesNum >= this.coverTiles.length)
-            TypeTracker.instance.gameOver();
+            TypeTracker.instance.failure();
     }
 
 }
