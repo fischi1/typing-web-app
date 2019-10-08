@@ -1,45 +1,21 @@
+import { Card, CardContent, Typography } from "@material-ui/core";
 import React, { FC } from "react";
-import { Typography, WithStyles, Card, CardContent, withStyles, createStyles, Theme } from "@material-ui/core";
-import { RouteComponentProps } from "react-router";
-import cn from "classnames";
-import Page from "../shared/Page";
 
-const styles = (theme : Theme) => createStyles({
-    card: {
-        minWidth: 275,
-        marginBottom: theme.spacing.unit
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-    container: {
-        padding: theme.spacing.unit
-    }
-});
+type Props = {
+};
 
-type Props = RouteComponentProps & WithStyles<typeof styles>;
-
-const About : FC<Props> = (props : Props) => {
-    const {classes} = props;
+const About : FC<Props> = props => {
 
     const card = (
-        <Card className={classes.card}>
+        <Card>
             <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                <Typography color="textSecondary" gutterBottom>
                     Word of the Day
                 </Typography>
                 <Typography variant="h5" component="h2">
                     benevolent
                 </Typography>
-                <Typography className={classes.pos} color="textSecondary">
+                <Typography color="textSecondary">
                 adjective
                 </Typography>
                 <Typography component="p">
@@ -51,8 +27,8 @@ const About : FC<Props> = (props : Props) => {
         </Card>
     );
 
-    return <Page>
-		<div className={cn(classes.container)}>     
+    return (
+		<div>     
 			<Typography variant="h4">
 				About
 			</Typography>
@@ -65,7 +41,7 @@ const About : FC<Props> = (props : Props) => {
 			{card}
 			{card}
 		</div>
-	</Page>; 
+    );
 }
 
-export default withStyles(styles)(About);
+export default About;

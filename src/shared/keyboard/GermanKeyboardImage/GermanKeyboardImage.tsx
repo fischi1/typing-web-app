@@ -1,11 +1,11 @@
-import { createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import React, { FC } from "react";
 import keyboardLayout from "../../../assets/images/keyboard/pressed_keyboard.png";
-
-import RenderRow from "./RenderRow";
 import { row1Urls, row2Urls, row3Urls, row4Urls, row5Urls } from "./imageUrls";
+import RenderRow from "./RenderRow";
 
-const styles = (theme: Theme) => createStyles({
+
+const useStyles = makeStyles({
     container: {
         display: "flex",
         justifyContent: "center",
@@ -22,14 +22,14 @@ const styles = (theme: Theme) => createStyles({
 
 type Props = {
     keysState : Record<number, boolean>
-} & WithStyles<typeof styles>;
+};
 
 
-const GermanKeyBoardImage : FC<Props> = (props : Props) => {
-    const {classes} = props;
+const GermanKeyBoardImage : FC<Props> = props => {
+    const classes = useStyles();
+
     const backgroundWidth = 1000;
     const widthMod = backgroundWidth / 1800;
-
 
     return (
         <div className={classes.container}>
@@ -50,4 +50,4 @@ const GermanKeyBoardImage : FC<Props> = (props : Props) => {
     );
 }
 
-export default withStyles(styles)(GermanKeyBoardImage);
+export default GermanKeyBoardImage;

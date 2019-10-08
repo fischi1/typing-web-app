@@ -1,10 +1,10 @@
+import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import React, { FC } from 'react';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
-import { Theme, Typography } from '@material-ui/core';
 import diamond from "../assets/images/diamond.png";
 import { highlightColors } from '../highlightColors';
 
-const styles = (theme: Theme) => createStyles({
+const useStyles = makeStyles({
     container: {
         display: "flex" 
     },
@@ -26,10 +26,10 @@ const styles = (theme: Theme) => createStyles({
 });
 
 type Props = {
-} & WithStyles<typeof styles>;
+};
 
 const DiamondDisplay : FC<Props> = (props) => {    
-    const { classes } = props;
+    const classes = useStyles();
 
     return (
         <div className={classes.container}>
@@ -39,4 +39,4 @@ const DiamondDisplay : FC<Props> = (props) => {
     );
 }
 
-export default withStyles(styles)(DiamondDisplay);
+export default DiamondDisplay;

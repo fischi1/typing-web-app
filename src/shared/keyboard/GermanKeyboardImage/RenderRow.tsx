@@ -1,16 +1,12 @@
-import { createStyles, Theme, WithStyles, withStyles } from "@material-ui/core";
 import React, { FC, useEffect, useState } from "react";
 import { KeySprite } from "./imageUrls";
-
-const styles = (theme: Theme) => createStyles({
-});
 
 type Props = {
     imgUrls: KeySprite[],
     widthMod: number,
     y: number,
     keysState : Record<number, boolean>
-} & WithStyles<typeof styles>;
+};
 
 type ImgInfo = {
     width : number,
@@ -58,4 +54,4 @@ const RenderRow : FC<Props> = (props : Props) => {
     </>;
 }
 
-export default withStyles(styles)(RenderRow);
+export default RenderRow;

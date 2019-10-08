@@ -1,56 +1,30 @@
-import React, { ReactNode, useState, FC } from 'react';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
+import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { AppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/core';
+import ErrorIcon from '@material-ui/icons/Error';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
-import ErrorIcon from '@material-ui/icons/Error';
+import React, { FC, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import Logo from './shared/Logo';
 import AccountInformation from './shared/AccountInformation';
-
-const styles = (theme: Theme) => createStyles({
-    list: {
-      width: 300,
-    },
-    appbar: {
-        backgroundColor: theme.palette.primary.dark,
-        borderBottom: "2px solid " + theme.palette.primary.contrastText,
-        height: "64px",
-        boxShadow: "none"
-    },
-    header: {
-        fontSize: "2.4rem"
-    },
-    leftHeader: {
-        flex: "0 0 33%",
-        display: "flex"
-    },
-    burgerMenuButton: {
-        padding: "0px",
-        marginRight: theme.spacing.unit * 1.5,
-        marginLeft: theme.spacing.unit * 1.5
-    }
-  });
+import Logo from './shared/Logo';
 
 type Props = {
-    children: ReactNode
-} & WithStyles<typeof styles>;
+};
 
-const TemporaryDrawer : FC<Props> = (props) => {
+const TemporaryDrawer : FC<Props> = props => {
     
-    const { classes, children} = props;
+    const { children } = props;
 
     const [open, setOpen] = useState<boolean>(false);
     var closeDrawer = () : void => setOpen(false);
     
     const sideList = (
-        <div className={classes.list}>
+        <div>
             <List>
                 <ListItem button {...{component: RouterLink, to: `/`} as any} onClick={closeDrawer}>
                     <ListItemIcon>
@@ -82,18 +56,17 @@ const TemporaryDrawer : FC<Props> = (props) => {
 
     return (
         <>
-            <AppBar position="sticky" className={classes.appbar}>
+            <AppBar position="sticky">
                 <Toolbar disableGutters>
-                    <div className={classes.leftHeader}>
+                    <div>
                         <IconButton
                         color="inherit"
                         aria-label="Open drawer"
                         onClick={() => setOpen(true)}
-                        className={classes.burgerMenuButton}
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="h1" className={classes.header}>
+                        <Typography variant="h1">
                             Level 123
                         </Typography>
                     </div>
@@ -109,4 +82,4 @@ const TemporaryDrawer : FC<Props> = (props) => {
     );
 }
 
-export default withStyles(styles)(TemporaryDrawer);
+export default TemporaryDrawer;
