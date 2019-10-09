@@ -1,21 +1,36 @@
 import React, { FC } from "react";
-import { Route, Switch } from "react-router";
+import { Route, Switch, RouteProps } from "react-router";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Error404 from "./pages/Error404";
+import Page from "./shared/Page";
+
+type CustomRouteProps = {
+
+} & RouteProps;
+
+const CustomRoute : FC<CustomRouteProps> = props => {
+    return (
+        <Route {...props}>
+            <Page>
+                {props.children}
+            </Page>
+        </Route>
+    )
+} 
 
 const Routes : FC<{}> = () => {
     return (
         <Switch>
-            <Route exact path="/">
+            <CustomRoute exact path="/">
                 <Home />
-            </Route>
-            <Route exact path="/about">
+            </CustomRoute>
+            <CustomRoute exact path="/about">
                 <About />
-            </Route>
-            <Route>
+            </CustomRoute>
+            <CustomRoute>
                 <Error404 />
-            </Route>
+            </CustomRoute>
         </Switch>
     )
 }

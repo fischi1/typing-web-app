@@ -1,18 +1,42 @@
-import { Typography } from '@material-ui/core';
+import { Typography, makeStyles } from '@material-ui/core';
 import React, { FC } from 'react';
 import dog from "../assets/images/dog.gif";
+import clsx from "clsx";
+
+
+const useStyles = makeStyles( theme => ({
+    headerContainer: {
+        display: "flex",
+        flex: "0 0 33%",
+        justifyContent: "center"
+    },
+    header: {
+        fontSize: "2.4rem"
+    },
+    headerLogoText : {
+        paddingTop: "6px"
+    },
+    headerIcon: {
+        width: "50px",
+        height: "50px",
+        marginLeft: theme.spacing(),
+        imageRendering: "pixelated"
+    }
+}));
 
 type Props = {
 };
 
 const Logo : FC<Props> = props => {
 
+    const classes = useStyles();
+
     return (
-        <div>
-            <Typography variant="h1" >
+        <div className={classes.headerContainer}>
+            <Typography variant="h1" className={clsx(classes.header, classes.headerLogoText)}>
                 Typing Web App
             </Typography>
-            <img src={dog} alt="Dog"/>
+            <img src={dog} alt="Dog" className={classes.headerIcon}/>
         </div>
     );
 }
