@@ -167,7 +167,7 @@ export class TypeTracker extends GameObject{
             curLetter = this.curWord.letters[this.curWord.letters.length-1];
             subLetter = curLetter.subLetter;
             this.letterIndex = curLetter.index + 1;
-            if(subLetter)
+            if(subLetter && Cursor.instance)
                 Cursor.instance.setPosition({x: subLetter.curPos.x + this.letterWidth, y: subLetter.curPos.y});
         }
         // console.log("letterIndex: " + this.letterIndex);
