@@ -3,7 +3,7 @@ import { makeStyles, ThemeProvider } from '@material-ui/styles';
 import React, { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import AppContainer from './AppContainer';
-import Routes from './Routes';
+import Routes from './shared/Routes';
 import usePrintConsoleHello from './shared/hooks/usePrintConsoleHello';
 
 const theme = createMuiTheme({
