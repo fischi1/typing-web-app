@@ -46,9 +46,15 @@ const Routes : FC<{}> = () => {
                 <CSSTransition key={location.key} classNames="fade" timeout={durationMS}>
                     <section className={classes.routeSection}>
                         <Switch location={location}>
-                            <Route exact path="/" component={Home}/>
-                            <Route exact path="/about" component={About} />
-                            <Route component={Error404} />
+                            <Route exact path="/">
+                                <Home />
+                            </Route>
+                            <Route exact path="/about">
+                                <About />
+                            </Route>
+                            <Route>
+                                <Error404 />
+                            </Route>
                         </Switch>
                     </section>
                 </CSSTransition>
