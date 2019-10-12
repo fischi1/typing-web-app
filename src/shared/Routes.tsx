@@ -6,7 +6,7 @@ import About from "../pages/About";
 import Error404 from "../pages/Error404";
 import Home from "../pages/Home";
 
-const durationMS = 700;
+const durationMS = 800;
 
 const useStyles = makeStyles({
     '@global': {   
@@ -15,14 +15,14 @@ const useStyles = makeStyles({
         },        
         ".fade-enter.fade-enter-active": { 
             transform: "translateX(0)",
-            transition: `all ${durationMS}ms ease-in`
+            transition: `transform ${durationMS}ms ease-in`
         },        
         ".fade-exit": { 
-            // transform: "translateX(0)",
+            transform: "translateX(0)",
         },        
         ".fade-exit.fade-exit-active": {
             transform: "translateX(-100%)",
-            transition: `all ${durationMS}ms ease-in`
+            transition: `transform ${durationMS}ms ease-in`
         }
     },
     transitionGroup: {
@@ -36,10 +36,6 @@ const useStyles = makeStyles({
     }
 });
 
-
-//TransitionGroup renders to a div
-//CssTransition nothing
-//Route nothing
 const Routes : FC<{}> = () => {
     const classes = useStyles();
     const location = useLocation();
@@ -47,7 +43,7 @@ const Routes : FC<{}> = () => {
     return (
         <div>
             <TransitionGroup className={classes.transitionGroup}> 
-                <CSSTransition key={location.key} classNames="fade" timeout={{enter: durationMS, exit: durationMS}}>
+                <CSSTransition key={location.key} classNames="fade" timeout={durationMS}>
                     <section className={classes.routeSection}>
                         <Switch location={location}>
                             <Route exact path="/" component={Home}/>
