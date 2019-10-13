@@ -11,7 +11,6 @@ import dog from "../../assets/images/dog.gif";
 import drawRect from './drawRect';
 import { GameInfoType } from './GameInfoType';
 import { Cursor } from './gameObjects/Cursor';
-import { DebugCat } from './gameObjects/DebugCat';
 import { EarnedSoFarDisplay } from "./gameObjects/EarnedSoFarDisplay";
 import { ErrorLetterPool } from './gameObjects/ErrorLetterPool';
 import { FlawlessDisplay } from './gameObjects/FlawlessDisplay';
@@ -21,17 +20,16 @@ import { MultiplierCountdown } from "./gameObjects/MultiplierCountdown";
 import { MultiplierDisplay } from './gameObjects/MultiplierDisplay';
 import { PixiContainer } from './gameObjects/PixiContainer';
 import { RowOffsetManager } from './gameObjects/RowOffsetManager';
-import { TimeDisplay } from './gameObjects/TimeDisplay';
+import { StartCountdown } from "./gameObjects/StartCountdown";
+import { StatTracker } from "./gameObjects/StatTracker";
 import { TypeTracker } from './gameObjects/TypeTracker';
 import { Word } from './gameObjects/Word';
+import { GameResultReasonType, GameResultType } from "./GameResultType";
 import generateGOs, { generateLetterSprite, LetterGenerationParamsType } from './generateGOs';
 import initWordPositions, { InitWordPositionsParams } from './initWordPositions';
 import pixiColorHelper from './pixiColorHelper';
 import { waitForSoundsLoaded } from './SoundManager';
 import { XMLHelper } from './XMLHelper';
-import { StartCountdown } from "./gameObjects/StartCountdown";
-import { StatTracker } from "./gameObjects/StatTracker";
-import { GameResultReasonType, GameResultType } from "./GameResultType";
 
 const bitmapFontXML = process.env.PUBLIC_URL + '/xml/RobotoMono.xml';
 
@@ -120,9 +118,9 @@ class TypingRoot {
         var fontTexture = resources.bitmapFontTexture.texture
             .baseTexture as PIXI.BaseTexture;
 
-        this.gameObjects.push(
-            new DebugCat(new PIXI.Sprite(resources.dog.texture))
-        );
+        // this.gameObjects.push(
+        //     new DebugCat(new PIXI.Sprite(resources.dog.texture))
+        // );
 
         const typingBackgroundRect = new PIXI.Graphics();
         drawRect(
@@ -202,7 +200,7 @@ class TypingRoot {
         );
 
         //UI
-        this.gameObjects.push(new TimeDisplay(this.gameContext));
+        // this.gameObjects.push(new TimeDisplay(this.gameContext));
         this.gameObjects.push(new MultiplierCountdown(this.gameContext));
         this.gameObjects.push(new FlawlessDisplay(this.gameContext));
         this.gameObjects.push(new StartCountdown(this.gameContext));
