@@ -1,4 +1,4 @@
-import { highlightColors } from "../../highlightColors";
+import { highlightColors } from "../highlightColors";
 
 type HighlightColorsType = typeof highlightColors;
 

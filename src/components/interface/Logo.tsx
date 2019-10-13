@@ -1,6 +1,6 @@
 import { Typography, makeStyles } from '@material-ui/core';
 import React, { FC } from 'react';
-import dog from "../assets/images/dog.gif";
+import dog from "../../assets/images/dog.gif";
 import clsx from "clsx";
 
 

@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
 import React, { FC } from 'react';
-import { highlightColors } from '../highlightColors';
+import { highlightColors } from '../../highlightColors';
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 

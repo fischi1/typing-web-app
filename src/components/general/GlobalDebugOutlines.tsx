@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import React, { FC, useState } from "react";
-import useKeyEvents from "./hooks/useKeyEvents";
+import useKeyEvents from "../../hooks/useKeyEvents";
 
 const useStyles = makeStyles({
     "@global": {

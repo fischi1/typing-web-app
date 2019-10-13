@@ -1,5 +1,5 @@
 import { useReducer, useRef } from "react";
-import useKeyEvents from "../hooks/useKeyEvents";
+import useKeyEvents from "../../hooks/useKeyEvents";
 
 type KeyStateType = Record<number, boolean>;
 

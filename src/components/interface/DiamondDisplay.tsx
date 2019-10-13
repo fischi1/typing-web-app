@@ -1,8 +1,8 @@
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { FC } from 'react';
-import diamond from "../assets/images/diamond.png";
-import { highlightColors } from '../highlightColors';
+import diamond from "../../assets/images/diamond.png";
+import { highlightColors } from '../../highlightColors';
 
 const useStyles = makeStyles({
     container: {

@@ -1,13 +1,13 @@
 
 import FontFaceObserver from "fontfaceobserver";
 import * as PIXI from 'pixi.js';
-import bitmapFontTexture from "../../assets/bitmapfont/RobotoMono_0.png";
-import damageDisplay from "../../assets/images/damageDisplay.png";
-import dest1 from "../../assets/images/dest1.png";
-import dest2 from "../../assets/images/dest2.png";
-import dest3 from "../../assets/images/dest3.png";
-import diamond from "../../assets/images/diamond.png";
-import dog from "../../assets/images/dog.gif";
+import bitmapFontTexture from "../assets/bitmapfont/RobotoMono_0.png";
+import damageDisplay from "../assets/images/damageDisplay.png";
+import dest1 from "../assets/images/dest1.png";
+import dest2 from "../assets/images/dest2.png";
+import dest3 from "../assets/images/dest3.png";
+import diamond from "../assets/images/diamond.png";
+import dog from "../assets/images/dog.gif";
 import drawRect from './drawRect';
 import { GameInfoType } from './GameInfoType';
 import { Cursor } from './gameObjects/Cursor';

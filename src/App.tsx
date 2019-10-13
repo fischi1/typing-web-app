@@ -2,10 +2,10 @@ import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/styles';
 import React, { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import AppContainer from './AppContainer';
-import GlobalDebugOutlines from './shared/GlobalDebugOutlines';
-import usePrintConsoleHello from './shared/hooks/usePrintConsoleHello';
-import Routes from './shared/Routes';
+import AppContainer from './components/general/AppContainer';
+import GlobalDebugOutlines from './components/general/GlobalDebugOutlines';
+import usePrintConsoleHello from './hooks/usePrintConsoleHello';
+import Routes from './components/general/Routes';
 
 const theme = createMuiTheme({
     palette: {

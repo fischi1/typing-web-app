@@ -1,6 +1,6 @@
 import { GameContext, GameObject } from "./GameObject";
 import { getDefaultTextStyle, Text } from "./Text";
-import { highlightColors } from "../../../highlightColors";
+import { highlightColors } from "../../highlightColors";
 
 /**
  * Debug timer top left

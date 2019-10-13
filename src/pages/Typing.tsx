@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import GermanKeyboardController from "../shared/keyboard/GermanKeyboardController";
-import TypingCanvas from "../shared/typing/TypingCanvas";
+import TypingCanvas from "../typing/TypingCanvas";
 
 const Typing : FC<{}> = () => {
     return <>

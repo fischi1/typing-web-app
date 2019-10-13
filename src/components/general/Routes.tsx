@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { Route, Redirect } from "react-router";
-import About from "../pages/About";
+import About from "../../pages/About";
 import AnimatedSwitch from "./AnimatedSwitch";
-import Home from "../pages/Home";
-import Lessons from "../pages/Lessons";
-import Stats from "../pages/Stats";
-import Help from "../pages/Help";
-import Typing from "../pages/Typing";
-import GameResult from "../pages/GameResult";
+import Home from "../../pages/Home";
+import Lessons from "../../pages/Lessons";
+import Stats from "../../pages/Stats";
+import Help from "../../pages/Help";
+import Typing from "../../pages/Typing";
+import GameResult from "../../pages/GameResult";
 
 
 const Routes : FC<{}> = () => {
