@@ -239,6 +239,8 @@ class TypingRoot {
         //preparing done, init go
         this.gameObjects.forEach(go => go.init(this.gameContext));
         await waitForSoundsLoaded();
+        
+        this.gameInfo.onLoaded();
         this.app.ticker.add(delta => this.loop(delta));
     };
 
