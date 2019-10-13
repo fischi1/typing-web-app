@@ -47,7 +47,9 @@ const useStyles = makeStyles({
     {
         body : {
             backgroundColor: "black",
-            overflowX: "hidden"
+            overflowX: "hidden",
+            minWidth: "1130px",
+            width: "auto !important"
         }
     }
 });
