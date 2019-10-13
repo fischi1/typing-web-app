@@ -1,19 +1,12 @@
 import { AppBar, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import React, { FC, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import MenuDrawer from './components/MenuDrawer';
 import AccountInformation from './shared/AccountInformation';
 import Logo from './shared/Logo';
 
 
 const useStyles = makeStyles(theme => ({
-    list: {
-      width: 300,
-    },
     appbar: {
         backgroundColor: theme.palette.primary.dark,
         borderBottom: "2px solid " + theme.palette.primary.contrastText,
@@ -48,29 +41,6 @@ const TemporaryDrawer : FC<Props> = props => {
     const classes = useStyles();
 
     const [open, setOpen] = useState<boolean>(false);
-    var closeDrawer = () : void => setOpen(false);
-    
-    const sideList = (
-        <div>
-            <List className={classes.list}>
-                <ListItem button {...{component: RouterLink, to: `/`} as any} onClick={closeDrawer}>
-                    <ListItemText>
-                        Home
-                    </ListItemText>
-                </ListItem>
-                <ListItem button {...{component: RouterLink, to: `/about`} as any} onClick={closeDrawer}>
-                    <ListItemText>
-                        About
-                    </ListItemText>
-                </ListItem>
-                <ListItem button {...{component: RouterLink, to: `/asdf`} as any} onClick={closeDrawer}>
-                    <ListItemText>
-                        Wrong link you got
-                    </ListItemText>
-                </ListItem>
-            </List>
-        </div>
-    );
 
     return (
         <>
@@ -93,9 +63,10 @@ const TemporaryDrawer : FC<Props> = props => {
                     <AccountInformation />
                 </Toolbar>
             </AppBar>
-            <Drawer open={open} onClose={() => setOpen(false)}>
-                {sideList}
-            </Drawer>
+            <MenuDrawer 
+                open={open}
+                onClose={() => setOpen(false)}
+            />
             {children}
         </>
     );

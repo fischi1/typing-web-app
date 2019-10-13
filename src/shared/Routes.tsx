@@ -1,66 +1,47 @@
-import { makeStyles } from "@material-ui/core";
 import React, { FC } from "react";
-import { Route, Switch, useLocation } from "react-router";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Route, Redirect } from "react-router";
 import About from "../pages/About";
-import Error404 from "../pages/Error404";
+import AnimatedSwitch from "./AnimatedSwitch";
 import Home from "../pages/Home";
+import Lessons from "../pages/Lessons";
+import Stats from "../pages/Stats";
+import Help from "../pages/Help";
+import Typing from "../pages/Typing";
+import GameResult from "../pages/GameResult";
 
-const durationMS = 800;
-
-const useStyles = makeStyles({
-    '@global': {   
-        ".fade-enter": {
-            transform: "translateX(100%)"
-        },        
-        ".fade-enter.fade-enter-active": { 
-            transform: "translateX(0)",
-            transition: `transform ${durationMS}ms ease-in`
-        },        
-        ".fade-exit": { 
-            transform: "translateX(0)",
-        },        
-        ".fade-exit.fade-exit-active": {
-            transform: "translateX(-100%)",
-            transition: `transform ${durationMS}ms ease-in`
-        }
-    },
-    transitionGroup: {
-        position: "relative"
-    },
-    routeSection: {
-        position: "absolute",
-        width: "100%",
-        top: 0,
-        left: 0
-    }
-});
 
 const Routes : FC<{}> = () => {
-    const classes = useStyles();
-    const location = useLocation();
 
     return (
-        <div>
-            <TransitionGroup className={classes.transitionGroup}> 
-                <CSSTransition key={location.key} classNames="fade" timeout={durationMS}>
-                    <section className={classes.routeSection}>
-                        <Switch location={location}>
-                            <Route exact path="/">
-                                <Home />
-                            </Route>
-                            <Route exact path="/about">
-                                <About />
-                            </Route>
-                            <Route>
-                                <Error404 />
-                            </Route>
-                        </Switch>
-                    </section>
-                </CSSTransition>
-            </TransitionGroup>
-        </div>
-    )
+        <AnimatedSwitch>            
+            <Route exact path="/">
+                <Home />
+            </Route>
+            <Route exact path="/lessons">
+                <Lessons />
+            </Route>
+            <Route exact path="/stats">
+                <Stats />
+            </Route>
+            <Route exact path="/help">
+                <Help />
+            </Route>
+            <Route exact path="/about">
+                <About />
+            </Route>
+
+            <Route exact path="/typing">
+                <Typing />
+            </Route>
+            <Route exact path="/gameresult">
+                <GameResult />
+            </Route>
+            <Route>
+                <Redirect to="/" />
+            </Route>
+        </AnimatedSwitch>
+    );
+
 }
 
 export default Routes;

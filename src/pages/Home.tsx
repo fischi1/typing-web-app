@@ -1,18 +1,10 @@
+import { Typography } from "@material-ui/core";
 import React, { FC } from "react";
-import GermanKeyboardController from "../shared/keyboard/GermanKeyboardController";
-import TypingCanvas from "../shared/typing/TypingCanvas";
 
-type Props = {
-};
-
-const Home : FC<Props> = props => {
-    return <>
-        <div>  
-            <TypingCanvas />
-        </div>
-        <br/>
-        <GermanKeyboardController />
-    </>; 
+const Home : FC<{}> = () => {
+    return (
+        <Typography variant="h5" align="center">Home</Typography>
+    ); 
 }
 
 export default Home;

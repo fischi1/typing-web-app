@@ -1,10 +1,7 @@
 import { Card, CardContent, Typography } from "@material-ui/core";
 import React, { FC } from "react";
 
-type Props = {
-};
-
-const About : FC<Props> = props => {
+const About : FC<{}> = () => {
 
     const card = (
         <Card>

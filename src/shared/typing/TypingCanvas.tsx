@@ -50,7 +50,7 @@ const TypingCanvas : FC<{}> = () => {
 
         const gameComplete = (result : GameResultType) : void=> {
             console.log(result);
-            history.push("about");
+            history.push("/gameresult");
         };
 
         const typing = new TypingRoot({

@@ -1,0 +1,15 @@
+import React, { FC } from "react";
+import GermanKeyboardController from "../shared/keyboard/GermanKeyboardController";
+import TypingCanvas from "../shared/typing/TypingCanvas";
+
+const Typing : FC<{}> = () => {
+    return <>
+        <div>  
+            <TypingCanvas />
+        </div>
+        <br/>
+        <GermanKeyboardController />
+    </>; 
+}
+
+export default Typing;
