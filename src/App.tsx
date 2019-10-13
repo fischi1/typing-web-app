@@ -46,7 +46,8 @@ const useStyles = makeStyles({
     "@global" :
     {
         body : {
-            backgroundColor: "black"
+            backgroundColor: "black",
+            overflowX: "hidden"
         }
     }
 });
