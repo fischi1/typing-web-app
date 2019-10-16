@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-//import  "./assets/font/m5x7.scss";
+import  "./assets/font/m5x7.scss";
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

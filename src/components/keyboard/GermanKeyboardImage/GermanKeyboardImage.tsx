@@ -36,7 +36,6 @@ const GermanKeyBoardImage : FC<Props> = props => {
     const widthMod = backgroundWidth / 1800;
 
     const calculateZoom = () => {
-        console.log("calculateZoom");
         if(!windowSize.width || windowSize.width > maxWidth)
             return 100;
 
