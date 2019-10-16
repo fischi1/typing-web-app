@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import keyboardLayout from "../../../assets/images/keyboard/pressed_keyboard.png";
+import useWindowSize from "../../../hooks/useWindowSize";
 import { row1Urls, row2Urls, row3Urls, row4Urls, row5Urls } from "./imageUrls";
 import RenderRow from "./RenderRow";
 
@@ -24,16 +25,35 @@ type Props = {
     keysState : Record<number, boolean>
 };
 
+const maxWidth = 1500;
+const minWidth = 1250;
 
 const GermanKeyBoardImage : FC<Props> = props => {
     const classes = useStyles();
+    const windowSize = useWindowSize();
 
     const backgroundWidth = 1000;
     const widthMod = backgroundWidth / 1800;
 
+    const calculateZoom = () => {
+        console.log("calculateZoom");
+        if(!windowSize.width || windowSize.width > maxWidth)
+            return 100;
+
+        const val = (windowSize.width - minWidth) / (maxWidth - minWidth);
+        const ret = Math.round(val * 100);
+
+        return ret < 20 ? 20 : ret;
+    }
+
+    const zoom = useMemo(() => {
+        return calculateZoom();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [windowSize.width]);
+
     return (
         <div className={classes.container}>
-            <div className={classes.imgContainer}>
+            <div className={classes.imgContainer} style={{zoom: `${zoom}%`}}>
                 <img src={keyboardLayout} alt="" style={{left: 0, top: 0, width: backgroundWidth}}/>
                 {/* height 114 */}
                 <RenderRow imgUrls={row1Urls} widthMod={widthMod} y={0} keysState={props.keysState} /> 
