@@ -1,11 +1,10 @@
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
 import { makeStyles, ThemeProvider } from '@material-ui/styles';
 import React, { FC } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import AppContainer from './components/general/AppContainer';
 import GlobalDebugOutlines from './components/general/GlobalDebugOutlines';
-import usePrintConsoleHello from './hooks/usePrintConsoleHello';
+import RootWrapper from './components/general/RootWrapper';
 import Routes from './components/general/Routes';
+import usePrintConsoleHello from './hooks/usePrintConsoleHello';
 
 const theme = createMuiTheme({
     palette: {
@@ -64,11 +63,9 @@ const App:FC<{}> = () => {
         <GlobalDebugOutlines />
         <CssBaseline />
         <ThemeProvider theme={theme}>
-            <BrowserRouter>
-                <AppContainer>
-                    <Routes />
-                </AppContainer> 
-            </BrowserRouter>
+            <RootWrapper>
+                <Routes />
+            </RootWrapper>
         </ThemeProvider>
     </>
 }
