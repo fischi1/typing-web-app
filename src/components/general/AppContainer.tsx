@@ -4,6 +4,7 @@ import React, { FC, useState } from 'react';
 import MenuDrawer from './MenuDrawer';
 import AccountInformation from '../interface/AccountInformation';
 import Logo from '../interface/Logo';
+import { useTitleState } from '../context/TitleProvider';
 
 
 const useStyles = makeStyles(theme => ({
@@ -42,6 +43,8 @@ const TemporaryDrawer : FC<Props> = props => {
 
     const [open, setOpen] = useState<boolean>(false);
 
+    const title = useTitleState();
+
     return (
         <>
             <AppBar position="sticky" className={classes.appbar}>
@@ -56,7 +59,7 @@ const TemporaryDrawer : FC<Props> = props => {
                             <MenuIcon fontSize="small" className={classes.burgerMenuIcon}/>
                         </IconButton>
                         <Typography variant="h1" className={classes.header}>
-                            Level 123
+                            {title}
                         </Typography>
                     </div>
                     <Logo />

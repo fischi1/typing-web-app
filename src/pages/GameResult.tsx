@@ -3,8 +3,12 @@ import React, { FC, useEffect } from "react";
 import { useLocation } from "react-router";
 import { useGameResultHistoryDispatch } from "../components/context/GameResultHistoryProvider";
 import { GameResultType } from "../typing/GameResultType";
+import { useSetTitleOnMount } from "../components/context/TitleProvider";
 
 const GameResult : FC<{}> = () => {
+
+    useSetTitleOnMount("Lesson Result");
+    
     const location = useLocation<GameResultType | undefined>();
     
     const gameResult = location.state;

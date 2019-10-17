@@ -1,7 +1,10 @@
 import { Card, CardContent, Typography } from "@material-ui/core";
 import React, { FC } from "react";
+import { useSetTitleOnMount } from "../components/context/TitleProvider";
 
 const About : FC<{}> = () => {
+
+    useSetTitleOnMount("About");
 
     const card = (
         <Card>

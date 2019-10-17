@@ -2,8 +2,11 @@ import { Typography, Button } from "@material-ui/core";
 import React, { FC } from "react";
 import { useGameResultHistoryDispatch, useGameResultHistoryState } from "../components/context/GameResultHistoryProvider";
 import { GameResultType } from "../typing/GameResultType";
+import { useSetTitleOnMount } from "../components/context/TitleProvider";
 
 const DebugPage : FC<{}> = () => {
+
+    useSetTitleOnMount("Debug");
 
     const gameResultHistoryState = useGameResultHistoryState();
     const gameResultHistoryDispatch = useGameResultHistoryDispatch();
