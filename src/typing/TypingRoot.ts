@@ -322,7 +322,8 @@ class TypingRoot {
             resultType: reason,
             accuracy: StatTracker.instance.getAccuracy(),
             wpm: StatTracker.instance.getWPM(),
-            maxStreak: FlawlessDisplay.instance.getMaxStreak()
+            maxStreak: FlawlessDisplay.instance.getMaxStreak(),
+            date: new Date()
         }
 
         this.gameInfo.doneFunction(result);

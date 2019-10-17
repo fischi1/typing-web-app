@@ -4,5 +4,6 @@ export type GameResultType = {
     resultType : GameResultReasonType,
     accuracy: number,
     wpm: number,
-    maxStreak: number
+    maxStreak: number,
+    date: Date
 }

@@ -49,8 +49,7 @@ const TypingCanvas : FC<{}> = () => {
     useEffect(() => {
 
         const gameComplete = (result : GameResultType) : void=> {
-            console.log(result);
-            history.push("/gameresult");
+            history.push("/gameresult", result);
         };
 
         const typing = new TypingRoot({
