@@ -255,7 +255,7 @@ class TypingRoot {
         .add("diamond", diamond)
         .load((loader: PIXI.Loader, resources: any) => {
             var m5x7 = new FontFaceObserver("m5x7", {
-            weight: 400
+                weight: 400
             });
 
             Promise.all([m5x7]).then(() => {
