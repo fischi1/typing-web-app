@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ComponentProps } from 'react';
 import DiamondDisplay from './DiamondDisplay';
 import LevelProgressionDisplay from './LevelProgressionDisplay';
 import { makeStyles } from '@material-ui/core';
@@ -11,8 +11,9 @@ const useStyles = makeStyles({
     }
 })
 
-type Props = {
-};
+type Props =
+    ComponentProps<typeof LevelProgressionDisplay> &
+    ComponentProps<typeof DiamondDisplay>;
 
 const AccountInformation : FC<Props> = props => {
 
@@ -20,8 +21,8 @@ const AccountInformation : FC<Props> = props => {
 
     return (
         <div className={classes.rightHeader}>
-            <LevelProgressionDisplay  username="Username" lvl={123} curXP={1234} nextLvlXP={9999}/>
-            <DiamondDisplay />
+            <LevelProgressionDisplay  username={props.username} lvl={props.lvl} curXP={props.curXP} nextLvlXP={props.nextLvlXP}/>
+            <DiamondDisplay gems={props.gems} />
         </div>
     );
 }

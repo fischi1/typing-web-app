@@ -26,6 +26,7 @@ const useStyles = makeStyles({
 });
 
 type Props = {
+    gems: number
 };
 
 const DiamondDisplay : FC<Props> = (props) => {    
@@ -33,7 +34,7 @@ const DiamondDisplay : FC<Props> = (props) => {
 
     return (
         <div className={classes.container}>
-            <Typography className={classes.diamondText}>1214501</Typography>
+            <Typography className={classes.diamondText}>{props.gems}</Typography>
             <img src={diamond} alt="Diamond Icon" className={classes.diamondIcon}/>
         </div>
     );

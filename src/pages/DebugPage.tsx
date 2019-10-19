@@ -1,12 +1,23 @@
-import { Typography, Button } from "@material-ui/core";
+import { Button, createStyles, Grid, makeStyles, Theme, Typography } from "@material-ui/core";
 import React, { FC } from "react";
 import { useGameResultHistoryDispatch, useGameResultHistoryState } from "../components/context/GameResultHistoryProvider";
-import { GameResultType } from "../typing/GameResultType";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
+import DebugUserInfo from "../components/general/DebugUserInfo";
+import { GameResultType } from "../typing/GameResultType";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+        padding: theme.spacing(2)
+    }
+  })
+);
 
 const DebugPage : FC<{}> = () => {
 
     useSetTitleOnMount("Debug");
+
+    const classes = useStyles();
 
     const gameResultHistoryState = useGameResultHistoryState();
     const gameResultHistoryDispatch = useGameResultHistoryDispatch();
@@ -28,25 +39,30 @@ const DebugPage : FC<{}> = () => {
         gameResultHistoryDispatch({type: "clear"});
     }
 
-    return <>
-        <Typography variant="h5" align="center">Stats</Typography>
-        <div style={{margin: "0 1em 0 1em"}}>
+    return (
+        <Grid container spacing={6} className={classes.root}>
+            
+            <Grid item xs={6}>                
+                <Button onClick={add}>add</Button>
+                <Button onClick={clear}>clear</Button>
 
-            <Button onClick={add}>add</Button>
-            <Button onClick={clear}>clear</Button>
+                {gameResultHistoryState.history.map((gameResult, i) => (
+                    <div key={i}>
+                        <Typography>{JSON.stringify(gameResult)}</Typography>
+                    </div>
+                ))}
 
-            {gameResultHistoryState.history.map((gameResult, i) => (
-                <div key={i}>
-                    <Typography>{JSON.stringify(gameResult)}</Typography>
-                </div>
-            ))}
+                {gameResultHistoryState.history.length === 0 && 
+                    <Typography>Empty</Typography>
+                }
+            </Grid>
 
-            {gameResultHistoryState.history.length === 0 && 
-                <Typography>Empty</Typography>
-            }
+            <Grid item xs={6}>        
+                <DebugUserInfo />
+            </Grid>
 
-        </div>
-    </>; 
+        </Grid>
+    ); 
     
 }
 

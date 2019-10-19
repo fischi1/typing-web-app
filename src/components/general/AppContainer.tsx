@@ -1,10 +1,10 @@
 import { AppBar, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import React, { FC, useState } from 'react';
-import MenuDrawer from './MenuDrawer';
-import AccountInformation from '../interface/AccountInformation';
-import Logo from '../interface/Logo';
 import { useTitleState } from '../context/TitleProvider';
+import Logo from '../interface/Logo';
+import MenuDrawer from './MenuDrawer';
+import UserInfoArea from './UserInfoArea';
 
 
 const useStyles = makeStyles(theme => ({
@@ -63,7 +63,7 @@ const TemporaryDrawer : FC<Props> = props => {
                         </Typography>
                     </div>
                     <Logo />
-                    <AccountInformation />
+                    <UserInfoArea />
                 </Toolbar>
             </AppBar>
             <MenuDrawer 
