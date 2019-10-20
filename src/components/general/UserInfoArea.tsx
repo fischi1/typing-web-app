@@ -12,7 +12,6 @@ const UserInfoArea: FC<{}> = () => {
         var level = 0;
         
         var xp = userInfo.xp;
-        console.log(xp);
 
         while(xp - (initialXP * (level + 1)) >= 0) {
             xp -= initialXP * (level + 1);
@@ -23,8 +22,6 @@ const UserInfoArea: FC<{}> = () => {
     
         return {xp: xp, level: level, xpForNextLevel: xpForNextLevel};
     }, [userInfo.xp]);
-
-    console.table(lvlInfo);
 
     return (
         <AccountInformation 

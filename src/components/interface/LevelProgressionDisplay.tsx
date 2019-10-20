@@ -34,7 +34,8 @@ const useStyles = makeStyles({
     },
     progressFilled: {
         height: "100%",
-        backgroundColor: highlightColors.green
+        backgroundColor: highlightColors.green,
+        transition: "width 0.2s ease-in"
     },
     progressEmpty: {
         height: "100%",
