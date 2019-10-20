@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 import skeleton from "../assets/images/typingCanvasSkeleton.png";
 import useResetFocus from '../hooks/useResetFocus';
 import useGermanKeysState from '../components/keyboard/useGermanKeysState';
-import { GameResultType } from './GameResultType';
+import { GameResultType } from '../types/GameResultType';
 import { ttKeyPressed } from './typeTracking';
 import TypingRoot from './TypingRoot';
 

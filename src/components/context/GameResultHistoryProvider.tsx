@@ -1,6 +1,6 @@
 import React, { createContext, FC, useContext, useReducer } from "react";
 import usePersistToLocalStorageOnChange from "../../hooks/usePersistToLocalStorageOnChange";
-import { GameResultType } from "../../typing/GameResultType";
+import { GameResultType } from "../../types/GameResultType";
 import loadFromLocalStorage from "../../functions/loadFromLocalStorage";
 
 type Action =

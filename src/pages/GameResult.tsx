@@ -2,7 +2,7 @@ import { Typography } from "@material-ui/core";
 import React, { FC, useEffect } from "react";
 import { useLocation } from "react-router";
 import { useGameResultHistoryDispatch } from "../components/context/GameResultHistoryProvider";
-import { GameResultType } from "../typing/GameResultType";
+import { GameResultType } from "../types/GameResultType";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
 
 const GameResult : FC<{}> = () => {

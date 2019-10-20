@@ -8,7 +8,7 @@ import { PixiContainer } from "./PixiContainer";
 import { RowOffsetManager } from "./RowOffsetManager";
 import { Word } from "./Word";
 import forceToNull from "../../functions/forceToNull";
-import { GameResultReasonType } from "../GameResultType";
+import { GameResultReasonType } from "../../types/GameResultType";
 
 export type WordListenerFunction =  {(currentWord : Word | null, nextWord : Word | null) : void};
 export type LetterListenerFunction = {(curIndex : number) : void};

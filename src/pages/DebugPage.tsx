@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { useGameResultHistoryDispatch, useGameResultHistoryState } from "../components/context/GameResultHistoryProvider";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
 import DebugUserInfo from "../components/general/DebugUserInfo";
-import { GameResultType } from "../typing/GameResultType";
+import { GameResultType } from "../types/GameResultType";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,7 +27,7 @@ const DebugPage : FC<{}> = () => {
         const gameResult : GameResultType = {
             accuracy: Math.random(),
             maxStreak: new Date().getSeconds(),
-            resultType: Math.random() > 0.5 ? "DONE" : "GAME_OVER",
+            resultType: "DONE",
             wpm: new Date().getMilliseconds(),
             date: new Date()
         }
@@ -42,7 +42,7 @@ const DebugPage : FC<{}> = () => {
     return (
         <Grid container spacing={6} className={classes.root}>
             
-            <Grid item xs={6}>                
+            <Grid item xs={8}>                
                 <Button onClick={add}>add</Button>
                 <Button onClick={clear}>clear</Button>
 
@@ -57,7 +57,7 @@ const DebugPage : FC<{}> = () => {
                 }
             </Grid>
 
-            <Grid item xs={6}>        
+            <Grid item xs={4}>        
                 <DebugUserInfo />
             </Grid>
 

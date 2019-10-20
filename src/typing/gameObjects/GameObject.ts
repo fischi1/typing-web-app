@@ -1,4 +1,4 @@
-import { GameInfoType } from "../GameInfoType";
+import { GameInfoType } from "../../types/GameInfoType";
 
 export type GameContext = {
     deltaTime : number,
