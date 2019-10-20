@@ -5,6 +5,7 @@ import GlobalDebugOutlines from './components/general/GlobalDebugOutlines';
 import RootWrapper from './components/general/RootWrapper';
 import Routes from './components/general/Routes';
 import usePrintConsoleHello from './hooks/usePrintConsoleHello';
+import { highlightColors } from './highlightColors';
 
 const theme = createMuiTheme({
     palette: {
@@ -37,6 +38,19 @@ const theme = createMuiTheme({
             root: {
                 color: "white"
             }
+        },
+        MuiCard: {
+            root: {
+                backgroundColor: highlightColors.darkgray,
+                borderRadius: 0
+            }
+        },
+        MuiTooltip: {
+            tooltip: {
+                borderRadius: 0,
+                backgroundColor: highlightColors.darkgray,
+                maxWidth: "none"
+            }
         }
     }
 });
@@ -49,6 +63,12 @@ const useStyles = makeStyles({
             overflowX: "hidden",
             minWidth: "1130px",
             width: "auto !important"
+        },
+        "::selection" : {
+            backgroundColor: highlightColors.deer
+        },
+        "::-moz-selection" : {
+            backgroundColor: highlightColors.deer
         }
     }
 });

@@ -4,5 +4,6 @@ export type Lesson = {
     levelRequirement: number,
     countsTowardsStats: boolean,
     gemCost: number,
-    gemsPerLetter: number
+    gemsPerLetter: number,
+    xpForSuccess: number
 }
