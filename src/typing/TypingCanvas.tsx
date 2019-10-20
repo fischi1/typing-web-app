@@ -8,19 +8,13 @@ import useGermanKeysState from '../components/keyboard/useGermanKeysState';
 import { GameResultType } from '../types/GameResultType';
 import { ttKeyPressed } from './typeTracking';
 import TypingRoot from './TypingRoot';
+import { pixelatedStyleClass } from '../hooks/useGlobalPixelatedStyle';
 
 const useStyles = makeStyles({
     skeleton: {
         width: "100%",
         height: "auto",
-        imageRendering: "pixelated",
         backgroundColor: "red"
-    },
-    skeletonMoz: {
-        imageRendering: "-moz-crisp-edges"
-    },
-    skeletonCrisp: {
-        imageRendering: "crisp-edges"
     }
 });
 
@@ -68,7 +62,7 @@ const TypingCanvas : FC<{}> = () => {
     return (<>
         <img
             src={skeleton}
-            className={clsx(classes.skeleton, classes.skeletonCrisp, classes.skeletonMoz)}
+            className={clsx(classes.skeleton, pixelatedStyleClass)}
             alt="Loading" 
             style={{display: running ? "none" : "block"}}
         />

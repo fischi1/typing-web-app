@@ -6,6 +6,7 @@ import RootWrapper from './components/general/RootWrapper';
 import Routes from './components/general/Routes';
 import usePrintConsoleHello from './hooks/usePrintConsoleHello';
 import { highlightColors } from './highlightColors';
+import useGlobalPixelatedStyle from './hooks/useGlobalPixelatedStyle';
 
 const theme = createMuiTheme({
     palette: {
@@ -78,6 +79,7 @@ const App:FC<{}> = () => {
     useStyles();
 
     usePrintConsoleHello();
+    useGlobalPixelatedStyle();
 
     return <>
         <GlobalDebugOutlines />

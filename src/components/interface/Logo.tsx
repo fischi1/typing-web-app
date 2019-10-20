@@ -2,6 +2,7 @@ import { Typography, makeStyles } from '@material-ui/core';
 import React, { FC } from 'react';
 import dog from "../../assets/images/dog.gif";
 import clsx from "clsx";
+import { pixelatedStyleClass } from '../../hooks/useGlobalPixelatedStyle';
 
 
 const useStyles = makeStyles( theme => ({
@@ -19,8 +20,7 @@ const useStyles = makeStyles( theme => ({
     headerIcon: {
         width: "50px",
         height: "50px",
-        marginLeft: theme.spacing(),
-        imageRendering: "pixelated"
+        marginLeft: theme.spacing()
     }
 }));
 
@@ -36,7 +36,7 @@ const Logo : FC<Props> = props => {
             <Typography variant="h1" className={clsx(classes.header, classes.headerLogoText)}>
                 Typing Web App
             </Typography>
-            <img src={dog} alt="Dog" className={classes.headerIcon}/>
+            <img src={dog} alt="Dog" className={clsx(classes.headerIcon, pixelatedStyleClass)}/>
         </div>
     );
 }
