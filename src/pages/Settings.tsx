@@ -2,13 +2,13 @@ import { Typography } from "@material-ui/core";
 import React, { FC } from "react";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
 
-const Help : FC<{}> = () => {
+const Settings : FC<{}> = () => {
 
-    useSetTitleOnMount("Help");
+    useSetTitleOnMount("Settings");
     
     return (
         <Typography variant="h5" align="center">Help</Typography>
     ); 
 }
 
-export default Help;
+export default Settings;

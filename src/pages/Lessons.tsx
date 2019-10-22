@@ -46,7 +46,12 @@ const Lessons : FC<{}> = () => {
             </Grid>
             {items.map(index => (
                 <Grid item xs={6} key={index}>
-                    <LessonCard index={index + 1} lesson={{...lesson, countsTowardsStats: Math.random() > 0.5}} completed={Math.random() > 0.5} />
+                    <LessonCard
+                        index={index + 1}
+                        lesson={{...lesson, countsTowardsStats: Math.random() > 0.5}}
+                        completed={Math.random() > 0.5}
+                        notEnoughGems={Math.random() > 0.5}
+                    />
                 </Grid>
             ))}
         </Grid>

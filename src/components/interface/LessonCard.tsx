@@ -1,16 +1,21 @@
-import { ButtonBase, Card, Typography } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { ButtonBase, Card, Typography, Tooltip } from '@material-ui/core';
+import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 import { Lesson } from '../../types/LessonType';
 import DiamondIcon from './DiamondIcon';
 import { highlightColors } from '../../highlightColors';
 
+type Props = {
+    index: number,
+    completed: boolean,
+    lesson: Lesson,
+    notEnoughGems: boolean
+};
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            // marginBottom: theme.spacing(2),
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2),
             display: "flex"
@@ -39,12 +44,15 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: "column",
         },
         goButtonText: {
-            fontSize: "2.5rem"
+            fontSize: "2.5rem",
+            color: (props: Props) => props.notEnoughGems ? highlightColors.red : "",
         },
         goButtonDiamondCost: {
             display: "flex",
             alignItems: "center",
-            paddingTop: theme.spacing(0.5)
+            position: "relative",
+            paddingTop: theme.spacing(0.5),
+            color: (props: Props) => props.notEnoughGems ? highlightColors.red : "",
         },
         lineHeightNormal: {
             lineHeight: "normal"
@@ -62,23 +70,37 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: "1.4rem",
             color: highlightColors.gray,
             whiteSpace: "nowrap"
-        }
-        
+        },
+        xButtonOverlay: {
+            color: highlightColors.red,
+            position: "absolute",
+            fontSize: "7rem"
+        }        
     })
 );
 
-type Props = {
-    index: number,
-    completed: boolean,
-    lesson: Lesson
-};
-
 const LessonCard : FC<Props> = props => {    
-    const classes = useStyles();
+    const classes = useStyles(props);
+    const theme = useTheme();
 
     const yesNo = (val : boolean) => val ? "YES" : "NO";
-    const colorBool = (val : boolean) => val ? highlightColors.green : highlightColors.red;
 
+    const notEnoughInfo = (
+        <Typography style={{paddingLeft: theme.spacing(1), paddingRight: theme.spacing(1)}}>
+            Not enough gems
+        </Typography>
+    )
+
+    const button = (                       
+        <ButtonBase className={classes.goButton} disabled={props.notEnoughGems}>
+            <Typography component="div" className={clsx(classes.goButtonText, classes.lineHeightNormal)}>
+                Start
+            </Typography>
+            <Typography component="div" className={clsx(classes.goButtonDiamondCost, classes.lineHeightNormal)}>
+                <DiamondIcon width="40px" />&nbsp;{props.lesson.gemCost}
+            </Typography>
+        </ButtonBase>
+    )
     return (
         <Card className={classes.root}>
             <div className={classes.left}>
@@ -91,7 +113,7 @@ const LessonCard : FC<Props> = props => {
                 <div style={{display:"flex"}}>
                     <div style={{flex: "1 1 50%"}}>
                         <Typography className={clsx(classes.lineHeightOne, classes.subText)}>Counts towards stats: {yesNo(props.lesson.countsTowardsStats)}</Typography>
-                        <Typography className={clsx(classes.lineHeightOne, classes.subText)} style={{color: colorBool(props.completed)}}>Completed: {yesNo(props.completed)}</Typography>
+                        <Typography className={clsx(classes.lineHeightOne, classes.subText)} style={{color: props.completed ? highlightColors.green : highlightColors.red}}>Completed: {yesNo(props.completed)}</Typography>
                     </div>
                     <div style={{flex: "1 1 50%"}}>
                         <Typography className={clsx(classes.lineHeightOne, classes.subText)}>XP: {props.lesson.xpForSuccess}</Typography>
@@ -99,16 +121,16 @@ const LessonCard : FC<Props> = props => {
                     </div>
                 </div>
             </div>
-            <div className={classes.right}>
-                <ButtonBase className={classes.goButton}>
-                    <Typography component="div" className={clsx(classes.goButtonText, classes.lineHeightNormal)}>
-                        GO!
-                    </Typography>
-                    <Typography component="div" className={clsx(classes.goButtonDiamondCost, classes.lineHeightNormal)}>
-                        <DiamondIcon width="40px" />&nbsp;{props.lesson.gemCost}
-                    </Typography>
-
-                </ButtonBase>
+            <div className={classes.right}> 
+                {props.notEnoughGems ? (
+                    <Tooltip title={notEnoughInfo} placement="left">
+                        <div style={{height: "96px"}}>
+                            {button}
+                        </div>
+                    </Tooltip>
+                ) : (
+                    <>{button}</>
+                )}  
             </div>
         </Card>
     );
