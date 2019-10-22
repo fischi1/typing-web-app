@@ -1,18 +1,14 @@
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { FC } from 'react';
-import diamond from "../../assets/images/diamond.png";
 import { highlightColors } from '../../highlightColors';
-import clsx from 'clsx';
-import { pixelatedStyleClass } from '../../hooks/useGlobalPixelatedStyle';
+import DiamondIcon from './DiamondIcon';
 
 const useStyles = makeStyles({
     container: {
         display: "flex" 
     },
     diamondIcon: {
-        height: "50px",
-        width: "auto",
         marginLeft: "-19px",
         marginTop: "8px"
     },
@@ -36,7 +32,7 @@ const DiamondDisplay : FC<Props> = (props) => {
     return (
         <div className={classes.container}>
             <Typography className={classes.diamondText}>{props.gems}</Typography>
-            <img src={diamond} alt="Diamond Icon" className={clsx(classes.diamondIcon, pixelatedStyleClass)}/>
+            <DiamondIcon width="57px" className={classes.diamondIcon} />
         </div>
     );
 }
