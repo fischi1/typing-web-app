@@ -29,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9001 -c .storybook -s ./public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,5 +46,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^5.2.5",
+    "@storybook/addon-actions": "^5.2.5",
+    "@storybook/react": "^5.2.5",
+    "awesome-typescript-loader": "^5.2.1",
+    "react-docgen-typescript-loader": "^3.3.0",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "storybook-dark-mode": "^0.1.7"
   }
 }
