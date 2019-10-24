@@ -3,6 +3,10 @@ import React, { FC } from "react";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
 import LessonCard from "../components/interface/LessonCard";
 import { Lesson } from "../types/LessonType";
+import lessonsDataImport from "../data/lessonsData.json";
+import { useUserInfoState } from "../components/context/UserInfoProvider";
+
+const lessonsData: Lesson[] = lessonsDataImport as any;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -12,24 +16,14 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-
-const lesson : Lesson = {
-    countsTowardsStats: true,
-    gemCost: 500,
-    levelRequirement: 5,
-    gemsPerLetter: 3,
-    text: "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.",
-    xpForSuccess: 50
-}
-
 const Lessons : FC<{}> = () => {
 
     const classes = useStyles();
     const theme = useTheme();
 
-    useSetTitleOnMount("Lessons");
+    const userInfoState = useUserInfoState();
 
-    const items = Array.from(Array(99).keys());
+    useSetTitleOnMount("Lessons");
 
     const unlockInfo = (
         <Typography style={{paddingLeft: theme.spacing(1), paddingRight: theme.spacing(1)}}>
@@ -41,16 +35,18 @@ const Lessons : FC<{}> = () => {
         <Grid container spacing={2} className={classes.root}>            
             <Grid item xs={12} style={{position: "relative"}}>
                 <Tooltip title={unlockInfo} placement="right">
-                    <Typography variant="h5" style={{width: "fit-content"}}>Unlocked 10/99</Typography>
+                    <Typography variant="h5" style={{width: "fit-content"}}>
+                        Unlocked {lessonsData.length}/99
+                    </Typography>
                 </Tooltip>
             </Grid>
-            {items.map(index => (
-                <Grid item xs={6} key={index}>
+            {lessonsData.map((lesson, index) => (
+                <Grid item xs={6} xl={4} key={index}>
                     <LessonCard
                         index={index + 1}
-                        lesson={{...lesson, countsTowardsStats: Math.random() > 0.5}}
+                        lesson={lesson}
                         completed={Math.random() > 0.5}
-                        notEnoughGems={Math.random() > 0.5}
+                        notEnoughGems={userInfoState.gems < lesson.gemCost}
                     />
                 </Grid>
             ))}

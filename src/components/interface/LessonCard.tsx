@@ -42,17 +42,16 @@ const useStyles = makeStyles((theme: Theme) =>
             width: "96px",
             height: "100%",
             flexDirection: "column",
+            opacity: (props: Props) => props.notEnoughGems ? 0.1 : 1,
         },
         goButtonText: {
             fontSize: "2.5rem",
-            color: (props: Props) => props.notEnoughGems ? highlightColors.red : "",
         },
         goButtonDiamondCost: {
             display: "flex",
             alignItems: "center",
             position: "relative",
             paddingTop: theme.spacing(0.5),
-            color: (props: Props) => props.notEnoughGems ? highlightColors.red : "",
         },
         lineHeightNormal: {
             lineHeight: "normal"
@@ -100,7 +99,8 @@ const LessonCard : FC<Props> = props => {
                 <DiamondIcon width="40px" />&nbsp;{props.lesson.gemCost}
             </Typography>
         </ButtonBase>
-    )
+    );
+
     return (
         <Card className={classes.root}>
             <div className={classes.left}>
