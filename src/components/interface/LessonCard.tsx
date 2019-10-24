@@ -10,7 +10,8 @@ type Props = {
     index: number,
     completed: boolean,
     lesson: Lesson,
-    notEnoughGems: boolean
+    notEnoughGems: boolean,
+    onStartBtnClicked?: () => void
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -91,7 +92,11 @@ const LessonCard : FC<Props> = props => {
     )
 
     const button = (                       
-        <ButtonBase className={classes.goButton} disabled={props.notEnoughGems}>
+        <ButtonBase
+            className={classes.goButton}
+            disabled={props.notEnoughGems}
+            onClick={props.onStartBtnClicked}
+        >
             <Typography component="div" className={clsx(classes.goButtonText, classes.lineHeightNormal)}>
                 Start
             </Typography>
