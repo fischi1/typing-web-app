@@ -41,6 +41,17 @@ const MenuDrawer : FC<Props> = props => {
         }
     ];
 
+    if(process.env.NODE_ENV === "development") {
+        routes.push({
+            text: "DEV ONLY Debug",
+            url: "/debug"
+        });
+        routes.push({
+            text: "DEV ONLY Typing",
+            url: "/typing"
+        });
+    }
+
     const location = useLocation();
 
     return (

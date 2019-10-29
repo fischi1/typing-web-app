@@ -53,6 +53,14 @@ const theme = createMuiTheme({
                 backgroundColor: highlightColors.darkgray,
                 maxWidth: "none"
             }
+        },
+        MuiButton: {
+            root: {
+                borderRadius: 0
+            },
+            label: {
+                color: highlightColors.yellow
+            }
         }
     }
 });

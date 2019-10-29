@@ -1,10 +1,10 @@
-import { ButtonBase, Card, Typography, Tooltip } from '@material-ui/core';
+import { Button, Card, Tooltip, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import React, { FC } from 'react';
+import { highlightColors } from '../../highlightColors';
 import { Lesson } from '../../types/LessonType';
 import DiamondIcon from './DiamondIcon';
-import { highlightColors } from '../../highlightColors';
 
 type Props = {
     index: number,
@@ -43,10 +43,13 @@ const useStyles = makeStyles((theme: Theme) =>
             width: "96px",
             height: "100%",
             flexDirection: "column",
+            display: "block",
+            paddingTop: theme.spacing(1),
             opacity: (props: Props) => props.notEnoughGems ? 0.1 : 1,
         },
         goButtonText: {
             fontSize: "2.5rem",
+            textTransform: "none"
         },
         goButtonDiamondCost: {
             display: "flex",
@@ -92,7 +95,7 @@ const LessonCard : FC<Props> = props => {
     )
 
     const button = (                       
-        <ButtonBase
+        <Button
             className={classes.goButton}
             disabled={props.notEnoughGems}
             onClick={props.onStartBtnClicked}
@@ -103,7 +106,7 @@ const LessonCard : FC<Props> = props => {
             <Typography component="div" className={clsx(classes.goButtonDiamondCost, classes.lineHeightNormal)}>
                 <DiamondIcon width="40px" />&nbsp;{props.lesson.gemCost}
             </Typography>
-        </ButtonBase>
+        </Button>
     );
 
     return (
