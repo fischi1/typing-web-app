@@ -13,6 +13,7 @@ storiesOf("LessonCard", module)
         completed={boolean("completed", false)}
         index={number("index", 0)}
         lesson={{
+            uuid: "8e54a235-d0f8-4676-b120-6eef79b5eedf",
             countsTowardsStats: boolean("countsTowardsStats", false),
             gemCost: number("gemCost", 500),
             gemsPerLetter: number("gemsPerLetter", 3),
@@ -35,6 +36,7 @@ storiesOf("LessonCard", module)
                     completed={boolean("completed", false)}
                     index={i}
                     lesson={{
+                        uuid: "8e54a235-d0f8-4676-b120-6eef79b5eedf",
                         countsTowardsStats: boolean("countsTowardsStats", false),
                         gemCost: number("gemCost", 500),
                         gemsPerLetter: number("gemsPerLetter", 3),

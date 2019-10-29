@@ -2,10 +2,8 @@ import { number, text } from '@storybook/addon-knobs';
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import AccountInformation from "../src/components/interface/AccountInformation";
-import { withInfo } from "@storybook/addon-info";
 
 storiesOf("AccountInformation", module)
-.addDecorator(withInfo({ inline: true }))
 .add("example", () => (
     <AccountInformation 
         username={text("username", "username")}

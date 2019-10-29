@@ -23,7 +23,7 @@ const DiamondIcon : FC<Props> = (props) => {
     return (
         <img
             src={diamond}
-            alt="Diamond icon"
+            alt="gems"
             className={clsx(pixelatedStyleClass, classes.diamondIcon, props.className)}
         />
     );
