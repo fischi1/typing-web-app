@@ -29,19 +29,21 @@ const Routes : FC<{}> = () => {
             <Route exact path="/about">
                 <About />
             </Route>
-
-            <Route exact path="/typing">
+            <Route exact path="/typing/:uuid">
                 <Typing />
             </Route>
             <Route exact path="/gameresult">
                 <GameResult />
             </Route>
             
-            {process.env.NODE_ENV === "development" && (
+            {process.env.NODE_ENV === "development" && <>
                 <Route exact path="/debug">
                     <DebugPage />
                 </Route>
-            )}
+                <Route exact path="/typing">
+                    <Typing />
+                </Route>
+            </>}
 
             <Route>
                 <Redirect to="/" />

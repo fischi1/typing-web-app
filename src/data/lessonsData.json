@@ -1,90 +1,66 @@
-[
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 1,
-        "xpForSuccess": 50,
-        "countsTowardsStats": false,
-        "text": "aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj"
+{
+    "data": {
+        "8e54a235-d0f8-4676-b120-6eef79b5eedf": {
+            "uuid": "8e54a235-d0f8-4676-b120-6eef79b5eedf",
+            "levelRequirement": 0,
+            "gemCost": 30,
+            "gemsPerLetter": 1,
+            "xpForSuccess": 50,
+            "countsTowardsStats": false,
+            "text": "aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj"
+        },
+        "f8e1e82a-4451-4a9e-a51b-dbb52db2d5f8": {
+            "uuid": "f8e1e82a-4451-4a9e-a51b-dbb52db2d5f8",
+            "levelRequirement": 0,
+            "gemCost": 30,
+            "gemsPerLetter": 2,
+            "xpForSuccess": 50,
+            "countsTowardsStats": false,
+            "text": "yyyy aaaa xxxx ssss cccc dddd vvvv ffff mmmm jjjj ,,,, kkkk .... llll ---- llll"
+        },
+        "4dd847ce-ac4a-48d1-a546-1edab1b9ac36": {
+            "uuid": "4dd847ce-ac4a-48d1-a546-1edab1b9ac36",
+            "levelRequirement": 0,
+            "gemCost": 30,
+            "gemsPerLetter": 3,
+            "xpForSuccess": 51,
+            "countsTowardsStats": false,
+            "text": "qqqq aaaa wwww ssss eeee dddd rrrr ffff uuuu jjjj iiii kkkk oooo llll pppp llll"
+        },
+        "3cfc25c7-5887-4a63-b7f4-12face5a2724": {
+            "uuid": "3cfc25c7-5887-4a63-b7f4-12face5a2724",
+            "levelRequirement": 0,
+            "gemCost": 30,
+            "gemsPerLetter": 3,
+            "xpForSuccess": 52,
+            "countsTowardsStats": true,
+            "text": "ad ads as ask fad flask lad lads sad as ask ads fad flask lads lad sad ad flask ad ask as lads sad lad fad ads"
+        },
+        "9e566eae-1ac0-46f5-9996-1ef1c6af4b55": {
+            "uuid": "9e566eae-1ac0-46f5-9996-1ef1c6af4b55",
+            "levelRequirement": 0,
+            "gemCost": 80,
+            "gemsPerLetter": 4,
+            "xpForSuccess": 50,
+            "countsTowardsStats": true,
+            "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+        },
+        "8543356b-6220-4715-b89d-3d7ec55541cd": {
+            "uuid": "8543356b-6220-4715-b89d-3d7ec55541cd",
+            "levelRequirement": 0,
+            "gemCost": 100,
+            "gemsPerLetter": 5,
+            "xpForSuccess": 100,
+            "countsTowardsStats": true,
+            "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
+        }
     },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 2,
-        "xpForSuccess": 50,
-        "countsTowardsStats": false,
-        "text": "yyyy aaaa xxxx ssss cccc dddd vvvv ffff mmmm jjjj ,,,, kkkk .... llll ---- llll"
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 51,
-        "countsTowardsStats": false,
-        "text": "qqqq aaaa wwww ssss eeee dddd rrrr ffff uuuu jjjj iiii kkkk oooo llll pppp llll"
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 52,
-        "countsTowardsStats": true,
-        "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 53,
-        "countsTowardsStats": true,
-        "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 54,
-        "countsTowardsStats": true,
-        "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 55,
-        "countsTowardsStats": true,
-        "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 56,
-        "countsTowardsStats": true,
-        "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 57,
-        "countsTowardsStats": true,
-        "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 58,
-        "countsTowardsStats": true,
-        "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
-    },
-    {
-        "levelRequirement": 0,
-        "gemCost": 30,
-        "gemsPerLetter": 3,
-        "xpForSuccess": 59,
-        "countsTowardsStats": true,
-        "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
-    }
-]
+    "allIds": [
+        "8e54a235-d0f8-4676-b120-6eef79b5eedf",
+        "f8e1e82a-4451-4a9e-a51b-dbb52db2d5f8",
+        "4dd847ce-ac4a-48d1-a546-1edab1b9ac36",
+        "3cfc25c7-5887-4a63-b7f4-12face5a2724",
+        "9e566eae-1ac0-46f5-9996-1ef1c6af4b55",
+        "8543356b-6220-4715-b89d-3d7ec55541cd"
+    ]
+}

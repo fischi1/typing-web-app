@@ -1,5 +1,6 @@
 
 export type Lesson = {
+    uuid: string,
     text: string,
     levelRequirement: number,
     countsTowardsStats: boolean,
