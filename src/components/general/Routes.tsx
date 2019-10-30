@@ -36,14 +36,17 @@ const Routes : FC<{}> = () => {
                 <GameResult />
             </Route>
             
-            {process.env.NODE_ENV === "development" && <>
+            {process.env.NODE_ENV === "development" &&
                 <Route exact path="/debug">
                     <DebugPage />
                 </Route>
+            }            
+            {process.env.NODE_ENV === "development" &&
                 <Route exact path="/typing">
                     <Typing />
                 </Route>
-            </>}
+            }
+            
 
             <Route>
                 <Redirect to="/" />

@@ -13,7 +13,7 @@ storiesOf("ChooseDialog", module)
         onYes={action("onYes")}
         onNo={action("onNo")}
     >
-        <Typography style={{textAlign: "center"}}>
+        <Typography align="center">
             Spend 248 Gems to start this lesson?
         </Typography>
     </ChooseDialog>
@@ -41,7 +41,7 @@ storiesOf("ChooseDialog", module)
         onYes={action("onYes")}
         onNo={action("onNo")}
     >
-        <Typography style={{textAlign: "center"}}>
+        <Typography align="center">
             Spend 248 <DiamondIcon width="18px"/> to start this lesson?
         </Typography>
     </ChooseDialog>
@@ -54,7 +54,7 @@ storiesOf("ChooseDialog", module)
         yesText={text("yesText", "I approve")}
         noText={text("noText", "I do not approve")}
     >
-        <Typography style={{textAlign: "center"}}>
+        <Typography align="center">
             Spend 248 Gems to start this lesson?
         </Typography>
     </ChooseDialog>
