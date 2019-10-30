@@ -9,6 +9,11 @@ import { GameResultType } from '../types/GameResultType';
 import { ttKeyPressed } from './typeTracking';
 import TypingRoot from './TypingRoot';
 import { pixelatedStyleClass } from '../hooks/useGlobalPixelatedStyle';
+import { Lesson } from '../types/LessonType';
+
+type Props = {
+    lesson: Lesson
+}
 
 const useStyles = makeStyles({
     skeleton: {
@@ -18,11 +23,7 @@ const useStyles = makeStyles({
     }
 });
 
-const testText = "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.";
-// const testText = "asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf";
-// const testText = "asdf asdf asdf asdf asdf";
-
-const TypingCanvas : FC<{}> = () => {    
+const TypingCanvas : FC<Props> = props => {    
 
     const history = useHistory();
 
@@ -47,9 +48,10 @@ const TypingCanvas : FC<{}> = () => {
         };
 
         const typing = new TypingRoot({
-            text: testText,
+            lessonUuid: props.lesson.uuid,
+            text: props.lesson.text,
             doneFunction : gameComplete,
-            pointsPerLetter : 5,
+            pointsPerLetter : props.lesson.gemsPerLetter,
             onLoaded: showTypingCanvas
         });
 
@@ -57,7 +59,7 @@ const TypingCanvas : FC<{}> = () => {
             typing.destroy();
         });
         
-    }, [history]);
+    }, [history, props.lesson]);
 
     return (<>
         <img

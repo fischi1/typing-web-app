@@ -45,7 +45,9 @@ const Typing : FC<{}> = () => {
             height={canvasOptions.areaHeight}
         >
             {isTyping ? 
-                <TypingCanvas />
+                <TypingCanvas
+                    lesson={foundLesson.lesson}
+                />
             :
                     <Grid container justify="center" alignItems="center" style={{height: "100%"}}>                     
                         <ChooseDialog

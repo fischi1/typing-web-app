@@ -319,11 +319,13 @@ class TypingRoot {
     gameDone = (reason : GameResultReasonType) => {
 
         const result : GameResultType = {
+            lessonUuid: this.gameInfo.lessonUuid,
             resultType: reason,
             accuracy: StatTracker.instance.getAccuracy(),
             wpm: StatTracker.instance.getWPM(),
             maxStreak: FlawlessDisplay.instance.getMaxStreak(),
-            date: new Date()
+            date: new Date(),
+            gemsEarned: EarnedSoFarDisplay.instance.value
         }
 
         this.gameInfo.doneFunction(result);

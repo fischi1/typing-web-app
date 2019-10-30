@@ -5,8 +5,11 @@ import { PixiSprite } from "./PixiSprite";
 import { getDefaultTextStyle, Text } from './Text';
 import { TypeTracker, WordListenerFunction } from './TypeTracker';
 import { add, vec2, vecToPixiPoint, Vector2 } from './Vector2';
+import forceToNull from '../../functions/forceToNull';
 
 export class EarnedSoFarDisplay extends GameObject{
+
+    static instance: EarnedSoFarDisplay;
 
     earnedSoFarLabel : Text;
     earnedSoFarValue : Text;
@@ -40,6 +43,11 @@ export class EarnedSoFarDisplay extends GameObject{
         gameContext.addGameObject(this.diamond);
 
         this.pointsPerLetter = gameContext.gameInfo.pointsPerLetter;
+                
+        if(EarnedSoFarDisplay.instance) 
+            console.error("EarnedSoFarDisplay should only exist once!!!");
+        else 
+            EarnedSoFarDisplay.instance = this;
     }
 
     init(gameContext : GameContext) {
@@ -52,7 +60,7 @@ export class EarnedSoFarDisplay extends GameObject{
     }
 
     destroy(gameContext : GameContext) : void {
-
+        EarnedSoFarDisplay.instance = forceToNull();
     }
 
     updateText() {

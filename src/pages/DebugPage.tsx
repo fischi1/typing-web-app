@@ -4,6 +4,7 @@ import { useGameResultHistoryDispatch, useGameResultHistoryState } from "../comp
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
 import DebugUserInfo from "../components/general/DebugUserInfo";
 import { GameResultType } from "../types/GameResultType";
+import lessonsData from "../data/lessonsDataImport";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,11 +26,13 @@ const DebugPage : FC<{}> = () => {
     const add = () => {
 
         const gameResult : GameResultType = {
+            lessonUuid: lessonsData.allIds[0],
             accuracy: Math.random(),
             maxStreak: new Date().getSeconds(),
             resultType: "DONE",
             wpm: new Date().getMilliseconds(),
-            date: new Date()
+            date: new Date(),
+            gemsEarned: Math.round(Math.random() * 100)
         }
 
         gameResultHistoryDispatch({type: "add", payload: gameResult})
