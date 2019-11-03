@@ -2,6 +2,7 @@ import { Grid, Typography } from "@material-ui/core";
 import React, { FC, useMemo, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
+import { useUserInfoState } from "../components/context/UserInfoProvider";
 import AspectRatioBox from "../components/interface/AspectRatioBox";
 import ChooseDialog from "../components/interface/ChooseDialog";
 import DiamondIcon from "../components/interface/DiamondIcon";
@@ -32,12 +33,29 @@ const Typing : FC<{}> = () => {
     
     const history = useHistory();
 
+    const userInfoState = useUserInfoState();
+
     const [isTyping, setIsTyping] = useState(false);
 
     const foundLesson = useMemo(() => getLesson(routeParams.uuid), [routeParams.uuid]);    
     
-    useSetTitleOnMount("Lesson " + (foundLesson.index + 1));
-        
+    useSetTitleOnMount("Lesson " + (foundLesson.index + 1));     
+
+    const notEnoughGems = foundLesson.lesson.gemCost > userInfoState.gems;
+    
+    var dialogText = (
+        <Typography align="center" variant="h5">
+            Spend {foundLesson.lesson.gemCost} <DiamondIcon width="28px"/> to start this lesson?
+        </Typography>
+    );
+
+    if(notEnoughGems)
+        dialogText = (
+            <Typography align="center" variant="h5" color="error">
+                You don't have enough <DiamondIcon width="28px"/> for this lesson<br/>
+                You need {foundLesson.lesson.gemCost - userInfoState.gems} more...
+            </Typography>
+        )
 
     return <>
         <AspectRatioBox
@@ -53,10 +71,10 @@ const Typing : FC<{}> = () => {
                         <ChooseDialog
                             onYes={() => setIsTyping(true)}
                             onNo={() => history.goBack()}
+                            hideButtons={notEnoughGems}
+                            noBackground
                         >
-                            <Typography align="center" variant="h5">
-                                Spend {foundLesson.lesson.gemCost} <DiamondIcon width="28px"/> to start this lesson?
-                            </Typography>
+                            {dialogText}
                         </ChooseDialog>
                     </Grid>
             }

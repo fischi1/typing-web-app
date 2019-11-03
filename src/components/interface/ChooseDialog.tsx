@@ -5,7 +5,9 @@ type Props = {
     onYes: () => void,
     onNo: () => void,
     yesText?: string,
-    noText?: string
+    noText?: string,
+    hideButtons?: boolean,
+    noBackground?: boolean
 }
 
 const ChooseDialog: FC<Props> = props => {
@@ -16,18 +18,18 @@ const ChooseDialog: FC<Props> = props => {
     const noText = props.noText ? props.noText : "No";
 
     return (
-        <Card style={{padding: theme.spacing(4)}}>
+        <Card style={{padding: theme.spacing(4), background: props.noBackground ? "none" : ""}}>
             <div>
                 {props.children}
             </div>
-            <Grid
+            {!props.hideButtons && <Grid
                 container
                 spacing={4}
                 alignItems="center"
                 justify="center"
                 style={{marginTop: theme.spacing(1.5)}}
             >
-                <Grid item >
+                <Grid item>
                     <Button onClick={props.onYes}>
                         <Typography component="span">
                             {yesText}
@@ -41,7 +43,7 @@ const ChooseDialog: FC<Props> = props => {
                         </Typography>
                     </Button>
                 </Grid>
-            </Grid>
+            </Grid>}
         </Card>
     )
 }

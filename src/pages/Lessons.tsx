@@ -31,8 +31,6 @@ const Lessons : FC<{}> = () => {
     )
 
     const renderedLessons = useMemo(() => {
-        console.log("render");
-
         const goToLesson = (uuid : string) => {
             history.push("/typing/" + uuid);
         }

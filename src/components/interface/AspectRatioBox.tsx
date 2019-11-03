@@ -13,7 +13,6 @@ const useStyles = makeStyles({
     outside: {
         height: 0,
         paddingTop: (props: Props) => `${(props.height/props.width) * 100}%`,
-        // paddingTop: "56%",
         position: "relative",
         overflow: "hidden"    
     },
@@ -28,8 +27,6 @@ const useStyles = makeStyles({
 
 const AspectRatioBox: FC<Props> = props => {
     const classes = useStyles(props);
-
-    console.log(`${(props.height/props.width) * 100}%`);
 
     return (
         <div className={clsx(classes.outside, props.className)} style={props.style}>

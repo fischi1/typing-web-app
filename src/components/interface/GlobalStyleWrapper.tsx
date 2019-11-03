@@ -23,6 +23,9 @@ const theme = createMuiTheme({
             dark: "#000000",
             contrastText: "#ffffff"
         },
+        error: {
+            main: highlightColors.red
+        },
         type: "dark"
     },
     typography: {
