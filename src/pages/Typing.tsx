@@ -2,7 +2,7 @@ import { Grid, Typography } from "@material-ui/core";
 import React, { FC, useMemo, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
-import { useUserInfoState } from "../components/context/UserInfoProvider";
+import { useUserInfoState, useUserInfoDispatch } from "../components/context/UserInfoProvider";
 import AspectRatioBox from "../components/interface/AspectRatioBox";
 import ChooseDialog from "../components/interface/ChooseDialog";
 import DiamondIcon from "../components/interface/DiamondIcon";
@@ -34,6 +34,7 @@ const Typing : FC<{}> = () => {
     const history = useHistory();
 
     const userInfoState = useUserInfoState();
+    const userInfoDispatch = useUserInfoDispatch();
 
     const [isTyping, setIsTyping] = useState(false);
 
@@ -42,6 +43,14 @@ const Typing : FC<{}> = () => {
     useSetTitleOnMount("Lesson " + (foundLesson.index + 1));     
 
     const notEnoughGems = foundLesson.lesson.gemCost > userInfoState.gems;
+
+    const startLesson = () => {
+        userInfoDispatch({
+            type: "removeGems",
+            amount: foundLesson.lesson.gemCost
+        });
+        setIsTyping(true);
+    }
     
     var dialogText = (
         <Typography align="center" variant="h5">
@@ -69,7 +78,7 @@ const Typing : FC<{}> = () => {
             :
                     <Grid container justify="center" alignItems="center" style={{height: "100%"}}>                     
                         <ChooseDialog
-                            onYes={() => setIsTyping(true)}
+                            onYes={startLesson}
                             onNo={() => history.goBack()}
                             hideButtons={notEnoughGems}
                             noBackground

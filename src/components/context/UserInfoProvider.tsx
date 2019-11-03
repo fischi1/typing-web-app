@@ -25,16 +25,20 @@ const userInfoReducer = (state: State, action: Action) : State => {
     switch (action.type) {
         case "addGems": 
             return {...state, gems: state.gems + action.amount};
+
         case "removeGems":
             if(state.gems - action.amount < 0)
                 return state;
             return {...state, gems: state.gems - action.amount};
+
         case "addXP":
             if(action.amount < 0)
                 return state;
             return {...state, xp: state.xp + action.amount};
+
         case "setUserName":
             return {...state, username: action.username};
+
         case "resetProgression": 
             return {...initialState, username: state.username};
     }
