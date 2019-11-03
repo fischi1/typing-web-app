@@ -1,5 +1,5 @@
-import { Button, Card, Tooltip, Typography } from '@material-ui/core';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { Button, Card, Tooltip, Typography, Theme, useTheme } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 import { highlightColors } from '../../highlightColors';
