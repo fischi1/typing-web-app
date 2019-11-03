@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import React, { FC } from "react";
 import { Switch, useLocation } from "react-router";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { appbarHeight } from "./AppContainer";
 
 const durationMS = 800;
 
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
     routeSection: {
         position: "absolute",
         width: "100%",
+        height: `calc(100vh - ${appbarHeight})`,
         top: 0,
         left: 0
     }

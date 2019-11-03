@@ -31,16 +31,24 @@ const ChooseDialog: FC<Props> = props => {
             >
                 <Grid item>
                     <Button onClick={props.onYes}>
-                        <Typography component="span">
-                            {yesText}
-                        </Typography>
+                        {props.noBackground ? (
+                                yesText
+                        ) : (
+                            <Typography component="span">
+                                {yesText}
+                            </Typography>
+                        )}
                     </Button>
                 </Grid>
                 <Grid item >
                     <Button onClick={props.onNo}>
-                        <Typography component="span">
-                            {noText}
-                        </Typography>
+                        {props.noBackground ? (
+                            noText
+                        ) : (
+                            <Typography component="span">
+                                {noText}
+                            </Typography>
+                        )}
                     </Button>
                 </Grid>
             </Grid>}

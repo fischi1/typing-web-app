@@ -6,12 +6,13 @@ import Logo from '../interface/Logo';
 import MenuDrawer from './MenuDrawer';
 import UserInfoArea from './UserInfoArea';
 
+export const appbarHeight = "64px";
 
 const useStyles = makeStyles(theme => ({
     appbar: {
         backgroundColor: theme.palette.primary.dark,
         borderBottom: "2px solid " + theme.palette.primary.contrastText,
-        height: "64px",
+        height: appbarHeight,
         boxShadow: "none"
     },
     header: {
