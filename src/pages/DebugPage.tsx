@@ -52,8 +52,8 @@ const DebugPage : FC<{}> = () => {
                 <Button onClick={clear}>clear</Button>
 
                 {gameResultHistoryState.history.map((gameResult, i) => (
-                    <div key={i}>
-                        <Typography>{JSON.stringify(gameResult)}</Typography>
+                    <div key={i} style={{borderBottom: "1px solid white"}}>
+                        <Typography>{JSON.stringify(gameResult, null, 1)}</Typography>
                     </div>
                 ))}
 
