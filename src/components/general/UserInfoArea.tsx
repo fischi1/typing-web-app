@@ -1,27 +1,12 @@
-import React, { FC, useMemo } from "react";
-import AccountInformation from "../interface/AccountInformation";
+import React, { FC } from "react";
+import useCalculateLvlInfo from "../../hooks/useCalculateLvlInfo";
 import { useUserInfoState } from "../context/UserInfoProvider";
-
-const initialXP = 150;
+import AccountInformation from "../interface/AccountInformation";
 
 const UserInfoArea: FC<{}> = () => {
 
     const userInfo = useUserInfoState();
-
-    const lvlInfo = useMemo(() => {
-        var level = 0;
-        
-        var xp = userInfo.xp;
-
-        while(xp - (initialXP * (level + 1)) >= 0) {
-            xp -= initialXP * (level + 1);
-            level++;
-        }
-
-        const xpForNextLevel = initialXP * (level + 1);
-    
-        return {xp: xp, level: level, xpForNextLevel: xpForNextLevel};
-    }, [userInfo.xp]);
+    const lvlInfo = useCalculateLvlInfo();
 
     return (
         <AccountInformation 

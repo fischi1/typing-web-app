@@ -1,10 +1,10 @@
 import { createStyles, Grid, makeStyles, Theme, Tooltip, Typography, useTheme } from "@material-ui/core";
-import React, { FC, useMemo } from "react";
-import { useHistory } from "react-router";
+import React, { FC } from "react";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
-import { useUserInfoState } from "../components/context/UserInfoProvider";
-import LessonCard from "../components/interface/LessonCard";
+import LessonList from "../components/general/LessonList";
 import lessonsData from "../data/lessonsDataImport";
+import useCalculateLvlInfo from "../hooks/useCalculateLvlInfo";
+import { Lesson } from "../types/LessonType";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -18,55 +18,42 @@ const Lessons : FC<{}> = () => {
 
     const classes = useStyles();
     const theme = useTheme();
-    const history = useHistory();
-
-    const userInfoState = useUserInfoState();
 
     useSetTitleOnMount("Lessons");
+
+    
+    const lvlInfo = useCalculateLvlInfo();    
+        
+    const filteredLessons: Lesson[] = [];
+    lessonsData.allIds.forEach(lessonId => {
+        const lesson = lessonsData.data[lessonId];           
+        if(!lesson){
+            console.error("undefined lesson");
+            return;
+        }    
+        
+        if(lesson.levelRequirement <= lvlInfo.level)
+            filteredLessons.push(lesson);
+    })
 
     const unlockInfo = (
         <Typography style={{paddingLeft: theme.spacing(1), paddingRight: theme.spacing(1)}}>
             Increase your level to unlock more lessons
         </Typography>
     )
-
-    const renderedLessons = useMemo(() => {
-        const goToLesson = (uuid : string) => {
-            history.push("/typing/" + uuid);
-        }
-
-        return lessonsData.allIds.map((lessonId, i) => {    
-            const lesson = lessonsData.data[lessonId];   
-            
-            if(!lesson){
-                console.error("undefined lesson");
-                return null;
-            }            
-            
-            return (
-                <Grid item xs={6} xl={4} key={lesson.uuid}>
-                    <LessonCard
-                        index={i + 1}
-                        lesson={lesson}
-                        completed={Math.random() > 0.5}
-                        notEnoughGems={userInfoState.gems < lesson.gemCost}
-                        onStartBtnClicked={() => goToLesson(lessonId)}
-                    />
-                </Grid>
-            );
-        })
-    }, [history, userInfoState.gems]);
     
     return <>
         <Grid container spacing={2} className={classes.root}>            
             <Grid item xs={12} style={{position: "relative"}}>
                 <Tooltip title={unlockInfo} placement="right">
                     <Typography variant="h5" style={{width: "fit-content"}}>
-                        Unlocked {Object.keys(lessonsData).length}/99
+                        Unlocked {filteredLessons.length}/{lessonsData.allIds.length}
                     </Typography>
                 </Tooltip>
             </Grid>      
-            {renderedLessons}
+            <LessonList
+                lvlFilteredLessons={filteredLessons}
+            />
         </Grid>
     </>; 
 }
