@@ -59,10 +59,15 @@ const theme = createMuiTheme({
         },
         MuiButton: {
             root: {
-                borderRadius: 0
+                borderRadius: 0,
+                "&$disabled": {
+                    "& > .MuiButton-label": {                      
+                        color: highlightColors.gray,
+                    }
+                }
             },
             label: {
-                color: highlightColors.yellow
+                color: highlightColors.yellow,
             }
         }
     }

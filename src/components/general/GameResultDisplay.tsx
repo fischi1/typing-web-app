@@ -1,32 +1,29 @@
-import { Container, Grid, Typography, useTheme, Button } from "@material-ui/core";
+import { Button, Container, Grid, Typography, useTheme } from "@material-ui/core";
 import React, { FC, ReactNode } from "react";
-import lessonsData from "../../data/lessonsDataImport";
 import numberToRoundedString from "../../functions/numberToRoundedString";
-import { GameResultType } from "../../types/GameResultType";
-import DotDotDotText from "./DotDotDotText";
-import DiamondIcon from "./DiamondIcon";
 import { highlightColors } from "../../highlightColors";
+import { GameResultType } from "../../types/GameResultType";
+import { Lesson } from "../../types/LessonType";
+import DiamondIcon from "../interface/DiamondIcon";
+import DotDotDotText from "../interface/DotDotDotText";
+import TooltipWrapper from "../interface/TooltipWrapper";
 
 type Props = {
-    result: GameResultType
+    result: GameResultType,
+    lesson: Lesson,
+    onStatsClicked: () => void,
+    onRepeatClicked: () => void,
+    onChooseAnotherLessonClicked: () => void,
+    repeatDisabled?: boolean
 }
 
 const GameResultDisplay: FC<Props> = props => {
 
     const result = props.result;
-    console.log(result);
-    const lesson = lessonsData.data[result.lessonUuid];
 
     const theme = useTheme();
 
     const lessonSuccess = result.resultType === "DONE";
-
-    if(!lesson)
-        return (
-            <Typography color="error">
-                Lesson with id {result.lessonUuid} not found!
-            </Typography>
-        )
         
     const generateValItem = (label: ReactNode, value: ReactNode, textRed?: boolean) => {
         return <>
@@ -43,6 +40,12 @@ const GameResultDisplay: FC<Props> = props => {
         </>
     }
 
+    const notEnoughInfo = (
+        <Typography style={{paddingLeft: theme.spacing(1), paddingRight: theme.spacing(1)}}>
+            Not enough gems
+        </Typography>
+    )
+
     return (
         <Grid container justify="center" alignItems="center">
             <Container maxWidth="md">
@@ -53,7 +56,7 @@ const GameResultDisplay: FC<Props> = props => {
                         </Typography>
                         <Typography align="center" component="div" variant="h5">
                             <DotDotDotText>
-                                {lesson.text + lesson.text + lesson.text + lesson.text + lesson.text}
+                                {props.lesson.text}
                             </DotDotDotText>
                         </Typography>
                     </Grid>
@@ -69,19 +72,34 @@ const GameResultDisplay: FC<Props> = props => {
                         lessonSuccess ? result.gemsEarned : 0,
                         !lessonSuccess
                     )}
-                    {generateValItem("XP earned:", lessonSuccess ? lesson.xpForSuccess : 0, !lessonSuccess)}
+                    {generateValItem("XP earned:", lessonSuccess ? props.lesson.xpForSuccess : 0, !lessonSuccess)}
 
                     <Grid item xs={12} style={{height: theme.spacing(6)}}>
                         &nbsp;
                     </Grid>
                     <Grid item xs={4} style={{textAlign: "center"}}>
-                        <Button>View stats</Button>
+                        <Button onClick={props.onStatsClicked}>
+                            View Stats
+                        </Button>
                     </Grid>
                     <Grid item xs={4} style={{textAlign: "center"}}>
-                        <Button>Repeat lesson</Button>
+                        <TooltipWrapper
+                            title={notEnoughInfo}
+                            placement="top"
+                            disabled={!props.repeatDisabled}
+                        >
+                            <Button
+                                disabled={props.repeatDisabled}
+                                onClick={props.onRepeatClicked}
+                            >
+                                Repeat lesson
+                            </Button>
+                        </TooltipWrapper> 
                     </Grid>
                     <Grid item xs={4} style={{textAlign: "center"}}>
-                        <Button>Choose another lesson</Button>
+                        <Button onClick={props.onChooseAnotherLessonClicked}>
+                            Choose another lesson
+                        </Button>
                     </Grid>
                 </Grid>
             </Container>

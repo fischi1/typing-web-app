@@ -1,10 +1,11 @@
-import { Button, Card, Tooltip, Typography, Theme, useTheme } from '@material-ui/core';
+import { Button, Card, Theme, Typography, useTheme } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import React, { FC } from 'react';
 import { highlightColors } from '../../highlightColors';
 import { Lesson } from '../../types/LessonType';
 import DiamondIcon from './DiamondIcon';
+import TooltipWrapper from './TooltipWrapper';
 
 type Props = {
     index: number,
@@ -130,15 +131,14 @@ const LessonCard : FC<Props> = props => {
                 </div>
             </div>
             <div className={classes.right}> 
-                {props.notEnoughGems ? (
-                    <Tooltip title={notEnoughInfo} placement="left">
-                        <div style={{height: "96px"}}>
-                            {button}
-                        </div>
-                    </Tooltip>
-                ) : (
-                    <>{button}</>
-                )}  
+                <TooltipWrapper
+                    title={notEnoughInfo}
+                    placement="left"
+                    wrapperStyle={{height: "96px"}}
+                    disabled={!props.notEnoughGems}
+                >
+                    {button}
+                </TooltipWrapper>
             </div>
         </Card>
     );

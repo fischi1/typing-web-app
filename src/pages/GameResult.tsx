@@ -1,15 +1,20 @@
 import React, { FC, useEffect } from "react";
-import { Redirect, useLocation } from "react-router";
+import { Redirect, useLocation, useHistory } from "react-router";
 import { useGameResultHistoryDispatch } from "../components/context/GameResultHistoryProvider";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
-import GameResultDisplay from "../components/interface/GameResultDisplay";
+import GameResultDisplay from "../components/general/GameResultDisplay";
 import { GameResultType } from "../types/GameResultType";
+import lessonsData from "../data/lessonsDataImport";
+import { Typography } from "@material-ui/core";
+import { useUserInfoState } from "../components/context/UserInfoProvider";
 
 const GameResult : FC<{}> = () => {
 
     useSetTitleOnMount("Lesson Result");
     
     const location = useLocation<GameResultType | undefined>();
+    const history = useHistory();
+    const userInfoState = useUserInfoState();
     
     const gameResult = location.state;
 
@@ -34,11 +39,25 @@ const GameResult : FC<{}> = () => {
     }, [gameResult, gameResultHistoryDispatch]);
 
     if(!gameResult)
-        return <Redirect to="/"/>;
+        return <Redirect to="/"/>;               
+        
+    const lesson = lessonsData.data[gameResult.lessonUuid];
+
+    if(!lesson)
+        return (
+            <Typography color="error">
+                Lesson with id {gameResult.lessonUuid} not found!
+            </Typography>
+        )
 
     return (
         <GameResultDisplay 
             result={gameResult}
+            lesson={lesson}
+            onChooseAnotherLessonClicked={() => history.push("/lessons")}
+            onStatsClicked={() => history.push("/stats")}
+            onRepeatClicked={() => history.push("/typing/" + gameResult.lessonUuid)}
+            repeatDisabled={lesson.gemCost > userInfoState.gems}
         />
     ); 
 }
