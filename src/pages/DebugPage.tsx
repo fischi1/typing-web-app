@@ -32,7 +32,9 @@ const DebugPage : FC<{}> = () => {
             resultType: "DONE",
             wpm: new Date().getMilliseconds(),
             date: new Date(),
-            gemsEarned: Math.round(Math.random() * 100)
+            gemsEarned: Math.round(Math.random() * 100),
+            livesLeft: 10,
+            maxLives: 50
         }
 
         gameResultHistoryDispatch({type: "add", payload: gameResult})

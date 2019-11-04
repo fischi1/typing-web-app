@@ -8,4 +8,6 @@ export type GameResultType = {
     maxStreak: number,
     date: Date,
     gemsEarned: number,
+    livesLeft: number,
+    maxLives: number
 }

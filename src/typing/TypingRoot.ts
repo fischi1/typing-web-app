@@ -318,6 +318,8 @@ class TypingRoot {
 
     gameDone = (reason : GameResultReasonType) => {
 
+        const livesInfo = LivesDisplay.instance.getLivesInfo();
+
         const result : GameResultType = {
             lessonUuid: this.gameInfo.lessonUuid,
             resultType: reason,
@@ -325,7 +327,9 @@ class TypingRoot {
             wpm: StatTracker.instance.getWPM(),
             maxStreak: FlawlessDisplay.instance.getMaxStreak(),
             date: new Date(),
-            gemsEarned: EarnedSoFarDisplay.instance.value
+            gemsEarned: EarnedSoFarDisplay.instance.value,
+            livesLeft: livesInfo.livesLeft,
+            maxLives: livesInfo.maxLives
         }
 
         this.gameInfo.doneFunction(result);

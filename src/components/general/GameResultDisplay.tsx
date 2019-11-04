@@ -64,7 +64,7 @@ const GameResultDisplay: FC<Props> = props => {
                     {generateValItem("Speed:", numberToRoundedString(result.wpm, 2) + " WPM")}
                     {generateValItem("Accuracy:", numberToRoundedString(result.accuracy, 4))}
                     {generateValItem("Max streak:", result.maxStreak + " words")}
-                    {generateValItem("Lives left:", 999)}
+                    {generateValItem("Lives left:", `${result.livesLeft} / ${result.maxLives}`)}
                     {generateValItem(
                         <span>
                             <DiamondIcon width="28px" /> earned:

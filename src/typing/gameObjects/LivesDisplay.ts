@@ -3,10 +3,13 @@ import { GameContext, GameObject } from "./GameObject";
 import { PixiSprite } from "./PixiSprite";
 import { vecToPixiPoint, vec2 } from "./Vector2";
 import { TypeTracker } from './TypeTracker';
+import forceToNull from '../../functions/forceToNull';
 
 
 
 export class LivesDisplay extends GameObject{
+
+    static instance: LivesDisplay;
 
     readonly tilesPerError = 3;
 
@@ -51,6 +54,12 @@ export class LivesDisplay extends GameObject{
         }
 
         this.coverTiles.sort(() => Math.random() - .5);
+
+        if(LivesDisplay.instance) 
+            console.error("LivesDisplay should only exist once!!!");
+        else 
+            LivesDisplay.instance = this;
+
     }
 
     init(gameContext : GameContext) {
@@ -62,7 +71,7 @@ export class LivesDisplay extends GameObject{
     }
 
     destroy(gameContext : GameContext) : void {
-
+        LivesDisplay.instance = forceToNull();
     }
 
     setCoveredTiles(val : number) {
@@ -77,9 +86,17 @@ export class LivesDisplay extends GameObject{
     }
 
     errorCallback = () => {
-        this.setCoveredTiles(this.coveredTilesNum +  this.tilesPerError);
+        this.setCoveredTiles(this.coveredTilesNum + this.tilesPerError);
         if(this.coveredTilesNum >= this.coverTiles.length)
             TypeTracker.instance.failure();
+    }
+
+    getLivesInfo = () => {
+        const maxLives = Math.floor(this.coverTiles.length / this.tilesPerError);
+        return {
+            livesLeft: maxLives - Math.floor(this.coveredTilesNum / this.tilesPerError),
+            maxLives: maxLives
+        }
     }
 
 }
