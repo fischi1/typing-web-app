@@ -1,13 +1,16 @@
 import React, { createContext, FC, useContext, useReducer } from "react";
 import loadFromLocalStorage from "../../functions/loadFromLocalStorage";
 import usePersistToLocalStorageOnChange from "../../hooks/usePersistToLocalStorageOnChange";
+import { GameResultType } from "../../types/GameResultType";
+import lessonsData from "../../data/lessonsDataImport";
 
 type Action = 
     {type: "setUserName", username: string} |
     {type: "addGems", amount: number} |
     {type: "removeGems", amount: number} |
     {type: "addXP", amount: number} | 
-    {type: "resetProgression"};
+    {type: "resetProgression"} |
+    {type: "lessonComplete", payload: GameResultType};
 
 type Dispatch = (action: Action) => void
 type State = {
@@ -41,6 +44,20 @@ const userInfoReducer = (state: State, action: Action) : State => {
 
         case "resetProgression": 
             return {...initialState, username: state.username};
+
+        case "lessonComplete": 
+            const lesson = lessonsData.data[action.payload.lessonUuid];
+
+            if(!lesson) {
+                console.error("lesson with uuid " + action.payload.lessonUuid + " doesn't exist");
+                return {...initialState};
+            }
+
+            return {
+                ...state,
+                xp: state.xp + lesson.xpForSuccess,
+                gems: state.gems + action.payload.gemsEarned
+            };
     }
 }
 

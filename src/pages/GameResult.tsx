@@ -6,7 +6,7 @@ import GameResultDisplay from "../components/general/GameResultDisplay";
 import { GameResultType } from "../types/GameResultType";
 import lessonsData from "../data/lessonsDataImport";
 import { Typography } from "@material-ui/core";
-import { useUserInfoState } from "../components/context/UserInfoProvider";
+import { useUserInfoState, useUserInfoDispatch } from "../components/context/UserInfoProvider";
 
 const GameResult : FC<{}> = () => {
 
@@ -15,6 +15,7 @@ const GameResult : FC<{}> = () => {
     const location = useLocation<GameResultType | undefined>();
     const history = useHistory();
     const userInfoState = useUserInfoState();
+    const userInfoDispatch = useUserInfoDispatch();
     
     const gameResult = location.state;
 
@@ -34,9 +35,11 @@ const GameResult : FC<{}> = () => {
     useEffect(() => {
         window.history.replaceState(undefined, "");
         
-        if(gameResult && gameResult.resultType === "DONE")
+        if(gameResult && gameResult.resultType === "DONE") {
+            userInfoDispatch({type: "lessonComplete", payload: gameResult});
             gameResultHistoryDispatch({type: "add", payload: gameResult});
-    }, [gameResult, gameResultHistoryDispatch]);
+        }
+    }, [gameResult, gameResultHistoryDispatch, userInfoDispatch]);
 
     if(!gameResult)
         return <Redirect to="/"/>;               
