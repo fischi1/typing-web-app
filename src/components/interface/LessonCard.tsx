@@ -10,10 +10,12 @@ import TooltipWrapper from './TooltipWrapper';
 type Props = {
     index: number,
     completed: boolean,
-    lesson: Lesson,
+    lesson: Lesson | null,
     notEnoughGems: boolean,
     onStartBtnClicked?: () => void
 };
+
+const height = "96px";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,10 +40,10 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: "center"
         },
         right: {
-            flex: "0 0 96px"
+            flex: "0 0 " + height
         },
         goButton: {
-            width: "96px",
+            width: height,
             height: "100%",
             flexDirection: "column",
             display: "block",
@@ -95,6 +97,13 @@ const LessonCard : FC<Props> = props => {
         </Typography>
     )
 
+    if(!props.lesson)
+        return (
+            <Card className={classes.root}>
+                <div style={{height: height}}>&nbsp;</div>
+            </Card>
+        )
+
     const button = (                       
         <Button
             className={classes.goButton}
@@ -134,7 +143,7 @@ const LessonCard : FC<Props> = props => {
                 <TooltipWrapper
                     title={notEnoughInfo}
                     placement="left"
-                    wrapperStyle={{height: "96px"}}
+                    wrapperStyle={{height: height}}
                     disabled={!props.notEnoughGems}
                 >
                     {button}

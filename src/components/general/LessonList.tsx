@@ -1,10 +1,12 @@
 import { Grid } from "@material-ui/core";
-import React, { FC, useMemo } from "react";
+import React, { FC } from "react";
 import { useHistory } from "react-router";
+import useTimeoutOnMount from "../../hooks/useTimeout";
 import { Lesson } from "../../types/LessonType";
+import { useGameResultHistoryState } from "../context/GameResultHistoryProvider";
 import { useUserInfoState } from "../context/UserInfoProvider";
 import LessonCard from "../interface/LessonCard";
-import { useGameResultHistoryState } from "../context/GameResultHistoryProvider";
+import { animationDurationMS } from "./AnimatedSwitch";
 
 type Props = {
     lvlFilteredLessons: Lesson[]
@@ -16,34 +18,34 @@ const LessonList: FC<Props> = props => {
     const userInfoState = useUserInfoState();
     const gameResultHistoryState = useGameResultHistoryState();
 
-    const renderedLessons = useMemo(() => {
+    const timeOutAfterRender = useTimeoutOnMount(animationDurationMS + 50);
 
-        const goToLesson = (uuid : string) => {
-            history.push("/typing/" + uuid);
-        }
+    const goToLesson = (uuid : string) => {
+        history.push("/typing/" + uuid);
+    }
 
-        return props.lvlFilteredLessons.map((lesson, i) => { 
+    const renderedLessons = props.lvlFilteredLessons.map((lesson, i) => { 
 
-            const completed = !!gameResultHistoryState.history.find(gameResult => gameResult.lessonUuid === lesson.uuid);
-            
-            return (
-                <Grid item xs={6} xl={4} key={lesson.uuid}>
-                    <LessonCard
-                        index={i + 1}
-                        lesson={lesson}
-                        completed={completed}
-                        notEnoughGems={userInfoState.gems < lesson.gemCost}
-                        onStartBtnClicked={() => goToLesson(lesson.uuid)}
-                    />
-                </Grid>
-            );
-        })
+        let completed = false;
 
-    }, [gameResultHistoryState.history, history, props.lvlFilteredLessons, userInfoState.gems]);
+        if(timeOutAfterRender)
+            completed = !!gameResultHistoryState.history.find(gameResult => gameResult.lessonUuid === lesson.uuid);
+        
+        return (
+            <Grid item xs={6} xl={4} key={lesson.uuid}>
+                <LessonCard
+                    index={i + 1}
+                    lesson={timeOutAfterRender ? lesson : null}
+                    completed={completed}
+                    notEnoughGems={userInfoState.gems < lesson.gemCost}
+                    onStartBtnClicked={() => goToLesson(lesson.uuid)}
+                />
+            </Grid>
+        )
 
-    return (
-        <>{renderedLessons}</>
-    )
+    });
+
+    return <>{renderedLessons}</>;
 }
 
 export default LessonList;
