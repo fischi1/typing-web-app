@@ -1,4 +1,4 @@
-const loadFromLocalStorage = <T>(key: string, defaultData: T) => {    
+const loadFromLocalStorage = <T>(key: string, defaultData: T) : T => {    
     const str = localStorage.getItem(key);
     if(!str)
         return defaultData;

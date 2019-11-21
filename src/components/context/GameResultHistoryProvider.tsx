@@ -25,8 +25,17 @@ const gameResultHistoryReducer = (state: State, action: Action) : State => {
     }
 }
 
+const getInitialData = () => {
+    const data = loadFromLocalStorage<State>(LOCAL_STORAGE_KEY, {history: []});
+    data.history = data.history.map(oldHistory => ({
+        ...oldHistory,
+        date: new Date(oldHistory.date)
+    }))
+    return data;
+}
+
 const GameResultHistoryProvider: FC<{}> = ({children}) => {
-    const [state, dispatch] = useReducer(gameResultHistoryReducer, loadFromLocalStorage<State>(LOCAL_STORAGE_KEY, {history: []}));
+    const [state, dispatch] = useReducer(gameResultHistoryReducer, getInitialData());
 
     usePersistToLocalStorageOnChange(LOCAL_STORAGE_KEY, state);
   
