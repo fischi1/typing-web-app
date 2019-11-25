@@ -1,8 +1,18 @@
+import { Card, Typography, useTheme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import React, { FC } from "react";
-import { TooltipProps, ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line } from "recharts";
-import { useTheme, Card, Typography } from "@material-ui/core";
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, TooltipProps, XAxis, YAxis } from "recharts";
 import { MappedDataType } from "../../functions/mapData";
 import { highlightColors } from "../../highlightColors";
+
+const useStyles = makeStyles({
+    '@global': {
+        '.recharts-cartesian-axis-tick-value': {
+            fontFamily: "m5x7",
+            fontSize: "1.2vw"
+        }
+    }
+});
 
 const dateNumberToDateStr = (time: number) => {
     const date = new Date(time * (1000 * 3600 * 24));
@@ -34,6 +44,8 @@ type Props = {
 
 const Graph: FC<Props> = props => {
 
+    useStyles();
+
     return (
         <div style={{position: "relative", width: "100%", height: "90%"}}>
             <ResponsiveContainer
@@ -53,12 +65,11 @@ const Graph: FC<Props> = props => {
                     <YAxis
                         stroke={highlightColors.white}
                     />
-                    <CartesianGrid strokeDasharray="3 2"/>
+                    <CartesianGrid strokeDasharray="7 7"/>
                     <Tooltip
                         content={<CustomTooltip />}
                     />
-                    <Legend />
-                    <Line type="monotone" dataKey="wpm" stroke={highlightColors.white} />
+                    <Line type="monotone" dataKey="wpm" stroke={highlightColors.blue} strokeWidth={3}/>
                 </LineChart>
             </ResponsiveContainer>
         </div>
