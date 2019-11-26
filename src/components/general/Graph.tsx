@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, TooltipProps, XAxis, YAxis } from "recharts";
 import { MappedDataType } from "../../functions/mapData";
 import { highlightColors } from "../../highlightColors";
+import { GraphType } from "../../pages/Stats";
 
 const useStyles = makeStyles({
     '@global': {
@@ -39,26 +40,33 @@ const CustomTooltip: FC<TooltipProps> = props => {
 }
 
 type Props = {
-    mappedData: MappedDataType[]
+    mappedData: MappedDataType[],
+    type: GraphType,
+    color: string
 }
 
 const Graph: FC<Props> = props => {
 
     useStyles();
 
+    const mappedData = props.mappedData;
+
     return (
-        <div style={{position: "relative", width: "100%", height: "90%"}}>
+        <div style={{position: "relative", width: "100%", height: "calc(100% - 110px)"}}>
             <ResponsiveContainer
                 width="100%" height="100%"
             >
                 <LineChart 
-                    data={props.mappedData}
+                    data={mappedData}
                     margin={{top: 5, right: 30, left: 20, bottom: 5}}
                 >
                     <XAxis
                         dataKey="dayDate"
                         type="number"    
-                        domain = {['auto', 'auto']}
+                        domain={mappedData.length > 0 ? 
+                            [mappedData[0].dayDate, mappedData[mappedData.length-1].dayDate] :
+                            ["auto", "auto"]
+                        }
                         tickFormatter = {dateNumberToDateStr}
                         stroke={highlightColors.white}
                     />
@@ -69,7 +77,7 @@ const Graph: FC<Props> = props => {
                     <Tooltip
                         content={<CustomTooltip />}
                     />
-                    <Line type="monotone" dataKey="wpm" stroke={highlightColors.blue} strokeWidth={3}/>
+                    <Line type="monotone" dataKey={props.type} stroke={props.color} strokeWidth={3}/>
                 </LineChart>
             </ResponsiveContainer>
         </div>
