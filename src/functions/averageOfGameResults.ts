@@ -17,13 +17,13 @@ const averageOfGameResults = (data: GameResultType[]): Record<keyof MappedDataTy
     }));
 
     return {
-        accuracy: Math.round((reduced.accuracy / data.length) * 1000) / 1000 + "",
+        accuracy: Math.round((reduced.accuracy / data.length) * 10000) / 10000 + "",
         dayDate: "",
         gemsEarned: "",
         lessonAmount: data.length + "",
         maxStreak: reduced.maxStreak + "",
         livesLeft: "",
-        wpm: Math.round((reduced.wpm / data.length) * 100) / 100 + ""
+        wpm: Math.round((reduced.wpm / data.length ) * 100) / 100 + ""
     }
     
 }

@@ -1,6 +1,6 @@
 import { Howl, Howler } from 'howler';
 
-Howler.mute(true);
+Howler.mute(false);
 
 const urlFailSound = "/sounds/Explosion4.wav";
 const urlSuccessSound = "/sounds/Pickup_Coin66.wav";
@@ -63,5 +63,5 @@ export const playFailSound = () => {
 }
 
 export const playSuccessSound = () => {
-    successSound.play();
+    //successSound.play();
 }
