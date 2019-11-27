@@ -1,6 +1,6 @@
 import { GameResultType } from "../types/GameResultType"
 
-const transformDate = (date: Date) => {
+const transformToDayNr = (date: Date) => {
     return Math.round(new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 0,0,0,0).getTime() / (1000 * 3600 * 24));
 }
 
@@ -18,7 +18,7 @@ const mapData = (gameResultHistory: GameResultType[]) : MappedDataType[] => {
     var dayData: Record<number, GameResultType[]> = {};
 
     gameResultHistory.forEach(gameResult => {
-        var dayNumber = transformDate(gameResult.date);
+        var dayNumber = transformToDayNr(gameResult.date);
 
         if(!dayData[dayNumber])
             dayData[dayNumber] = [];
@@ -49,7 +49,7 @@ const mapData = (gameResultHistory: GameResultType[]) : MappedDataType[] => {
             accuracy: reduced.accuracy / gameResultArr.length,
             gemsEarned: reduced.gemsEarned / gameResultArr.length,
             livesLeft: reduced.livesLeft / gameResultArr.length,
-            maxStreak: reduced.maxStreak / gameResultArr.length,
+            maxStreak: reduced.maxStreak,
             lessonAmount: gameResultArr.length
         };
     })

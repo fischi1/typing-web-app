@@ -1,6 +1,6 @@
 import { Card, Typography, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import React, { FC, useRef, useEffect } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, TooltipProps, XAxis, YAxis } from "recharts";
 import { MappedDataType } from "../../functions/mapData";
 import { highlightColors } from "../../highlightColors";

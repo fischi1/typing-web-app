@@ -4,10 +4,9 @@ import { useSetTitleOnMount } from "../components/context/TitleProvider";
 import { animationDurationMS } from "../components/general/AnimatedSwitch";
 import Graph from "../components/general/Graph";
 import StatButtons from "../components/general/StatButtons";
+import averageOfGameResults from "../functions/averageOfGameResults";
 import mapData, { MappedDataType } from "../functions/mapData";
 import { highlightColors } from "../highlightColors";
-import averageOfGameResults from "../functions/averageOfGameResults";
-import RangeButtons from "../components/general/RangeButtons";
 
 export type GraphType = keyof MappedDataType;
 
