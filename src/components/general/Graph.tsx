@@ -1,6 +1,6 @@
 import { Card, Typography, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import React, { FC } from "react";
+import React, { FC, useRef, useEffect } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, TooltipProps, XAxis, YAxis } from "recharts";
 import { MappedDataType } from "../../functions/mapData";
 import { highlightColors } from "../../highlightColors";
@@ -47,6 +47,12 @@ type Props = {
 
 const Graph: FC<Props> = props => {
 
+    const drawRef = useRef(0);
+
+    useEffect(() => {
+        drawRef.current++;
+    }, [props.type, props.mappedData])
+
     useStyles();
 
     const mappedData = props.mappedData;
@@ -59,11 +65,12 @@ const Graph: FC<Props> = props => {
                 <LineChart 
                     data={mappedData}
                     margin={{top: 5, right: 30, left: 20, bottom: 5}}
+                    key={drawRef.current}
                 >
                     <XAxis
                         dataKey="dayDate"
                         type="number"    
-                        domain={mappedData.length > 0 ? 
+                        domain={mappedData.length > 0 ?
                             [mappedData[0].dayDate, mappedData[mappedData.length-1].dayDate] :
                             ["auto", "auto"]
                         }

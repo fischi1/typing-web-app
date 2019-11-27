@@ -1,12 +1,15 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useGameResultHistoryState } from "../components/context/GameResultHistoryProvider";
 import { useSetTitleOnMount } from "../components/context/TitleProvider";
+import { animationDurationMS } from "../components/general/AnimatedSwitch";
 import Graph from "../components/general/Graph";
-import mapData, { MappedDataType } from "../functions/mapData";
 import StatButtons from "../components/general/StatButtons";
+import mapData, { MappedDataType } from "../functions/mapData";
 import { highlightColors } from "../highlightColors";
+import averageOfGameResults from "../functions/averageOfGameResults";
+import RangeButtons from "../components/general/RangeButtons";
 
-export type GraphType = "wpm" | "accuracy" | "maxStreak" | "lessonAmount";
+export type GraphType = keyof MappedDataType;
 
 const Stats : FC<{}> = () => {
     
@@ -18,8 +21,18 @@ const Stats : FC<{}> = () => {
 
     const [ data, setData ] = useState<MappedDataType[]>([]);
 
+    const [ buttonData, setButtonData ] = useState<Record<GraphType, string> | null>(null);
+
+    const empty = <>&nbsp;</>;
+
     useEffect(() => {
-        setData(mapData(gameResultHistory.history));
+        const timeout = setTimeout(() => {
+            const mappedData = mapData(gameResultHistory.history);
+            setButtonData(averageOfGameResults(gameResultHistory.history));
+            setData(mappedData);
+        }, animationDurationMS + 50)
+        
+        return () => clearTimeout(timeout);
     }, [gameResultHistory.history]);
 
     const getColorForType = (type: GraphType) => {
@@ -32,6 +45,8 @@ const Stats : FC<{}> = () => {
                 return highlightColors.green;
             case "lessonAmount":
                 return highlightColors.red;
+            default:
+                return highlightColors.white;
         }
     }
 
@@ -40,13 +55,13 @@ const Stats : FC<{}> = () => {
             <StatButtons
                 activeDataType={graphType}
                 onDataTypeChange={setGraphType}
-                wpmValue={<>&nbsp;</>}
+                wpmValue={buttonData ? buttonData.wpm : empty}
                 wpmColor={getColorForType("wpm")}
-                accuracyValue="a"
+                accuracyValue={buttonData ? buttonData.accuracy : empty}
                 accuracyColor={getColorForType("accuracy")}
-                highestStreakValue="a"
+                highestStreakValue={buttonData ? buttonData.maxStreak : empty}
                 highestStreakColor={getColorForType("maxStreak")}
-                lessonsFinishedValue="a"
+                lessonsFinishedValue={buttonData ? buttonData.lessonAmount : empty}
                 lessonsFinishedColor={getColorForType("lessonAmount")}
             />
             <Graph
