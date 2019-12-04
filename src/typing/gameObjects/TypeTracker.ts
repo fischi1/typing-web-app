@@ -38,6 +38,8 @@ export class TypeTracker extends GameObject{
 
     private gameDone : {(reason : GameResultReasonType) : void};
 
+    private lastLetter : Letter;
+
     constructor(words : Word[], letterWidth : number, letterContainer : PixiContainer, gameDone : {(reason : GameResultReasonType) : void}) {
         super();
         this.words = words;
@@ -46,6 +48,9 @@ export class TypeTracker extends GameObject{
         this.letterContainer = letterContainer;
 
         this.gameDone = gameDone;
+
+        const lastWord = words[words.length -1 ];
+        this.lastLetter = lastWord.letters[lastWord.letters.length - 1];
 
         if(TypeTracker.instance)
             console.error("TypeTracker.instance is already set");
@@ -70,7 +75,9 @@ export class TypeTracker extends GameObject{
         if(!this.active)
             return;
 
-        if(key === " ") {
+        if(this.lastLetter.index === this.letterIndex && key === this.lastLetter.character) //last letter
+            this.nextWord();
+        else if(key === " ") {
             if(this.curWord.text === this.curInput)
                 this.nextWord();
             else
