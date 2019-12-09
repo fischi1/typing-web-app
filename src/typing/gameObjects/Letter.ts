@@ -31,8 +31,8 @@ export class Letter extends PixiSprite{
     init(gameContext : GameContext) {
         super.init(gameContext);
         this.sprite.scale = vecToPixiPoint(vec2(letterScaling));
-        this.startPosition = pixiPointToVec(this.sprite.position);
-        this.curPos = pixiPointToVec(this.sprite.position);
+        this.startPosition = pixiPointToVec(this.sprite.position as PIXI.Point);
+        this.curPos = pixiPointToVec(this.sprite.position as PIXI.Point);
 
         if(this.subLetter)
             this.subLetter.setStatus("invisible");
