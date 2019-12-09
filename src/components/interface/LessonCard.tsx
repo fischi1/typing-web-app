@@ -130,7 +130,7 @@ const LessonCard : FC<Props> = props => {
                 <Typography className={clsx(classes.truncatedLessonText, classes.lineHeightOne)}>{props.lesson.text}</Typography>
                 <div style={{display:"flex"}}>
                     <div style={{flex: "1 1 50%"}}>
-                        <Typography className={clsx(classes.lineHeightOne, classes.subText)}>Counts towards stats: {yesNo(props.lesson.countsTowardsStats)}</Typography>
+                        <Typography className={clsx(classes.lineHeightOne, classes.subText)}>Words: {props.lesson.words}</Typography>
                         <Typography className={clsx(classes.lineHeightOne, classes.subText)} style={{color: props.completed ? highlightColors.green : highlightColors.red}}>Completed: {yesNo(props.completed)}</Typography>
                     </div>
                     <div style={{flex: "1 1 50%"}}>

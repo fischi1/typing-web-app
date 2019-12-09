@@ -6,5 +6,6 @@ export type Lesson = {
     countsTowardsStats: boolean,
     gemCost: number,
     gemsPerLetter: number,
-    xpForSuccess: number
+    xpForSuccess: number,
+    words: number
 }

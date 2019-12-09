@@ -7,7 +7,8 @@
             "gemsPerLetter": 1,
             "xpForSuccess": 50,
             "countsTowardsStats": false,
-            "text": "aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj"
+            "text": "aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj aaaa ssss dddd ffff ffff dddd ssss aaaa jjjj kkkk llll llll kkkk jjjj",
+            "words": 28
         },
         "f8e1e82a-4451-4a9e-a51b-dbb52db2d5f8": {
             "uuid": "f8e1e82a-4451-4a9e-a51b-dbb52db2d5f8",
@@ -16,7 +17,8 @@
             "gemsPerLetter": 2,
             "xpForSuccess": 50,
             "countsTowardsStats": false,
-            "text": "yyyy aaaa xxxx ssss cccc dddd vvvv ffff mmmm jjjj ,,,, kkkk .... llll ---- llll yyyy aaaa xxxx ssss cccc dddd vvvv ffff mmmm jjjj ,,,, kkkk .... llll ---- llll"
+            "text": "yyyy aaaa xxxx ssss cccc dddd vvvv ffff mmmm jjjj ,,,, kkkk .... llll ---- llll yyyy aaaa xxxx ssss cccc dddd vvvv ffff mmmm jjjj ,,,, kkkk .... llll ---- llll",
+            "words": 32
         },
         "4dd847ce-ac4a-48d1-a546-1edab1b9ac36": {
             "uuid": "4dd847ce-ac4a-48d1-a546-1edab1b9ac36",
@@ -25,7 +27,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 51,
             "countsTowardsStats": false,
-            "text": "qqqq aaaa wwww ssss eeee dddd rrrr ffff uuuu jjjj iiii kkkk oooo llll pppp llll qqqq aaaa wwww ssss eeee dddd rrrr ffff uuuu jjjj iiii kkkk oooo llll pppp llll"
+            "text": "qqqq aaaa wwww ssss eeee dddd rrrr ffff uuuu jjjj iiii kkkk oooo llll pppp llll qqqq aaaa wwww ssss eeee dddd rrrr ffff uuuu jjjj iiii kkkk oooo llll pppp llll",
+            "words": 32
         },
         "3cfc25c7-5887-4a63-b7f4-12face5a2724": {
             "uuid": "3cfc25c7-5887-4a63-b7f4-12face5a2724",
@@ -34,7 +37,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "ad ads as ask fad flask lad lads sad as ask ads fad flask lads lad sad ad flask ad ask as lads sad lad fad ads ad ads as ask fad flask lad lads sad as ask ads fad flask lads lad sad ad flask ad ask as lads sad lad fad ads"
+            "text": "ad ads as ask fad flask lad lads sad as ask ads fad flask lads lad sad ad flask ad ask as lads sad lad fad ads ad ads as ask fad flask lad lads sad as ask ads fad flask lads lad sad ad flask ad ask as lads sad lad fad ads",
+            "words": 54
         },
         "acd8586d-bc79-43ed-8867-8da1b872ec55": {
             "uuid": "acd8586d-bc79-43ed-8867-8da1b872ec55",
@@ -43,7 +47,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "scan sank any mack jacky sky yam sandy dan cyan mac nav man sam many nay candy navy janky may can vans max cam jam fax sync jay"
+            "text": "scan sank any mack jacky sky yam sandy dan cyan mac nav man sam many nay candy navy janky may can vans max cam jam fax sync jay",
+            "words": 28
         },
         "727629c3-fc39-4f6f-8bcd-2c3c49b10d7e": {
             "uuid": "727629c3-fc39-4f6f-8bcd-2c3c49b10d7e",
@@ -52,7 +57,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "sad and snack mad ads jack cans yams damn dam days scam fan jank ska das fancy nas jynx caf mask say sack ask day sand yank kay dank van"
+            "text": "sad and snack mad ads jack cans yams damn dam days scam fan jank ska das fancy nas jynx caf mask say sack ask day sand yank kay dank van",
+            "words": 30
         },
         "85ea868e-1618-4ad5-b33e-fca1f55b2a17": {
             "uuid": "85ea868e-1618-4ad5-b33e-fca1f55b2a17",
@@ -61,7 +67,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "cow mixer vice core view crime ricy more youre mew merc over crux rex mire very crew wire coy rum cry wore query crow oryx crim cure remix wive woe mice movie yew mower cover mercy mover ire rye vow"
+            "text": "cow mixer vice core view crime ricy more youre mew merc over crux rex mire very crew wire coy rum cry wore query crow oryx crim cure remix wive woe mice movie yew mower cover mercy mover ire rye vow",
+            "words": 40
         },
         "ee273329-686d-472d-857e-fd160c9e894e": {
             "uuid": "ee273329-686d-472d-857e-fd160c9e894e",
@@ -70,7 +77,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "vex voice mic come our cue moe you mix icy rime micro curvy ice meow rue ore wormy orc exo mirex curve corey your evo move ivory vim rec comix emo cower rice ivy worm euro row roux moww iry rim cove cory"
+            "text": "vex voice mic come our cue moe you mix icy rime micro curvy ice meow rue ore wormy orc exo mirex curve corey your evo move ivory vim rec comix emo cower rice ivy worm euro row roux moww iry rim cove cory",
+            "words": 43
         },
         "b844d24d-d6ef-4580-8acc-0d1b9cc830f6": {
             "uuid": "b844d24d-d6ef-4580-8acc-0d1b9cc830f6",
@@ -79,7 +87,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": false,
-            "text": "scarf vase wavey fade carve cred year vary creasy scare faxed dear race read scar weary decay sawyer carved deaf scary wave face crew ward fray ready swear case cave sway safe wavy save scared waxed easy wear dace care screwy screw"
+            "text": "scarf vase wavey fade carve cred year vary creasy scare faxed dear race read scar weary decay sawyer carved deaf scary wave face crew ward fray ready swear case cave sway safe wavy save scared waxed easy wear dace care screwy screw",
+            "words": 42
         },
         "73720458-7ae6-4a3e-a108-fff5e4efd417": {
             "uuid": "73720458-7ae6-4a3e-a108-fff5e4efd417",
@@ -88,7 +97,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": false,
-            "text": "tttt gggg bbbb rrrr ffff vvvv zzzz hhhh nnnn uuuu jjjj nnnn rtrt fgfg vbvb zuzu hjhj nmnm rutz fjgh vmbn tttt gggg bbbb rrrr ffff vvvv zzzz hhhh nnnn uuuu jjjj nnnn rtrt fgfg vbvb zuzu hjhj nmnm rutz fjgh vmbn"
+            "text": "tttt gggg bbbb rrrr ffff vvvv zzzz hhhh nnnn uuuu jjjj nnnn rtrt fgfg vbvb zuzu hjhj nmnm rutz fjgh vmbn tttt gggg bbbb rrrr ffff vvvv zzzz hhhh nnnn uuuu jjjj nnnn rtrt fgfg vbvb zuzu hjhj nmnm rutz fjgh vmbn",
+            "words": 42
         },
         "0fee5dc2-cf6b-44e1-a024-26067364f762": {
             "uuid": "0fee5dc2-cf6b-44e1-a024-26067364f762",
@@ -97,7 +107,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "mr. utterson the lawyer was a man of a rugged countenance that was never lighted by a smile, cold, scanty and embarrassed in discourse, backward in sentiment, lean, long, dusty, dreary and yet somehow lovable. at friendly meetings, and when the wine was to his taste, something eminently human beaconed from his eye."
+            "text": "mr. utterson the lawyer was a man of a rugged countenance that was never lighted by a smile, cold, scanty and embarrassed in discourse, backward in sentiment, lean, long, dusty, dreary and yet somehow lovable. at friendly meetings, and when the wine was to his taste, something eminently human beaconed from his eye.",
+            "words": 53
         },
         "19ac1ffe-8106-4d8e-8717-19ab46e7dee7": {
             "uuid": "19ac1ffe-8106-4d8e-8717-19ab46e7dee7",
@@ -106,7 +117,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "for a moment after mr. and mrs. darling left the house the night-lights by the beds of the three children continued to burn clearly. they were awfully nice little night-lights, and one cannot help wishing that they could have kept awake to see peter"
+            "text": "for a moment after mr. and mrs. darling left the house the night-lights by the beds of the three children continued to burn clearly. they were awfully nice little night-lights, and one cannot help wishing that they could have kept awake to see peter",
+            "words": 44
         },
         "b1afac6c-930e-4c54-a5f6-75daaf231c3f": {
             "uuid": "b1afac6c-930e-4c54-a5f6-75daaf231c3f",
@@ -115,7 +127,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": false,
-            "text": "wave WAVE use USE expand EXPAND short SHORT breath BREATH wash WASH plucky PLUCKY last LAST faulty FAULTY winter WINTER outgoing OUTGOING smell SMELL fair FAIR poised POISED substance SUBSTANCE warn WARN six SIX ethereal ETHEREAL science SCIENCE crown CROWN type TYPE yawn YAWN adhesive ADHESIVE deeply DEEPLY"
+            "text": "wave WAVE use USE expand EXPAND short SHORT breath BREATH wash WASH plucky PLUCKY last LAST faulty FAULTY winter WINTER outgoing OUTGOING smell SMELL fair FAIR poised POISED substance SUBSTANCE warn WARN six SIX ethereal ETHEREAL science SCIENCE crown CROWN type TYPE yawn YAWN adhesive ADHESIVE deeply DEEPLY",
+            "words": 48
         },
         "d0c8912f-7986-4859-9870-0123f861a33e": {
             "uuid": "d0c8912f-7986-4859-9870-0123f861a33e",
@@ -124,7 +137,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "Separate End Caption Can Earn Chop Uninterested Unlock Drain Cool Claim Aware Expext Table Bounce Untidy Magical Comparison Rampant Water Disarm Add Paste Spark Airport Able Wary Rural Horses Successful Clever Soak Orange Rule Story Young Smoggy Condition Yard Income Skate Promise Defeated Empty Weather Sub Size"
+            "text": "Separate End Caption Can Earn Chop Uninterested Unlock Drain Cool Claim Aware Expext Table Bounce Untidy Magical Comparison Rampant Water Disarm Add Paste Spark Airport Able Wary Rural Horses Successful Clever Soak Orange Rule Story Young Smoggy Condition Yard Income Skate Promise Defeated Empty Weather Sub Size",
+            "words": 47
         },
         "7ed70a46-ecfa-4659-bfb0-a115c4058510": {
             "uuid": "7ed70a46-ecfa-4659-bfb0-a115c4058510",
@@ -133,7 +147,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "I stuffed a shirt or two into my old carpet bag, tucked it under my arm, and started for Cape Horn and the Pacific. Quitting the good city of old Manhatto, I duly arrived in New Bedford. It was a Saturday night in December. Much was I disappointed upon learning that the little packet for Nantucket had already sailed, and that no way of reaching that place would offer, till the following Monday."
+            "text": "I stuffed a shirt or two into my old carpet bag, tucked it under my arm, and started for Cape Horn and the Pacific. Quitting the good city of old Manhatto, I duly arrived in New Bedford. It was a Saturday night in December. Much was I disappointed upon learning that the little packet for Nantucket had already sailed, and that no way of reaching that place would offer, till the following Monday.",
+            "words": 73
         },
         "faf925e6-4a76-43f7-b831-f98c39a9be45": {
             "uuid": "faf925e6-4a76-43f7-b831-f98c39a9be45",
@@ -142,7 +157,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "I was not able to light on any map or work giving the exact locality of the Castle Dracula, as there are no maps of this country as yet to compare with our own Ordnance Survey maps, but I found that Bistritz, the post town named by Count Dracula, is a fairly well known place."
+            "text": "I was not able to light on any map or work giving the exact locality of the Castle Dracula, as there are no maps of this country as yet to compare with our own Ordnance Survey maps, but I found that Bistritz, the post town named by Count Dracula, is a fairly well known place.",
+            "words": 55
         },
         "914834bb-a8c5-4b7e-bdce-ac13c6afb7f2": {
             "uuid": "914834bb-a8c5-4b7e-bdce-ac13c6afb7f2",
@@ -151,7 +167,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "To Sherlock Holmes she is always the woman. I have seldom heard him mention her under any other name. In his eyes she eclipses and predominates the whole of her sex. It was not that he felt any emotion akin to love for Irene Adler. All emotions, and that one particularly, were abhorrent to his cold, precise but admirably balanced mind."
+            "text": "To Sherlock Holmes she is always the woman. I have seldom heard him mention her under any other name. In his eyes she eclipses and predominates the whole of her sex. It was not that he felt any emotion akin to love for Irene Adler. All emotions, and that one particularly, were abhorrent to his cold, precise but admirably balanced mind.",
+            "words": 61
         },
         "b4cf964e-2cd5-47cf-a1be-6f47e7e48447": {
             "uuid": "b4cf964e-2cd5-47cf-a1be-6f47e7e48447",
@@ -160,7 +177,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": false,
-            "text": "<<<< >>>> <<<< >>>> qqqq @@@@ qqqq @@@@ ,,,, ;;;; ,,,, ;;;; .... :::: ---- ____ ---- ____ #### '''' #### '''' ++++ **** #@<: +*#_ #.q> '.,: +'>; <_.* #:,> :@_* #*#. >:,; <@., _#+q"
+            "text": "<<<< >>>> <<<< >>>> qqqq @@@@ qqqq @@@@ ,,,, ;;;; ,,,, ;;;; .... :::: ---- ____ ---- ____ #### '''' #### '''' ++++ **** #@<: +*#_ #.q> '.,: +'>; <_.* #:,> :@_* #*#. >:,; <@., _#+q",
+            "words": 36
         },
         "63a243e1-e0a2-4a2e-9954-6345d828ba6f": {
             "uuid": "63a243e1-e0a2-4a2e-9954-6345d828ba6f",
@@ -169,7 +187,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "All my ducklings, Swimming on the lake, Swimming on the lake, Heads in the water, Little tails up in the air! All my little doves, Sitting on the roof, Sitting on the roof; Clipper, clapper, clap, clap, They fly over the roof. All my chickens,Scratching in the straw, Scratching in the straw, Find a little grain, They're all happy. All my goslings, Waddle across the ground, Waddle across the ground, Search in the pond, Become round like a ball."
+            "text": "All my ducklings, Swimming on the lake, Swimming on the lake, Heads in the water, Little tails up in the air! All my little doves, Sitting on the roof, Sitting on the roof; Clipper, clapper, clap, clap, They fly over the roof. All my chickens, Scratching in the straw, Scratching in the straw, Find a little grain, They're all happy. All my goslings, Waddle across the ground, Waddle across the ground, Search in the pond, Become round like a ball.",
+            "words": 80
         },
         "1d320e06-3dd2-44eb-b630-8435074c799f": {
             "uuid": "1d320e06-3dd2-44eb-b630-8435074c799f",
@@ -178,7 +197,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages."
+            "text": "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages.",
+            "words": 108
         },
         "3ceb787f-89e3-4cbd-bb00-a12683432fe0": {
             "uuid": "3ceb787f-89e3-4cbd-bb00-a12683432fe0",
@@ -187,7 +207,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "The king of a great land died, and left his queen to take care of their only child. This child was a daughter, who was very beautiful; and her mother loved her dearly, and was very kind to her. And there was a good fairy too, who was fond of the princess, and helped her mother to watch over her. When she grew up, she was betrothed to a prince who lived a great way off; and as the time drew near for her to be married, she got ready to set off on her journey to his country."
+            "text": "The king of a great land died, and left his queen to take care of their only child. This child was a daughter, who was very beautiful; and her mother loved her dearly, and was very kind to her. And there was a good fairy too, who was fond of the princess, and helped her mother to watch over her. When she grew up, she was betrothed to a prince who lived a great way off; and as the time drew near for her to be married, she got ready to set off on her journey to his country.",
+            "words": 99
         },
         "07750046-c33f-426b-b6c3-614cece564c3": {
             "uuid": "07750046-c33f-426b-b6c3-614cece564c3",
@@ -196,7 +217,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "On either side there stood gold and silver mastiffs which Vulcan, with his consummate skill, had fashioned expressly to keep watch over the palace of king Alcinous; so they were immortal and could never grow old. Seats were ranged all along the wall, here and there from one end to the other, with coverings of fine woven work which the women of the house had made."
+            "text": "On either side there stood gold and silver mastiffs which Vulcan, with his consummate skill, had fashioned expressly to keep watch over the palace of king Alcinous; so they were immortal and could never grow old. Seats were ranged all along the wall, here and there from one end to the other, with coverings of fine woven work which the women of the house had made.",
+            "words": 66
         },
         "ba5fd9d6-f7e8-45bb-bc92-500394ddbb7f": {
             "uuid": "ba5fd9d6-f7e8-45bb-bc92-500394ddbb7f",
@@ -205,7 +227,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "SATURDAY morning was come, and all the summer world was bright and fresh, and brimming with life. There was a song in every heart; and if the heart was young the music issued at the lips. There was cheer in every face and a spring in every step. The locust-trees were in bloom and the fragrance of the blossoms filled the air."
+            "text": "SATURDAY morning was come, and all the summer world was bright and fresh, and brimming with life. There was a song in every heart; and if the heart was young the music issued at the lips. There was cheer in every face and a spring in every step. The locust-trees were in bloom and the fragrance of the blossoms filled the air.",
+            "words": 62
         },
         "97b4cfc5-6a3a-4429-aaf9-bdad1c6f4d24": {
             "uuid": "97b4cfc5-6a3a-4429-aaf9-bdad1c6f4d24",
@@ -214,7 +237,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": false,
-            "text": "1234567890 0987654321 12 23 34 45 06 67 18 89 90 2998711 054321,1233 179.457.110.234,023 2511964 71231 17139271 54110 547485 731954 1234789 87451 4548 1548 51515 68741 234889 154752"
+            "text": "1234567890 0987654321 12 23 34 45 06 67 18 89 90 2998711 054321,1233 179.457.110.234,023 2511964 71231 17139271 54110 547485 731954 1234789 87451 4548 1548 51515 68741 234889 154752",
+            "words": 28
         },
         "dce26359-537c-40b4-8d60-bb664489b839": {
             "uuid": "dce26359-537c-40b4-8d60-bb664489b839",
@@ -223,7 +247,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "The error of the British explorers was at once admitted by Mr. Quibell, in his volume on the excavations of 1897 at el-Kab, published in 1898. Mr. Quibell at once found full and adequate confirmation of M. de Morgan’s discovery in his diggings at el-Kab. Prof. Petrie admitted the correctness of M. de Morgan's views in the preface to his volume Diospolis Parva, published three years later in 1901."
+            "text": "The error of the British explorers was at once admitted by Mr. Quibell, in his volume on the excavations of 1897 at el-Kab, published in 1898. Mr. Quibell at once found full and adequate confirmation of M. de Morgan’s discovery in his diggings at el-Kab. Prof. Petrie admitted the correctness of M. de Morgan's views in the preface to his volume Diospolis Parva, published three years later in 1901.",
+            "words": 69
         },
         "87bbd39d-50d6-490b-8135-b0bd905b2aa2": {
             "uuid": "87bbd39d-50d6-490b-8135-b0bd905b2aa2",
@@ -232,7 +257,8 @@
             "gemsPerLetter": 3,
             "xpForSuccess": 52,
             "countsTowardsStats": true,
-            "text": "Alice noticed with some surprise that the pebbles were all turning into little cakes as they lay on the floor, and a bright idea came into her head. \"If I eat one of these cakes,\" she thought, \"it's sure to make some change in my size; and, as it can't possibly make me larger, it must make me smaller, I suppose.\""
+            "text": "Alice noticed with some surprise that the pebbles were all turning into little cakes as they lay on the floor, and a bright idea came into her head. \"If I eat one of these cakes,\" she thought, \"it's sure to make some change in my size; and, as it can't possibly make me larger, it must make me smaller, I suppose.\"",
+            "words": 61
         },
         "8543356b-6220-4715-b89d-3d7ec55541cd": {
             "uuid": "8543356b-6220-4715-b89d-3d7ec55541cd",
@@ -241,7 +267,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif."
+            "text": "Far... far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic lif.",
+            "words": 83
         },
         "5d43725b-3c62-4b22-8209-18323efc467f": {
             "uuid": "5d43725b-3c62-4b22-8209-18323efc467f",
@@ -250,7 +277,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": false,
-            "text": "1! 2\" 3§ 4$ 5% 6& 7/ 8( 9) 8( 9) 0= ß? 123$ 234% 345& 456/ 567( 678) 789= 890? (748 (/§/2 /389 8735 (/32 7=?0 \"(!3 138! 38&2 ß0?1 84§/ !)28 !)34 )82!"
+            "text": "1! 2\" 3§ 4$ 5% 6& 7/ 8( 9) 8( 9) 0= ß? 123$ 234% 345& 456/ 567( 678) 789= 890? (748 (/§/2 /389 8735 (/32 7=?0 \"(!3 138! 38&2 ß0?1 84§/ !)28 !)34 )82!",
+            "words": 35
         },
         "009b07de-b891-4e3a-814b-b0a50de81471": {
             "uuid": "009b07de-b891-4e3a-814b-b0a50de81471",
@@ -259,7 +287,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "Danforth was a great reader of bizarre material, and had talked a good deal of Poe. I was interested myself because of the antarctic scene of Poe's only long story-the disturbing and enigmatical Arthur Gordon Pym. On the barren shore, and on the lofty ice barrier in the background, myriads of grotesque penguins squawked and flapped their fins; while many fat seals were visible on the water, swimming or sprawling across large cakes of slowly drifting ice."
+            "text": "Danforth was a great reader of bizarre material, and had talked a good deal of Poe. I was interested myself because of the antarctic scene of Poe's only long story-the disturbing and enigmatical Arthur Gordon Pym. On the barren shore, and on the lofty ice barrier in the background, myriads of grotesque penguins squawked and flapped their fins; while many fat seals were visible on the water, swimming or sprawling across large cakes of slowly drifting ice.",
+            "words": 77
         },
         "603e73db-ec01-4253-8413-54b170f9abad": {
             "uuid": "603e73db-ec01-4253-8413-54b170f9abad",
@@ -268,7 +297,8 @@
             "gemsPerLetter": 6,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "\"Oh, God\", he thought, \"what a strenuous career it is that I've chosen! Travelling day in and day out. Doing business like this takes much more effort than doing your own business at home, and on top of that there's the curse of travelling, worries about making train connections, bad and irregular food, contact with different people all the time so that you can never get to know anyone or become friendly with them. It can all go to Hell!\""
+            "text": "\"Oh, God\", he thought, \"what a strenuous career it is that I've chosen! Travelling day in and day out. Doing business like this takes much more effort than doing your own business at home, and on top of that there's the curse of travelling, worries about making train connections, bad and irregular food, contact with different people all the time so that you can never get to know anyone or become friendly with them. It can all go to Hell!\"",
+            "words": 80
         },
         "d9b0edb8-d45a-466b-846a-5f9dd0b50562": {
             "uuid": "d9b0edb8-d45a-466b-846a-5f9dd0b50562",
@@ -277,7 +307,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "There is a house in New Orleans; They call the Rising Sun; And it's been the ruin of many a poor boy; And God I know I'm one; My mother was a tailor; She sewed my new blue jeans; My father was a gamblin' man; Down in New Orleans; Now the only thing a gambler needs; Is a suitcase and trunk; And the only time he's satisfied; Is when he's all drunk; Oh mother tell your children; Not to do what I have done; Spend your lives in sin and misery; In the House of the Rising Sun; Well, I got one foot on the platform; The other foot on the train; I'm goin' back to New Orleans; To wear that ball and chain; Well, there is a house in New Orleans; They call the Rising Sun; And it's been the ruin of many a poor boy; And God I know I'm one;"
+            "text": "There is a house in New Orleans; They call the Rising Sun; And it's been the ruin of many a poor boy; And God I know I'm one; My mother was a tailor; She sewed my new blue jeans; My father was a gamblin' man; Down in New Orleans; Now the only thing a gambler needs; Is a suitcase and trunk; And the only time he's satisfied; Is when he's all drunk; Oh mother tell your children; Not to do what I have done; Spend your lives in sin and misery; In the House of the Rising Sun; Well, I got one foot on the platform; The other foot on the train; I'm goin' back to New Orleans; To wear that ball and chain; Well, there is a house in New Orleans; They call the Rising Sun; And it's been the ruin of many a poor boy; And God I know I'm one;",
+            "words": 153
         },
         "a622f32e-9816-45a6-943d-659064942cda": {
             "uuid": "a622f32e-9816-45a6-943d-659064942cda",
@@ -286,7 +317,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": false,
-            "text": "<html> <tt> <section> <nav> <col> <iframe> <h1> <tbody> <input> <th> <article> <option> <ol> <a> <header> <button> <textarea> <link> <data> <img> <dialog> <title> <svg> <body> <small> <i> <center> <table> <thead> <code> <embed> <p> <br> <hr> <pre> <style> <audio> <cite> <b> <label> <td> <head> <dir> <ul> <li> <q> <form> <div> <caption> <u> <tr> <video> <time> <noscript> <footer> <ul> <select> <canvas> <h6> <span> <script> <font>"
+            "text": "<html> <tt> <section> <nav> <col> <iframe> <h1> <tbody> <input> <th> <article> <option> <ol> <a> <header> <button> <textarea> <link> <data> <img> <dialog> <title> <svg> <body> <small> <i> <center> <table> <thead> <code> <embed> <p> <br> <hr> <pre> <style> <audio> <cite> <b> <label> <td> <head> <dir> <ul> <li> <q> <form> <div> <caption> <u> <tr> <video> <time> <noscript> <footer> <ul> <select> <canvas> <h6> <span> <script> <font>",
+            "words": 62
         },
         "15656f75-6812-45ef-9e37-ef0a480bbfec": {
             "uuid": "15656f75-6812-45ef-9e37-ef0a480bbfec",
@@ -295,7 +327,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "I am already far north of London, and as I walk in the streets of Petersburgh, I feel a cold northern breeze play upon my cheeks, which braces my nerves and fills me with delight. Do you understand this feeling? This breeze, which has travelled from the regions towards which I am advancing, gives me a foretaste of those icy climes. Inspirited by this wind of promise, my daydreams become more fervent and vivid."
+            "text": "I am already far north of London, and as I walk in the streets of Petersburgh, I feel a cold northern breeze play upon my cheeks, which braces my nerves and fills me with delight. Do you understand this feeling? This breeze, which has travelled from the regions towards which I am advancing, gives me a foretaste of those icy climes. Inspirited by this wind of promise, my daydreams become more fervent and vivid.",
+            "words": 74
         },
         "62bfd76a-00c8-46b2-84e7-b676e2f9e09e": {
             "uuid": "62bfd76a-00c8-46b2-84e7-b676e2f9e09e",
@@ -304,7 +337,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "I've got a Lizard in my boot. Now this is a force to be reckoned with! This is why I have games named after me! I'm﻿ not gonna fight you, I'm gonna KICK YOUR ASS! Welcome to \"Cool's-Ville\", Population: Me! Damn, I'm good! It's down to you and me, you one-eyed freak! Holy cow! Hmm, that's one \"Doomed\" Space Marine. Duke wins.... Fatality! It's time to kick ass and chew bubble gum and I'm all outta gum."
+            "text": "I've got a Lizard in my boot. Now this is a force to be reckoned with! This is why I have games named after me! I'm﻿ not gonna fight you, I'm gonna KICK YOUR ASS! Welcome to \"Cool's-Ville\", Population: Me! Damn, I'm good! It's down to you and me, you one-eyed freak! Holy cow! Hmm, that's one \"Doomed\" Space Marine. Duke wins.... Fatality! It's time to kick ass and chew bubble gum and I'm all outta gum.",
+            "words": 77
         },
         "6c66e258-c7ba-46fc-a6a6-c5903d66f544": {
             "uuid": "6c66e258-c7ba-46fc-a6a6-c5903d66f544",
@@ -313,7 +347,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "The English name Vienna is borrowed from the homonymous Italian version of the city's name or the French Vienne. The etymology of the city's name is still subject to scholarly dispute. Some claim that the name comes from Vedunia, meaning \"forest stream\", which subsequently produced the Old High German Uuenia (Wenia in modern writing), the New High German Wien and its dialectal variant Wean."
+            "text": "The English name Vienna is borrowed from the homonymous Italian version of the city's name or the French Vienne. The etymology of the city's name is still subject to scholarly dispute. Some claim that the name comes from Vedunia, meaning \"forest stream\", which subsequently produced the Old High German Uuenia (Wenia in modern writing), the New High German Wien and its dialectal variant Wean.",
+            "words": 64
         },
         "a590a1f7-7530-4ab5-b8b4-18fc975a06cf": {
             "uuid": "a590a1f7-7530-4ab5-b8b4-18fc975a06cf",
@@ -322,7 +357,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "The skeletal system is the primary structural organ system of the body. Many people think of the skeletal system as being static in that it is unchanging, however, this is not the case. Bones, like other organ systems, have specialized cells which allow them to perform a variety of essential tasks. Osteoblast are responsible for secreting the bony matrix necessary for bone formation. Osteoclast, meanwhile, are large multinucleated cells responsible for the dissolution and reabsorption of bone."
+            "text": "The skeletal system is the primary structural organ system of the body. Many people think of the skeletal system as being static in that it is unchanging, however, this is not the case. Bones, like other organ systems, have specialized cells which allow them to perform a variety of essential tasks. Osteoblast are responsible for secreting the bony matrix necessary for bone formation. Osteoclast, meanwhile, are large multinucleated cells responsible for the dissolution and reabsorption of bone.",
+            "words": 77
         },
         "dd23bbba-b935-433f-91b2-a6fe680688dd": {
             "uuid": "dd23bbba-b935-433f-91b2-a6fe680688dd",
@@ -331,7 +367,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "The Nellie, a cruising yawl, swung to her anchor without a flutter of the sails, and was at rest. The flood had made, the wind was nearly calm, and being bound down the river, the only thing for it was to come to and wait for the turn of the tide. The sea-reach of the Thames stretched before us like the beginning of an interminable waterway."
+            "text": "The Nellie, a cruising yawl, swung to her anchor without a flutter of the sails, and was at rest. The flood had made, the wind was nearly calm, and being bound down the river, the only thing for it was to come to and wait for the turn of the tide. The sea-reach of the Thames stretched before us like the beginning of an interminable waterway.",
+            "words": 66
         },
         "820e782e-03ba-409b-86e4-1549be87702f": {
             "uuid": "820e782e-03ba-409b-86e4-1549be87702f",
@@ -340,7 +377,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "About noon I stopped at the captain's door with some cooling drinks and medicines. He was lying very much as we had left him, only a little higher, and he seemed both weak and excited. \"Jim,\" he said, \"you're the only one here that's worth anything, and you know I've been always good to you. Never a month but I've given you a silver fourpenny for yourself. And now you see, mate, I'm pretty low, and deserted by all; and Jim, you'll bring me one noggin of rum, now, won't you, matey?\""
+            "text": "About noon I stopped at the captain's door with some cooling drinks and medicines. He was lying very much as we had left him, only a little higher, and he seemed both weak and excited. \"Jim,\" he said, \"you're the only one here that's worth anything, and you know I've been always good to you. Never a month but I've given you a silver fourpenny for yourself. And now you see, mate, I'm pretty low, and deserted by all; and Jim, you'll bring me one noggin of rum, now, won't you, matey?\"",
+            "words": 92
         },
         "1cea8579-6028-4e99-a6c3-e0b64f0fa92e": {
             "uuid": "1cea8579-6028-4e99-a6c3-e0b64f0fa92e",
@@ -349,7 +387,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "Mega gem; No trace, not one carton; God's dog; Tino dump mud on it; Smart rams; Evil, a sin, is alive; Elk rap song? No sparkle; Dog doo? Good God!; I did, did I?; Draw nine men inward; Laminated E.T. animal; Sit on a potato pan Otis; In word salad, alas, drown I; Dog! No poop on God!; Do not bob to nod; Draw pupil's lip upward; Avid diva; rotor; kayak; If I fret, fasten nets after Fifi; No sir! Away! A papaya war is on; Ah, Satan sees Natasha!; Never odd or even;"
+            "text": "Mega gem; No trace, not one carton; God's dog; Tino dump mud on it; Smart rams; Evil, a sin, is alive; Elk rap song? No sparkle; Dog doo? Good God!; I did, did I?; Draw nine men inward; Laminated E.T. animal; Sit on a potato pan Otis; In word salad, alas, drown I; Dog! No poop on God!; Do not bob to nod; Draw pupil's lip upward; Avid diva; rotor; kayak; If I fret, fasten nets after Fifi; No sir! Away! A papaya war is on; Ah, Satan sees Natasha!; Never odd or even;",
+            "words": 94
         },
         "0a9b0d6a-f987-4e48-8bf1-d4e8d825c58e": {
             "uuid": "0a9b0d6a-f987-4e48-8bf1-d4e8d825c58e",
@@ -358,7 +397,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed. A yellow dressinggown, ungirdled, was sustained gently behind him on the mild morning air. He held the bowl aloft and intoned: —Introibo ad altare Dei. Halted, he peered down the dark winding stairs and called out coarsely: -Come up, Kinch! Come up, you fearful jesuit!"
+            "text": "Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed. A yellow dressinggown, ungirdled, was sustained gently behind him on the mild morning air. He held the bowl aloft and intoned: —Introibo ad altare Dei. Halted, he peered down the dark winding stairs and called out coarsely: -Come up, Kinch! Come up, you fearful jesuit!",
+            "words": 67
         },
         "2c88535d-d568-42cc-8ec7-1efba52679fd": {
             "uuid": "2c88535d-d568-42cc-8ec7-1efba52679fd",
@@ -367,7 +407,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "When I came out of the shadows I was in a San Francisco hospital; brought thither by the captain of the American ship which had picked up my boat in mid-ocean. In my delirium I had said much, but found that my words had been given scant attention. Of any land upheaval in the Pacific, my rescuers knew nothing; nor did I deem it necessary to insist upon a thing which I knew they could not believe. Once I sought out a celebrated ethnologist, and amused him with peculiar questions regarding the ancient Philistine legend of Dagon, the Fish-God; but soon perceiving that he was hopelessly conventional, I did not press my inquiries."
+            "text": "When I came out of the shadows I was in a San Francisco hospital; brought thither by the captain of the American ship which had picked up my boat in mid-ocean. In my delirium I had said much, but found that my words had been given scant attention. Of any land upheaval in the Pacific, my rescuers knew nothing; nor did I deem it necessary to insist upon a thing which I knew they could not believe. Once I sought out a celebrated ethnologist, and amused him with peculiar questions regarding the ancient Philistine legend of Dagon, the Fish-God; but soon perceiving that he was hopelessly conventional, I did not press my inquiries.",
+            "words": 113
         },
         "72214b36-17b3-4850-99ee-647a05bfb4b1": {
             "uuid": "72214b36-17b3-4850-99ee-647a05bfb4b1",
@@ -376,7 +417,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "The Peaky Blinders were an urban street gang based in Birmingham, England, that operated from the end of the 19th century and after the First World War. The group, which grew out of the harsh economic deprivations of working class Britain, was composed largely of young men of lower to middle-classes. They derived social power from robbery, violence, racketeering, illegal bookmaking and the control of gambling. Members of this gang wore a signature outfit that included tailored jackets, lapel overcoats, button waistcoats, silk scarves, bell-bottom trousers, leather boots, and peaked flat caps. The gang was highly organised with its own systems of hierarchy."
+            "text": "The Peaky Blinders were an urban street gang based in Birmingham, England, that operated from the end of the 19th century and after the First World War. The group, which grew out of the harsh economic deprivations of working class Britain, was composed largely of young men of lower to middle-classes. They derived social power from robbery, violence, racketeering, illegal bookmaking and the control of gambling. Members of this gang wore a signature outfit that included tailored jackets, lapel overcoats, button waistcoats, silk scarves, bell-bottom trousers, leather boots, and peaked flat caps. The gang was highly organised with its own systems of hierarchy.",
+            "words": 103
         },
         "e3e33f6c-60f4-40fc-8af7-a7c4cf623ea5": {
             "uuid": "e3e33f6c-60f4-40fc-8af7-a7c4cf623ea5",
@@ -385,7 +427,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "findIndex iterator selectBits format getUTCDay Array.prototype.includes() find() shiftRightArithmeticByScalar NumberFormat EPSILON toLocaleString getMinutes() Array.prototype.reverse() reduce() some Math.random() callee Math,pow() SIMD.%type%.or() toJSON Number.NEGATIVE_INFINITY fromFloat32x4Bits max concat log POSITIVE_INFINITY and Promise.all(iterable) setFullYear() defineProperties Math.tan() freeze getMonths toLocaleTimeString Math.atanh()"
+            "text": "findIndex iterator selectBits format getUTCDay Array.prototype.includes() find() shiftRightArithmeticByScalar NumberFormat EPSILON toLocaleString getMinutes() Array.prototype.reverse() reduce() some Math.random() callee Math,pow() SIMD.%type%.or() toJSON Number.NEGATIVE_INFINITY fromFloat32x4Bits max concat log POSITIVE_INFINITY and Promise.all(iterable) setFullYear() defineProperties Math.tan() freeze getMonths toLocaleTimeString Math.atanh()",
+            "words": 35
         },
         "2a0917f2-caf3-4ce0-9368-04f8cde07f1d": {
             "uuid": "2a0917f2-caf3-4ce0-9368-04f8cde07f1d",
@@ -394,7 +437,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "Half a pound of tuppenny rice. Half a pound of treacle. That's the way the money goes. Pop goes the weasel. Ha ha, yeah. Half a pound of tuppenny rice. Half a pound of treacle. That's the way the money goes. Pop goes the weasel. Every night, when I go out. The weasel's on the table. Take a stick and knock it off. Pop goes the weasel. Up and down the city road. In and out of the eagle. That's the way the money goes. Pop goes the weasel."
+            "text": "Half a pound of tuppenny rice. Half a pound of treacle. That's the way the money goes. Pop goes the weasel. Ha ha, yeah. Half a pound of tuppenny rice. Half a pound of treacle. That's the way the money goes. Pop goes the weasel. Every night, when I go out. The weasel's on the table. Take a stick and knock it off. Pop goes the weasel. Up and down the city road. In and out of the eagle. That's the way the money goes. Pop goes the weasel.",
+            "words": 89
         },
         "47ef8224-a506-4f2c-807d-c7b97dc029bf": {
             "uuid": "47ef8224-a506-4f2c-807d-c7b97dc029bf",
@@ -403,7 +447,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "FAUSTUS. So Faustus hath. Already done; and holds this principle, There is no chief but only Belzebub; To whom Faustus doth dedicate himself. This word \"damnation\" terrifies not him, For he confounds hell in Elysium: His ghost be with the old philosophers!But, leaving these vain trifles of men's souls, Tell me what is that Lucifer thy lord? MEPHIST. Arch-regent and commander of all spirits. FAUSTUS. Was not that Lucifer an angel once?"
+            "text": "FAUSTUS. So Faustus hath. Already done; and holds this principle, There is no chief but only Belzebub; To whom Faustus doth dedicate himself. This word \"damnation\" terrifies not him, For he confounds hell in Elysium: His ghost be with the old philosophers!But, leaving these vain trifles of men's souls, Tell me what is that Lucifer thy lord? MEPHIST. Arch-regent and commander of all spirits. FAUSTUS. Was not that Lucifer an angel once?",
+            "words": 72
         },
         "2d639ca3-163f-4c7b-b77c-f677bef22cde": {
             "uuid": "2d639ca3-163f-4c7b-b77c-f677bef22cde",
@@ -412,7 +457,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": false,
-            "text": "const add = () => {const gameResult : GameResultType = {lessonUuid: lessonsData.allIds[0], accuracy: Math.random(), maxStreak: new Date().getSeconds(), resultType: \"DONE\", wpm: new Date().getMilliseconds(), date: new Date(), gemsEarned: Math.round(Math.random() * 100), livesLeft: 10, maxLives: 50} gameResultHistoryDispatch({type: \"add\", payload: gameResult})}"
+            "text": "const add = () => {const gameResult : GameResultType = {lessonUuid: lessonsData.allIds[0], accuracy: Math.random(), maxStreak: new Date().getSeconds(), resultType: \"DONE\", wpm: new Date().getMilliseconds(), date: new Date(), gemsEarned: Math.round(Math.random() * 100), livesLeft: 10, maxLives: 50} gameResultHistoryDispatch({type: \"add\", payload: gameResult})}",
+            "words": 37
         },
         "1fc0facc-8f1a-42b8-8f95-8d2befebe88d": {
             "uuid": "1fc0facc-8f1a-42b8-8f95-8d2befebe88d",
@@ -421,7 +467,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "The older matters which had made the sculptor’s dream and bas-relief so significant to my uncle formed the subject of the second half of his long manuscript. Once before, it appears, Professor Angell had seen the hellish outlines of the nameless monstrosity, puzzled over the unknown hieroglyphics, and heard the ominous syllables which can be rendered only as “Cthulhu”; and all this in so stirring and horrible a connexion that it is small wonder he pursued young Wilcox with queries and demands for data."
+            "text": "The older matters which had made the sculptor’s dream and bas-relief so significant to my uncle formed the subject of the second half of his long manuscript. Once before, it appears, Professor Angell had seen the hellish outlines of the nameless monstrosity, puzzled over the unknown hieroglyphics, and heard the ominous syllables which can be rendered only as “Cthulhu”; and all this in so stirring and horrible a connexion that it is small wonder he pursued young Wilcox with queries and demands for data.",
+            "words": 84
         },
         "45503870-d607-4c17-9be0-7a27d750cdf1": {
             "uuid": "45503870-d607-4c17-9be0-7a27d750cdf1",
@@ -430,7 +477,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "I find myself questioning the value of our customary refusal to communicate thoughts of a delicate and sensitive nature. The Earth people, who speak their thoughts, perhaps are less primitive than we like to imagine. They seem to have no sense of the danger of overwhelming the soul of another with unwanted confidences. The purely vocal nature of their communication does not admit an excessive degree of emotion to their relationships. They do not have to erect any artificial barriers between each other, as we must who exchange on a mental level."
+            "text": "I find myself questioning the value of our customary refusal to communicate thoughts of a delicate and sensitive nature. The Earth people, who speak their thoughts, perhaps are less primitive than we like to imagine. They seem to have no sense of the danger of overwhelming the soul of another with unwanted confidences. The purely vocal nature of their communication does not admit an excessive degree of emotion to their relationships. They do not have to erect any artificial barriers between each other, as we must who exchange on a mental level.",
+            "words": 92
         },
         "351cfb8e-14a6-4135-a301-d1b31bd403fe": {
             "uuid": "351cfb8e-14a6-4135-a301-d1b31bd403fe",
@@ -439,7 +487,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": false,
-            "text": "password 123456 12345678 1234 qwerty 12345 dragon baseball football letmein monkey 696969 abc123 mustang michael shadow master jennifer 111111 2000 jordan superman harley 1234567 hunter trustno1 ranger buster thomas tigger robert soccer batman test pass hockey george charlie andrew michelle love sunshine jessica 6969 pepper daniel access 123456789 654321 joshua maggie starwars silver william dallas yankees 123123 ashley 666666 hello amanda orange biteme"
+            "text": "password 123456 12345678 1234 qwerty 12345 dragon baseball football letmein monkey 696969 abc123 mustang michael shadow master jennifer 111111 2000 jordan superman harley 1234567 hunter trustno1 ranger buster thomas tigger robert soccer batman test pass hockey george charlie andrew michelle love sunshine jessica 6969 pepper daniel access 123456789 654321 joshua maggie starwars silver william dallas yankees 123123 ashley 666666 hello amanda orange biteme",
+            "words": 63
         },
         "688d9178-05df-4488-9b24-32cae61202c3": {
             "uuid": "688d9178-05df-4488-9b24-32cae61202c3",
@@ -448,7 +497,8 @@
             "gemsPerLetter": 5,
             "xpForSuccess": 100,
             "countsTowardsStats": true,
-            "text": "A punched card or punch card is a piece of stiff paper that can be used to contain digital data represented by the presence or absence of holes in predefined positions. Digital data can be used for data processing applications or, in earlier examples, used to directly control automated machinery. Punched cards were widely used through much of the 20th century in the data processing industry, where specialized and increasingly complex unit record machines, organized into semiautomatic data processing systems, used punched cards for data input, output, and storage."
+            "text": "A punched card or punch card is a piece of stiff paper that can be used to contain digital data represented by the presence or absence of holes in predefined positions. Digital data can be used for data processing applications or, in earlier examples, used to directly control automated machinery. Punched cards were widely used through much of the 20th century in the data processing industry, where specialized and increasingly complex unit record machines, organized into semiautomatic data processing systems, used punched cards for data input, output, and storage.",
+            "words": 89
         }
     },
     "allIds": [

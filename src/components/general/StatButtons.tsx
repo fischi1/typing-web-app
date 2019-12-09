@@ -52,7 +52,7 @@ const StatButtons: FC<Props> = props => {
                 <StatButton
                     active={props.activeDataType === "lessonAmount"}
                     color={props.lessonsFinishedColor}
-                    label="Lessons finished"
+                    label="Lessons completed"
                     value={props.lessonsFinishedValue}
                     onClick={() => props.onDataTypeChange("lessonAmount")}
                 />
