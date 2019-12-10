@@ -1,7 +1,10 @@
 import { GameResultType } from "../types/GameResultType";
 import { MappedDataType } from "./mapData";
 
-const averageOfGameResults = (data: GameResultType[]): Record<keyof MappedDataType, string> => {
+const averageOfGameResults = (data: GameResultType[]): Record<keyof MappedDataType, string> | null => {
+
+    if(data.length === 0)
+        return null;
 
     var reduced = data.reduce((left, right) => ({
         accuracy: left.accuracy + right.accuracy,

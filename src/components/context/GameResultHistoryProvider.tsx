@@ -1,15 +1,19 @@
 import React, { createContext, FC, useContext, useReducer } from "react";
+import loadFromLocalStorage from "../../functions/loadFromLocalStorage";
 import usePersistToLocalStorageOnChange from "../../hooks/usePersistToLocalStorageOnChange";
 import { GameResultType } from "../../types/GameResultType";
-import loadFromLocalStorage from "../../functions/loadFromLocalStorage";
+
+type State = {
+    history: GameResultType[]
+} 
 
 type Action =
     {type: 'add', payload: GameResultType} |
-    {type: 'clear'}
+    {type: 'clear'} | 
+    {type: 'setState', payload: State}
+
 type Dispatch = (action: Action) => void
-type State = {
-    history: GameResultType[]
-}
+
 
 const GameResultHistoryStateContext = createContext<State | undefined>(undefined)
 const GameResultHistoryDispatchContext = createContext<Dispatch | undefined>(undefined);
@@ -22,6 +26,8 @@ const gameResultHistoryReducer = (state: State, action: Action) : State => {
             return {history: [...state.history, action.payload]};
         case "clear": 
             return {history: []};
+        case "setState":
+            return action.payload;
     }
 }
 

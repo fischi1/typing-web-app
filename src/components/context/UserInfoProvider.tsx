@@ -4,20 +4,23 @@ import usePersistToLocalStorageOnChange from "../../hooks/usePersistToLocalStora
 import { GameResultType } from "../../types/GameResultType";
 import lessonsData from "../../data/lessonsDataImport";
 
+type State = {
+    username: string,
+    xp: number,
+    gems: number
+}
+
 type Action = 
     {type: "setUserName", username: string} |
     {type: "addGems", amount: number} |
     {type: "removeGems", amount: number} |
     {type: "addXP", amount: number} | 
     {type: "resetProgression"} |
-    {type: "lessonComplete", payload: GameResultType};
+    {type: "lessonComplete", payload: GameResultType} |
+    {type: "setState", payload: State};
 
 type Dispatch = (action: Action) => void
-type State = {
-    username: string,
-    xp: number,
-    gems: number
-}
+
 
 const UserInfoStateContext = createContext<State | undefined>(undefined)
 const UserInfoDispatchContext = createContext<Dispatch | undefined>(undefined);
@@ -58,6 +61,9 @@ const userInfoReducer = (state: State, action: Action) : State => {
                 xp: state.xp + lesson.xpForSuccess,
                 gems: state.gems + action.payload.gemsEarned
             };
+        
+        case "setState": 
+            return action.payload
     }
 }
 

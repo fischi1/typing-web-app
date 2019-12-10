@@ -5,6 +5,7 @@ import { useTitleState } from '../context/TitleProvider';
 import Logo from '../interface/Logo';
 import MenuDrawer from './MenuDrawer';
 import UserInfoArea from './UserInfoArea';
+import useEnableExportImport from '../../hooks/useEnableExportImport';
 
 export const appbarHeight = "64px";
 
@@ -45,6 +46,8 @@ const TemporaryDrawer : FC<Props> = props => {
     const [open, setOpen] = useState<boolean>(false);
 
     const title = useTitleState();
+
+    useEnableExportImport();
 
     return (
         <>
