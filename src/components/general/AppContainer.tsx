@@ -50,7 +50,7 @@ const TemporaryDrawer : FC<Props> = props => {
 
     const userInfo = useUserInfoState();
 
-    useEnableExportImport();
+    useEnableExportImport(true);
 
     return (
         <>

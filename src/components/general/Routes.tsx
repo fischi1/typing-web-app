@@ -3,7 +3,6 @@ import { Redirect, Route } from "react-router";
 import About from "../../pages/About";
 import DebugPage from "../../pages/DebugPage";
 import GameResult from "../../pages/GameResult";
-import Settings from "../../pages/Settings";
 import Home from "../../pages/Home";
 import Lessons from "../../pages/Lessons";
 import Stats from "../../pages/Stats";
@@ -27,9 +26,6 @@ const Routes : FC<{}> = () => {
             </UsernameGivenRoute>
             <UsernameGivenRoute exact path="/stats">
                 <Stats />
-            </UsernameGivenRoute>
-            <UsernameGivenRoute exact path="/settings">
-                <Settings />
             </UsernameGivenRoute>
             <UsernameGivenRoute exact path="/about">
                 <About />

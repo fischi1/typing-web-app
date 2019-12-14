@@ -46,7 +46,7 @@ const userInfoReducer = (state: State, action: Action) : State => {
             return {...state, username: action.username};
 
         case "resetProgression": 
-            return {...initialState, username: state.username};
+            return {...initialState};
 
         case "lessonComplete": 
             const lesson = lessonsData.data[action.payload.lessonUuid];

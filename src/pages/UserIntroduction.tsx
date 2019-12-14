@@ -1,10 +1,12 @@
 import { Button, Container, Grid, TextField, Typography, useTheme } from "@material-ui/core";
 import React, { FC, FormEvent, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useSetTitleOnMount } from "../components/context/TitleProvider";
 import { useUserInfoDispatch, useUserInfoState } from "../components/context/UserInfoProvider";
 import { appbarHeight } from "../components/general/AppContainer";
 import HubButton from "../components/interface/HubButton";
 import { highlightColors } from "../highlightColors";
-import { useHistory } from "react-router-dom";
+import useLoadExampleData from "../hooks/useLoadExampleData";
 
 type Props = {
 
@@ -14,10 +16,14 @@ const maxUserNameLength = 12;
 
 const UserIntroduction: FC<Props> = props => {
 
+    useSetTitleOnMount("");
+
     const userInfoState = useUserInfoState();
     const userInfoDispatch = useUserInfoDispatch();
     const theme = useTheme();
     const history = useHistory();
+
+    const loadExampleData = useLoadExampleData();
 
     const [name, setName] = useState("");
 
@@ -76,7 +82,10 @@ const UserIntroduction: FC<Props> = props => {
                 </form>
 
                 
-                <Button onClick={() => console.log("adsf")} style={{textTransform: "none", marginTop: theme.spacing(6)}}>
+                <Button
+                    onClick={loadExampleData}
+                    style={{textTransform: "none", marginTop: theme.spacing(6)}}
+                >
                     <span style={{fontSize: "1.5rem"}}>Skip and use example data</span>
                 </Button>
             </Container>

@@ -32,10 +32,6 @@ const MenuDrawer : FC<Props> = props => {
             url: "/stats"
         },
         {
-            text: "Settings",
-            url: "/settings"
-        },
-        {
             text: "About",
             url: "/about"
         }
