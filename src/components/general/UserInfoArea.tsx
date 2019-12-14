@@ -8,6 +8,9 @@ const UserInfoArea: FC<{}> = () => {
     const userInfo = useUserInfoState();
     const lvlInfo = useCalculateLvlInfo();
 
+    if(userInfo.username === "")
+        return null;
+
     return (
         <AccountInformation 
             curXP={lvlInfo.xp}

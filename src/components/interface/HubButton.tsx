@@ -2,12 +2,14 @@ import React, { FC } from "react";
 import { Button, Typography } from "@material-ui/core";
 
 type Props = {
-    onClick: () => void
+    onClick?: () => void,
+    type?: "button" | "submit",
+    disabled?: boolean
 }
 
 const HubButton: FC<Props> = props => (
     <div>
-        <Button component="h6" onClick={props.onClick}>
+        <Button onClick={props.onClick} type={props.type ?? "button"} disabled={props.disabled}>
             <Typography color="inherit" variant="h6" style={{textTransform: "none"}}>
                 {props.children}
             </Typography>                    

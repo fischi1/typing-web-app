@@ -6,6 +6,7 @@ import Logo from '../interface/Logo';
 import MenuDrawer from './MenuDrawer';
 import UserInfoArea from './UserInfoArea';
 import useEnableExportImport from '../../hooks/useEnableExportImport';
+import { useUserInfoState } from '../context/UserInfoProvider';
 
 export const appbarHeight = "64px";
 
@@ -47,6 +48,8 @@ const TemporaryDrawer : FC<Props> = props => {
 
     const title = useTitleState();
 
+    const userInfo = useUserInfoState();
+
     useEnableExportImport();
 
     return (
@@ -54,14 +57,14 @@ const TemporaryDrawer : FC<Props> = props => {
             <AppBar position="sticky" className={classes.appbar}>
                 <Toolbar disableGutters>
                     <div className={classes.leftHeader}>
-                        <IconButton
-                        color="inherit"
-                        aria-label="Open drawer"
-                        onClick={() => setOpen(true)}
-                        className={classes.burgerMenuButton}
+                        {userInfo.username !== "" && <IconButton
+                            color="inherit"
+                            aria-label="Open drawer"
+                            onClick={() => setOpen(true)}
+                            className={classes.burgerMenuButton}
                         >
                             <MenuIcon fontSize="small" className={classes.burgerMenuIcon}/>
-                        </IconButton>
+                        </IconButton>}
                         <Typography variant="h1" className={classes.header}>
                             {title}
                         </Typography>

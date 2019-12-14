@@ -9,32 +9,37 @@ import Lessons from "../../pages/Lessons";
 import Stats from "../../pages/Stats";
 import Typing from "../../pages/Typing";
 import AnimatedSwitch from "./AnimatedSwitch";
+import UsernameGivenRoute from "./UsernameGivenRoute";
+import UserIntroduction from "../../pages/UserIntroduction";
 
 const Routes : FC<{}> = () => {
 
     return (
-        <AnimatedSwitch>            
-            <Route exact path="/">
+        <AnimatedSwitch>
+            <Route exact path="/intro">
+                <UserIntroduction />
+            </Route> 
+            <UsernameGivenRoute exact path="/">
                 <Home />
-            </Route>
-            <Route exact path="/lessons">
+            </UsernameGivenRoute>
+            <UsernameGivenRoute exact path="/lessons">
                 <Lessons />
-            </Route>
-            <Route exact path="/stats">
+            </UsernameGivenRoute>
+            <UsernameGivenRoute exact path="/stats">
                 <Stats />
-            </Route>
-            <Route exact path="/settings">
+            </UsernameGivenRoute>
+            <UsernameGivenRoute exact path="/settings">
                 <Settings />
-            </Route>
-            <Route exact path="/about">
+            </UsernameGivenRoute>
+            <UsernameGivenRoute exact path="/about">
                 <About />
-            </Route>
-            <Route exact path="/typing/:uuid">
+            </UsernameGivenRoute>
+            <UsernameGivenRoute exact path="/typing/:uuid">
                 <Typing />
-            </Route>
-            <Route exact path="/gameresult">
+            </UsernameGivenRoute>
+            <UsernameGivenRoute exact path="/gameresult">
                 <GameResult />
-            </Route>
+            </UsernameGivenRoute>
             
             {process.env.NODE_ENV === "development" &&
                 <Route exact path="/debug">
@@ -48,9 +53,9 @@ const Routes : FC<{}> = () => {
             }
             
 
-            <Route>
+            <UsernameGivenRoute>
                 <Redirect to="/" />
-            </Route>
+            </UsernameGivenRoute>
         </AnimatedSwitch>
     );
 

@@ -87,6 +87,9 @@ const useStyles = makeStyles({
         },
         "::-moz-selection" : {
             backgroundColor: highlightColors.deer
+        },
+        "label.Mui-focused": {
+            color:highlightColors.white + " !important"
         }
     }
 });
