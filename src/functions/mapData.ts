@@ -18,7 +18,7 @@ const mapData = (gameResultHistory: GameResultType[]) : MappedDataType[] => {
     var dayData: Record<number, GameResultType[]> = {};
 
     gameResultHistory.forEach(gameResult => {
-        var dayNumber = transformToDayNr(gameResult.date);
+        var dayNumber = transformToDayNr(new Date(gameResult.date));
 
         if(!dayData[dayNumber])
             dayData[dayNumber] = [];

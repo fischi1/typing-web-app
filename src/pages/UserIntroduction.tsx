@@ -84,7 +84,7 @@ const UserIntroduction: FC<Props> = props => {
                 
                 <Button
                     onClick={loadExampleData}
-                    style={{textTransform: "none", marginTop: theme.spacing(6)}}
+                    style={{textTransform: "none", marginTop: theme.spacing(15)}}
                 >
                     <span style={{fontSize: "1.5rem"}}>Skip and use example data</span>
                 </Button>

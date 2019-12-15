@@ -79,7 +79,7 @@ const Typing : FC<{}> = () => {
                     <Grid container justify="center" alignItems="center" style={{height: "100%"}}>                     
                         <ChooseDialog
                             onYes={startLesson}
-                            onNo={() => history.goBack()}
+                            onNo={() => history.push("/lessons")}
                             hideButtons={notEnoughGems}
                             noBackground
                         >
