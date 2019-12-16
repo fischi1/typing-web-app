@@ -67,7 +67,7 @@ const GameResultDisplay: FC<Props> = props => {
                     {generateValItem("Lives left:", `${result.livesLeft} / ${result.maxLives}`)}
                     {generateValItem(
                         <span>
-                            <DiamondIcon width="28px" /> earned:
+                            <DiamondIcon width={28} /> earned:
                         </span>,
                         lessonSuccess ? result.gemsEarned : 0,
                         !lessonSuccess

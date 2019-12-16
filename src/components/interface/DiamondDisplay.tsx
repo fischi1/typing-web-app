@@ -32,7 +32,7 @@ const DiamondDisplay : FC<Props> = (props) => {
     return (
         <div className={classes.container}>
             <Typography className={classes.diamondText}>{props.gems}</Typography>
-            <DiamondIcon width="57px" className={classes.diamondIcon} />
+            <DiamondIcon width={57} className={classes.diamondIcon} />
         </div>
     );
 }

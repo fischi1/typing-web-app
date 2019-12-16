@@ -54,14 +54,14 @@ const Typing : FC<{}> = () => {
     
     var dialogText = (
         <Typography align="center" variant="h5">
-            Spend {foundLesson.lesson.gemCost} <DiamondIcon width="28px"/> to start this lesson?
+            Spend {foundLesson.lesson.gemCost} <DiamondIcon width={28}/> to start this lesson?
         </Typography>
     );
 
     if(notEnoughGems)
         dialogText = (
             <Typography align="center" variant="h5" color="error">
-                You don't have enough <DiamondIcon width="28px"/> for this lesson<br/>
+                You don't have enough <DiamondIcon width={28}/> for this lesson<br/>
                 You need {foundLesson.lesson.gemCost - userInfoState.gems} more...
             </Typography>
         )
