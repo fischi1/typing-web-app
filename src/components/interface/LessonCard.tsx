@@ -135,7 +135,7 @@ const LessonCard : FC<Props> = props => {
                     </div>
                     <div style={{flex: "1 1 50%"}}>
                         <Typography className={clsx(classes.lineHeightOne, classes.subText)}>XP: {props.lesson.xpForSuccess}</Typography>
-                        <Typography className={clsx(classes.lineHeightOne, classes.subText)}><DiamondIcon width={18} />/Letter: {props.lesson.gemsPerLetter}</Typography>
+                        <Typography className={clsx(classes.lineHeightOne, classes.subText)}><DiamondIcon width={18} />/Word: {props.lesson.gemsPerLetter}</Typography>
                     </div>
                 </div>
             </div>
