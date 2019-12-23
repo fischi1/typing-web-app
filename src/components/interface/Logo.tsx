@@ -34,7 +34,7 @@ const Logo : FC<Props> = props => {
     return (
         <div className={classes.headerContainer}>
             <Typography variant="h1" className={clsx(classes.header, classes.headerLogoText)}>
-                Typing Web App
+                Typing_Web_App
             </Typography>
             <img src={dog} alt="Dog" className={clsx(classes.headerIcon, pixelatedStyleClass)}/>
         </div>
