@@ -1,7 +1,8 @@
 {
-  "name": "typing-webapp",
-  "version": "0.1.0",
+  "name": "typing-web-app",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@material-ui/core": "^4.5.0",
     "@material-ui/icons": "^4.4.3",
@@ -52,6 +53,7 @@
       "last 1 safari version"
     ]
   },
+  "license": "MIT",
   "devDependencies": {
     "@storybook/addon-a11y": "^5.2.5",
     "@storybook/addon-actions": "^5.2.5",
