@@ -1,12 +1,10 @@
-import useEnableExportImport from "./useEnableExportImport";
-import exampleUserData from "../data/exampleUserData";
+import exampleUserData from "../data/exampleUserData"
+import useEnableExportImport from "./useEnableExportImport"
 
 const useLoadExampleData = () => {
-    const importFunc = useEnableExportImport();
+    const importFunc = useEnableExportImport()
 
-    return () => {
-        importFunc(exampleUserData);
-    }
+    return () => importFunc(exampleUserData)
 }
 
-export default useLoadExampleData;
+export default useLoadExampleData

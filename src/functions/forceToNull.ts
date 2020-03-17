@@ -1,6 +1,5 @@
-
-const forceToNull = <T>() : T  => {
-    return (null as unknown) as T;
+const forceToNull = <T>(): T => {
+    return (null as unknown) as T
 }
 
-export default forceToNull;
+export default forceToNull

@@ -1,9 +1,9 @@
-import { createMuiTheme, CssBaseline } from '@material-ui/core';
-import { makeStyles, ThemeProvider } from '@material-ui/styles';
-import React, { FC, ReactNode } from 'react';
-import { highlightColors } from '../../highlightColors';
-import useGlobalPixelatedStyle from '../../hooks/useGlobalPixelatedStyle';
-import GlobalDebugOutlines from '../general/GlobalDebugOutlines';
+import { createMuiTheme, CssBaseline } from "@material-ui/core"
+import { makeStyles, ThemeProvider } from "@material-ui/styles"
+import React, { FC, ReactNode } from "react"
+import { highlightColors } from "../../highlightColors"
+import useGlobalPixelatedStyle from "../../hooks/useGlobalPixelatedStyle"
+import GlobalDebugOutlines from "../general/GlobalDebugOutlines"
 
 type Props = {
     children: ReactNode
@@ -32,14 +32,14 @@ const theme = createMuiTheme({
         fontFamily: "m5x7",
         fontSize: 24
     },
-    overrides : {
+    overrides: {
         MuiIcon: {
             root: {
                 width: "0.1rem",
                 height: "0.1rem"
             }
         },
-        MuiTypography : {
+        MuiTypography: {
             root: {
                 color: "white"
             }
@@ -61,52 +61,49 @@ const theme = createMuiTheme({
             root: {
                 borderRadius: 0,
                 "&$disabled": {
-                    "& > .MuiButton-label": {                      
-                        color: highlightColors.gray,
+                    "& > .MuiButton-label": {
+                        color: highlightColors.gray
                     }
                 }
             },
             label: {
-                color: highlightColors.yellow,
+                color: highlightColors.yellow
             }
         }
     }
-});
+})
 
 const useStyles = makeStyles({
-    "@global" :
-    {
-        body : {
+    "@global": {
+        body: {
             backgroundColor: "black",
             overflowX: "hidden",
             minWidth: "1130px",
             width: "auto !important"
         },
-        "::selection" : {
+        "::selection": {
             backgroundColor: highlightColors.deer
         },
-        "::-moz-selection" : {
+        "::-moz-selection": {
             backgroundColor: highlightColors.deer
         },
         "label.Mui-focused": {
-            color:highlightColors.white + " !important"
+            color: highlightColors.white + " !important"
         }
     }
-});
+})
 
 const GlobalStyleWrapper: FC<{}> = props => {
+    useStyles()
+    useGlobalPixelatedStyle()
 
-    useStyles();
-
-    useGlobalPixelatedStyle();
-
-    return <>
-        <GlobalDebugOutlines />
-        <CssBaseline />
-        <ThemeProvider theme={theme}>
-            {props.children}
-        </ThemeProvider>
-    </>
+    return (
+        <>
+            <GlobalDebugOutlines />
+            <CssBaseline />
+            <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
+        </>
+    )
 }
 
-export default GlobalStyleWrapper;
+export default GlobalStyleWrapper

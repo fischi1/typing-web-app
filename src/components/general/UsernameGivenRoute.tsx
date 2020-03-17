@@ -1,23 +1,15 @@
-import React, { FC, ComponentProps } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { useUserInfoState } from "../context/UserInfoProvider";
+import React, { ComponentProps, FC } from "react"
+import { Redirect, Route } from "react-router-dom"
+import { useUserInfoState } from "../context/UserInfoProvider"
 
-type Props = ComponentProps<typeof Route>;
+type Props = ComponentProps<typeof Route>
 
-const UsernameGivenRoute: FC<Props> = props => {
+const UsernameGivenRoute: FC<Props> = ({ children, ...restProps }) => {
+    const userInfoState = useUserInfoState()
 
-    const userInfoState = useUserInfoState();
+    if (userInfoState.username === "") return <Redirect to="/intro" />
 
-    const { children, ...restProps } = props;
-
-    if(userInfoState.username === "")
-        return <Redirect to="/intro" />
-
-    return (
-        <Route {...restProps}>
-            {children}
-        </Route>
-    )
+    return <Route {...restProps}>{children}</Route>
 }
 
-export default UsernameGivenRoute;
+export default UsernameGivenRoute

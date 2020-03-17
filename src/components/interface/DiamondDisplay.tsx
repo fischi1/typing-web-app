@@ -1,12 +1,12 @@
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import React, { FC } from 'react';
-import { highlightColors } from '../../highlightColors';
-import DiamondIcon from './DiamondIcon';
+import { Typography } from "@material-ui/core"
+import { makeStyles } from "@material-ui/styles"
+import React, { FC } from "react"
+import { highlightColors } from "../../highlightColors"
+import DiamondIcon from "./DiamondIcon"
 
 const useStyles = makeStyles({
     container: {
-        display: "flex" 
+        display: "flex"
     },
     diamondIcon: {
         marginLeft: "-19px",
@@ -20,21 +20,23 @@ const useStyles = makeStyles({
         paddingLeft: "2px",
         height: "52px"
     }
-});
+})
 
 type Props = {
     gems: number
-};
+}
 
-const DiamondDisplay : FC<Props> = (props) => {    
-    const classes = useStyles();
+const DiamondDisplay: FC<Props> = props => {
+    const classes = useStyles()
 
     return (
         <div className={classes.container}>
-            <Typography className={classes.diamondText}>{props.gems}</Typography>
+            <Typography className={classes.diamondText}>
+                {props.gems}
+            </Typography>
             <DiamondIcon width={57} className={classes.diamondIcon} />
         </div>
-    );
+    )
 }
 
-export default DiamondDisplay;
+export default DiamondDisplay

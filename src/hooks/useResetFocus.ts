@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 const useResetFocus = () => {
-    useEffect(() => {        
-        if(document.activeElement)
-            (document.activeElement as HTMLElement).blur();
-    }, []);
-};
+    useEffect(() => {
+        if (document.activeElement)
+            (document.activeElement as HTMLElement).blur()
+    }, [])
+}
 
-export default useResetFocus;
+export default useResetFocus

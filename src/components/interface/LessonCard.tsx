@@ -1,21 +1,21 @@
-import { Button, Card, Theme, Typography, useTheme } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/styles';
-import clsx from 'clsx';
-import React, { FC } from 'react';
-import { highlightColors } from '../../highlightColors';
-import { Lesson } from '../../types/LessonType';
-import DiamondIcon from './DiamondIcon';
-import TooltipWrapper from './TooltipWrapper';
+import { Button, Card, Theme, Typography, useTheme } from "@material-ui/core"
+import { createStyles, makeStyles } from "@material-ui/styles"
+import clsx from "clsx"
+import React, { FC } from "react"
+import { highlightColors } from "../../highlightColors"
+import { Lesson } from "../../types/LessonType"
+import DiamondIcon from "./DiamondIcon"
+import TooltipWrapper from "./TooltipWrapper"
 
 type Props = {
-    index: number,
-    completed: boolean,
-    lesson: Lesson | null,
-    notEnoughGems: boolean,
+    index: number
+    completed: boolean
+    lesson: Lesson | null
+    notEnoughGems: boolean
     onStartBtnClicked?: () => void
-};
+}
 
-const height = "96px";
+const height = "96px"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "flex"
         },
         indexNumber: {
-            fontSize: "4rem",         
-            textAlign: "center",   
-            marginRight: theme.spacing(2),
+            fontSize: "4rem",
+            textAlign: "center",
+            marginRight: theme.spacing(2)
         },
         left: {
             flex: "0 0 60px"
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: "column",
             display: "block",
             paddingTop: theme.spacing(1),
-            opacity: (props: Props) => props.notEnoughGems ? 0.1 : 1,
+            opacity: (props: Props) => (props.notEnoughGems ? 0.1 : 1)
         },
         goButtonText: {
             fontSize: "2.5rem",
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "flex",
             alignItems: "center",
             position: "relative",
-            paddingTop: theme.spacing(0.5),
+            paddingTop: theme.spacing(0.5)
         },
         lineHeightNormal: {
             lineHeight: "normal"
@@ -81,43 +81,58 @@ const useStyles = makeStyles((theme: Theme) =>
             color: highlightColors.red,
             position: "absolute",
             fontSize: "7rem"
-        }        
+        }
     })
-);
+)
 
-const LessonCard : FC<Props> = props => {    
-    const classes = useStyles(props);
-    const theme = useTheme();
+const LessonCard: FC<Props> = props => {
+    const classes = useStyles(props)
+    const theme = useTheme()
 
-    const yesNo = (val : boolean) => val ? "YES" : "NO";
+    const yesNo = (val: boolean) => (val ? "YES" : "NO")
 
     const notEnoughInfo = (
-        <Typography style={{paddingLeft: theme.spacing(1), paddingRight: theme.spacing(1)}}>
+        <Typography
+            style={{
+                paddingLeft: theme.spacing(1),
+                paddingRight: theme.spacing(1)
+            }}
+        >
             Not enough gems
         </Typography>
     )
 
-    if(!props.lesson)
+    if (!props.lesson)
         return (
             <Card className={classes.root}>
-                <div style={{height: height}}>&nbsp;</div>
+                <div style={{ height: height }}>&nbsp;</div>
             </Card>
         )
 
-    const button = (                       
+    const button = (
         <Button
             className={classes.goButton}
             disabled={props.notEnoughGems}
             onClick={props.onStartBtnClicked}
         >
-            <Typography component="div" className={clsx(classes.goButtonText, classes.lineHeightNormal)}>
+            <Typography
+                component="div"
+                className={clsx(classes.goButtonText, classes.lineHeightNormal)}
+            >
                 Start
             </Typography>
-            <Typography component="div" className={clsx(classes.goButtonDiamondCost, classes.lineHeightNormal)}>
-                <DiamondIcon width={40} />&nbsp;{props.lesson.gemCost}
+            <Typography
+                component="div"
+                className={clsx(
+                    classes.goButtonDiamondCost,
+                    classes.lineHeightNormal
+                )}
+            >
+                <DiamondIcon width={40} />
+                &nbsp;{props.lesson.gemCost}
             </Typography>
         </Button>
-    );
+    )
 
     return (
         <Card className={classes.root}>
@@ -127,30 +142,71 @@ const LessonCard : FC<Props> = props => {
                 </Typography>
             </div>
             <div className={classes.middle}>
-                <Typography className={clsx(classes.truncatedLessonText, classes.lineHeightOne)}>{props.lesson.text}</Typography>
-                <div style={{display:"flex"}}>
-                    <div style={{flex: "1 1 50%"}}>
-                        <Typography className={clsx(classes.lineHeightOne, classes.subText)}>Words: {props.lesson.words}</Typography>
-                        <Typography className={clsx(classes.lineHeightOne, classes.subText)} style={{color: props.completed ? highlightColors.green : highlightColors.red}}>Completed: {yesNo(props.completed)}</Typography>
+                <Typography
+                    className={clsx(
+                        classes.truncatedLessonText,
+                        classes.lineHeightOne
+                    )}
+                >
+                    {props.lesson.text}
+                </Typography>
+                <div style={{ display: "flex" }}>
+                    <div style={{ flex: "1 1 50%" }}>
+                        <Typography
+                            className={clsx(
+                                classes.lineHeightOne,
+                                classes.subText
+                            )}
+                        >
+                            Words: {props.lesson.words}
+                        </Typography>
+                        <Typography
+                            className={clsx(
+                                classes.lineHeightOne,
+                                classes.subText
+                            )}
+                            style={{
+                                color: props.completed
+                                    ? highlightColors.green
+                                    : highlightColors.red
+                            }}
+                        >
+                            Completed: {yesNo(props.completed)}
+                        </Typography>
                     </div>
-                    <div style={{flex: "1 1 50%"}}>
-                        <Typography className={clsx(classes.lineHeightOne, classes.subText)}>XP: {props.lesson.xpForSuccess}</Typography>
-                        <Typography className={clsx(classes.lineHeightOne, classes.subText)}><DiamondIcon width={18} />/Word: {props.lesson.gemsPerLetter}</Typography>
+                    <div style={{ flex: "1 1 50%" }}>
+                        <Typography
+                            className={clsx(
+                                classes.lineHeightOne,
+                                classes.subText
+                            )}
+                        >
+                            XP: {props.lesson.xpForSuccess}
+                        </Typography>
+                        <Typography
+                            className={clsx(
+                                classes.lineHeightOne,
+                                classes.subText
+                            )}
+                        >
+                            <DiamondIcon width={18} />
+                            /Word: {props.lesson.gemsPerLetter}
+                        </Typography>
                     </div>
                 </div>
             </div>
-            <div className={classes.right}> 
+            <div className={classes.right}>
                 <TooltipWrapper
                     title={notEnoughInfo}
                     placement="left"
-                    wrapperStyle={{height: height}}
+                    wrapperStyle={{ height: height }}
                     disabled={!props.notEnoughGems}
                 >
                     {button}
                 </TooltipWrapper>
             </div>
         </Card>
-    );
+    )
 }
 
-export default LessonCard;
+export default LessonCard

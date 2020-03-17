@@ -1,31 +1,39 @@
-import { Button, createStyles, Grid, makeStyles, Theme, Typography } from "@material-ui/core";
-import React, { FC } from "react";
-import { useGameResultHistoryDispatch, useGameResultHistoryState } from "../components/context/GameResultHistoryProvider";
-import { useSetTitleOnMount } from "../components/context/TitleProvider";
-import DebugUserInfo from "../components/general/DebugUserInfo";
-import { GameResultType } from "../types/GameResultType";
-import lessonsData from "../data/lessonsDataImport";
+import {
+    Button,
+    createStyles,
+    Grid,
+    makeStyles,
+    Theme,
+    Typography
+} from "@material-ui/core"
+import React, { FC } from "react"
+import {
+    useGameResultHistoryDispatch,
+    useGameResultHistoryState
+} from "../components/context/GameResultHistoryProvider"
+import { useSetTitleOnMount } from "../components/context/TitleProvider"
+import DebugUserInfo from "../components/general/DebugUserInfo"
+import lessonsData from "../data/lessonsDataImport"
+import { GameResultType } from "../types/GameResultType"
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-        padding: theme.spacing(2)
-    }
-  })
-);
+    createStyles({
+        root: {
+            padding: theme.spacing(2)
+        }
+    })
+)
 
-const DebugPage : FC<{}> = () => {
+const DebugPage: FC<{}> = () => {
+    useSetTitleOnMount("Debug")
 
-    useSetTitleOnMount("Debug");
+    const classes = useStyles()
 
-    const classes = useStyles();
-
-    const gameResultHistoryState = useGameResultHistoryState();
-    const gameResultHistoryDispatch = useGameResultHistoryDispatch();
+    const gameResultHistoryState = useGameResultHistoryState()
+    const gameResultHistoryDispatch = useGameResultHistoryDispatch()
 
     const add = () => {
-
-        const gameResult : GameResultType = {
+        const gameResult: GameResultType = {
             lessonUuid: lessonsData.allIds[0],
             accuracy: Math.random(),
             maxStreak: new Date().getSeconds(),
@@ -37,38 +45,37 @@ const DebugPage : FC<{}> = () => {
             maxLives: 50
         }
 
-        gameResultHistoryDispatch({type: "add", payload: gameResult})
+        gameResultHistoryDispatch({ type: "add", payload: gameResult })
     }
 
     const clear = () => {
-        gameResultHistoryDispatch({type: "clear"});
+        gameResultHistoryDispatch({ type: "clear" })
     }
 
     return (
         <Grid container spacing={6} className={classes.root}>
-            
-            <Grid item xs={8}>                
+            <Grid item xs={8}>
                 <Button onClick={add}>add</Button>
                 <Button onClick={clear}>clear</Button>
 
                 {gameResultHistoryState.history.map((gameResult, i) => (
-                    <div key={i} style={{borderBottom: "1px solid white"}}>
-                        <Typography>{JSON.stringify(gameResult, null, 1)}</Typography>
+                    <div key={i} style={{ borderBottom: "1px solid white" }}>
+                        <Typography>
+                            {JSON.stringify(gameResult, null, 1)}
+                        </Typography>
                     </div>
                 ))}
 
-                {gameResultHistoryState.history.length === 0 && 
+                {gameResultHistoryState.history.length === 0 && (
                     <Typography>Empty</Typography>
-                }
+                )}
             </Grid>
 
-            <Grid item xs={4}>        
+            <Grid item xs={4}>
                 <DebugUserInfo />
             </Grid>
-
         </Grid>
-    ); 
-    
+    )
 }
 
-export default DebugPage;
+export default DebugPage

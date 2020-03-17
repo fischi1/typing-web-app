@@ -1,27 +1,32 @@
-import { useGameResultHistoryState, useGameResultHistoryDispatch } from "../components/context/GameResultHistoryProvider";
-import { useUserInfoState, useUserInfoDispatch } from "../components/context/UserInfoProvider";
-import { useEffect, useCallback } from "react";
+import { useCallback, useEffect } from "react"
+import {
+    useGameResultHistoryDispatch,
+    useGameResultHistoryState
+} from "../components/context/GameResultHistoryProvider"
+import {
+    useUserInfoDispatch,
+    useUserInfoState
+} from "../components/context/UserInfoProvider"
 
-declare var window: Window & 
-    {
-        exportUserData: () =>  string,
-        importUserData: (data: string) => void
-    };
+declare var window: Window & {
+    exportUserData: () => string
+    importUserData: (data: string) => void
+}
 
 type DataType = {
-    gameResultHistoryState: ReturnType<typeof useGameResultHistoryState>,
+    gameResultHistoryState: ReturnType<typeof useGameResultHistoryState>
     userInfoState: ReturnType<typeof useUserInfoState>
 }
 
 const useEnableExportImport = (enableInConsole = false) => {
-    const gameResultHistoryState = useGameResultHistoryState();
-    const userInfoState = useUserInfoState();
+    const gameResultHistoryState = useGameResultHistoryState()
+    const userInfoState = useUserInfoState()
 
-    const gameResultHistoryDispatch = useGameResultHistoryDispatch();
-    const userInfoDispatch = useUserInfoDispatch();
+    const gameResultHistoryDispatch = useGameResultHistoryDispatch()
+    const userInfoDispatch = useUserInfoDispatch()
 
     useEffect(() => {
-        if(enableInConsole)
+        if (enableInConsole)
             window.exportUserData = () => {
                 return JSON.stringify(
                     {
@@ -30,22 +35,30 @@ const useEnableExportImport = (enableInConsole = false) => {
                     },
                     null,
                     4
-                );
-            };
-    }, [enableInConsole, gameResultHistoryState, userInfoState]);
+                )
+            }
+    }, [enableInConsole, gameResultHistoryState, userInfoState])
 
-    const importFunc = useCallback((data: string) => {
-        const imported = JSON.parse(data) as DataType;
-        gameResultHistoryDispatch({type: "setState", payload: imported.gameResultHistoryState});
-        userInfoDispatch({type: "setState", payload: imported.userInfoState})
-    }, [gameResultHistoryDispatch, userInfoDispatch]);
+    const importFunc = useCallback(
+        (data: string) => {
+            const imported = JSON.parse(data) as DataType
+            gameResultHistoryDispatch({
+                type: "setState",
+                payload: imported.gameResultHistoryState
+            })
+            userInfoDispatch({
+                type: "setState",
+                payload: imported.userInfoState
+            })
+        },
+        [gameResultHistoryDispatch, userInfoDispatch]
+    )
 
     useEffect(() => {
-        if(enableInConsole)
-            window.importUserData = importFunc
+        if (enableInConsole) window.importUserData = importFunc
     }, [enableInConsole, importFunc])
 
-    return importFunc;
+    return importFunc
 }
 
-export default useEnableExportImport;
+export default useEnableExportImport

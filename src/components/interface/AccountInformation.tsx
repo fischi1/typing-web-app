@@ -1,7 +1,7 @@
-import React, { FC, ComponentProps } from 'react';
-import DiamondDisplay from './DiamondDisplay';
-import LevelProgressionDisplay from './LevelProgressionDisplay';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core"
+import React, { ComponentProps, FC } from "react"
+import DiamondDisplay from "./DiamondDisplay"
+import LevelProgressionDisplay from "./LevelProgressionDisplay"
 
 const useStyles = makeStyles({
     rightHeader: {
@@ -11,20 +11,23 @@ const useStyles = makeStyles({
     }
 })
 
-type Props =
-    ComponentProps<typeof LevelProgressionDisplay> &
-    ComponentProps<typeof DiamondDisplay>;
+type Props = ComponentProps<typeof LevelProgressionDisplay> &
+    ComponentProps<typeof DiamondDisplay>
 
-const AccountInformation : FC<Props> = props => {
-
-    const classes = useStyles();
+const AccountInformation: FC<Props> = props => {
+    const classes = useStyles()
 
     return (
         <div className={classes.rightHeader}>
-            <LevelProgressionDisplay  username={props.username} lvl={props.lvl} curXP={props.curXP} nextLvlXP={props.nextLvlXP}/>
+            <LevelProgressionDisplay
+                username={props.username}
+                lvl={props.lvl}
+                curXP={props.curXP}
+                nextLvlXP={props.nextLvlXP}
+            />
             <DiamondDisplay gems={props.gems} />
         </div>
-    );
+    )
 }
 
-export default AccountInformation;
+export default AccountInformation

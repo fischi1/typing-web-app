@@ -1,17 +1,17 @@
-import React, { FC } from "react";
-import GermanKeyBoardImage from "./GermanKeyboardImage/GermanKeyboardImage";
-import useGermanKeysState from "./useGermanKeysState";
+import React, { FC } from "react"
+import GermanKeyBoardImage from "./GermanKeyboardImage/GermanKeyboardImage"
+import useGermanKeysState from "./useGermanKeysState"
 
-type Props = {};
+type Props = {}
 
-const GermanKeyboardController: FC<Props> = props => {
-    const keysState = useGermanKeysState({});
+const GermanKeyboardController: FC<Props> = () => {
+    const keysState = useGermanKeysState({})
 
     return (
         <div>
             <GermanKeyBoardImage keysState={keysState} />
         </div>
-    );
-};
+    )
+}
 
-export default GermanKeyboardController;
+export default GermanKeyboardController

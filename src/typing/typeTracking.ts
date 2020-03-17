@@ -1,20 +1,19 @@
 export type ListenerFunction = {
-    (key: string) : void
+    (key: string): void
 }
 
-var onKeyDown : ListenerFunction | null;
+var onKeyDown: ListenerFunction | null
 
-export const registerListener = (func:ListenerFunction) => {
-    onKeyDown = func;
+export const registerListener = (func: ListenerFunction) => {
+    onKeyDown = func
 }
 
-export const unregisterListener  = () => {
-    onKeyDown = null;
+export const unregisterListener = () => {
+    onKeyDown = null
 }
 
-export const ttKeyPressed = (key : string) => {
-    if(!onKeyDown)
-        return;
+export const ttKeyPressed = (key: string) => {
+    if (!onKeyDown) return
 
-    onKeyDown(key);
+    onKeyDown(key)
 }

@@ -1,6 +1,6 @@
+import { canvasOptions } from "../TypingRoot";
 import { GameContext, GameObject } from "./GameObject";
 import { getDefaultTextStyle, Text } from "./Text";
-import { canvasOptions } from "../TypingRoot";
 import { TypeTracker } from "./TypeTracker";
 
 export class StartCountdown extends GameObject {

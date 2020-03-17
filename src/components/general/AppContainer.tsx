@@ -1,14 +1,20 @@
-import { AppBar, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import React, { FC, useState } from 'react';
-import { useTitleState } from '../context/TitleProvider';
-import Logo from '../interface/Logo';
-import MenuDrawer from './MenuDrawer';
-import UserInfoArea from './UserInfoArea';
-import useEnableExportImport from '../../hooks/useEnableExportImport';
-import { useUserInfoState } from '../context/UserInfoProvider';
+import {
+    AppBar,
+    IconButton,
+    makeStyles,
+    Toolbar,
+    Typography
+} from "@material-ui/core"
+import MenuIcon from "@material-ui/icons/Menu"
+import React, { FC, useState } from "react"
+import useEnableExportImport from "../../hooks/useEnableExportImport"
+import { useTitleState } from "../context/TitleProvider"
+import { useUserInfoState } from "../context/UserInfoProvider"
+import Logo from "../interface/Logo"
+import MenuDrawer from "./MenuDrawer"
+import UserInfoArea from "./UserInfoArea"
 
-export const appbarHeight = "64px";
+export const appbarHeight = "64px"
 
 const useStyles = makeStyles(theme => ({
     appbar: {
@@ -33,38 +39,39 @@ const useStyles = makeStyles(theme => ({
         width: "0.7em",
         height: "0.7em"
     }
-}));
+}))
 
-type Props = {
-};
+type Props = {}
 
-const TemporaryDrawer : FC<Props> = props => {
-    
-    const { children } = props;
+const TemporaryDrawer: FC<Props> = props => {
+    const classes = useStyles()
 
-    const classes = useStyles();
+    const [open, setOpen] = useState<boolean>(false)
 
-    const [open, setOpen] = useState<boolean>(false);
+    const title = useTitleState()
 
-    const title = useTitleState();
+    const userInfo = useUserInfoState()
 
-    const userInfo = useUserInfoState();
-
-    useEnableExportImport(true);
+    useEnableExportImport(true)
 
     return (
         <>
             <AppBar position="sticky" className={classes.appbar}>
                 <Toolbar disableGutters>
                     <div className={classes.leftHeader}>
-                        {userInfo.username !== "" && <IconButton
-                            color="inherit"
-                            aria-label="Open drawer"
-                            onClick={() => setOpen(true)}
-                            className={classes.burgerMenuButton}
-                        >
-                            <MenuIcon fontSize="small" className={classes.burgerMenuIcon}/>
-                        </IconButton>}
+                        {userInfo.username !== "" && (
+                            <IconButton
+                                color="inherit"
+                                aria-label="Open drawer"
+                                onClick={() => setOpen(true)}
+                                className={classes.burgerMenuButton}
+                            >
+                                <MenuIcon
+                                    fontSize="small"
+                                    className={classes.burgerMenuIcon}
+                                />
+                            </IconButton>
+                        )}
                         <Typography variant="h1" className={classes.header}>
                             {title}
                         </Typography>
@@ -73,13 +80,10 @@ const TemporaryDrawer : FC<Props> = props => {
                     <UserInfoArea />
                 </Toolbar>
             </AppBar>
-            <MenuDrawer 
-                open={open}
-                onClose={() => setOpen(false)}
-            />
-            {children}
+            <MenuDrawer open={open} onClose={() => setOpen(false)} />
+            {props.children}
         </>
-    );
+    )
 }
 
-export default TemporaryDrawer;
+export default TemporaryDrawer

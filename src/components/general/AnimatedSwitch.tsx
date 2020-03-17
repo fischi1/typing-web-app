@@ -1,25 +1,25 @@
-import { makeStyles } from "@material-ui/core";
-import React, { FC } from "react";
-import { Switch, useLocation } from "react-router";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { appbarHeight } from "./AppContainer";
+import { makeStyles } from "@material-ui/core"
+import React, { FC } from "react"
+import { Switch, useLocation } from "react-router"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+import { appbarHeight } from "./AppContainer"
 
-export const animationDurationMS = 800;
+export const animationDurationMS = 800
 
 const useStyles = makeStyles({
-    '@global': {   
+    "@global": {
         ".fade-enter": {
-            transform: "translateX(100%)"
-        },        
-        ".fade-enter.fade-enter-active": { 
-            transform: "translateX(0)",
+            transform: "translateX(100%)"
+        },
+        ".fade-enter.fade-enter-active": {
+            transform: "translateX(0)",
             transition: `transform ${animationDurationMS}ms ease-in`
-        },        
-        ".fade-exit": { 
-            transform: "translateX(0)",
-        },        
+        },
+        ".fade-exit": {
+            transform: "translateX(0)"
+        },
         ".fade-exit.fade-exit-active": {
-            transform: "translateX(-100%)",
+            transform: "translateX(-100%)",
             transition: `transform ${animationDurationMS}ms ease-in`
         }
     },
@@ -33,20 +33,22 @@ const useStyles = makeStyles({
         top: 0,
         left: 0
     }
-});
+})
 
-const AnimatedSwitch : FC<{}> = props => {
-    const classes = useStyles();
-    const location = useLocation();
+const AnimatedSwitch: FC<{}> = props => {
+    const classes = useStyles()
+    const location = useLocation()
 
     return (
         <div>
-            <TransitionGroup className={classes.transitionGroup}> 
-                <CSSTransition key={location.key} classNames="fade" timeout={animationDurationMS}>
+            <TransitionGroup className={classes.transitionGroup}>
+                <CSSTransition
+                    key={location.key}
+                    classNames="fade"
+                    timeout={animationDurationMS}
+                >
                     <section className={classes.routeSection}>
-                        <Switch location={location}>
-                            {props.children}
-                        </Switch>
+                        <Switch location={location}>{props.children}</Switch>
                     </section>
                 </CSSTransition>
             </TransitionGroup>
@@ -54,4 +56,4 @@ const AnimatedSwitch : FC<{}> = props => {
     )
 }
 
-export default AnimatedSwitch;
+export default AnimatedSwitch

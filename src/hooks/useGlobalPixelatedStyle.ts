@@ -1,17 +1,16 @@
-import { makeStyles } from "@material-ui/styles";
-import clsx from "clsx";
+import { makeStyles } from "@material-ui/styles"
+import clsx from "clsx"
 
-const pixelatedImage = "useGlobalPixelatedStyle";
-const pixelatedImageMoz = "useGlobalPixelatedStyleMoz";
-const pixelatedImageCrisp = "useGlobalPixelatedStyleCrisp";
+const pixelatedImage = "useGlobalPixelatedStyle"
+const pixelatedImageMoz = "useGlobalPixelatedStyleMoz"
+const pixelatedImageCrisp = "useGlobalPixelatedStyleCrisp"
 
-const allClasses = clsx(pixelatedImage, pixelatedImageMoz, pixelatedImageMoz);
+const allClasses = clsx(pixelatedImage, pixelatedImageMoz, pixelatedImageMoz)
 
 const useStyles = makeStyles({
-    "@global" :
-    {        
+    "@global": {
         ["." + pixelatedImage]: {
-            imageRendering: "pixelated",
+            imageRendering: "pixelated"
         },
         ["." + pixelatedImageMoz]: {
             imageRendering: "-moz-crisp-edges"
@@ -20,11 +19,11 @@ const useStyles = makeStyles({
             imageRendering: "crisp-edges"
         }
     }
-});
+})
 
 const useGlobalPixelatedStyle = () => {
-    useStyles();
+    useStyles()
 }
 
-export default useGlobalPixelatedStyle;
-export { allClasses as pixelatedStyleClass };
+export default useGlobalPixelatedStyle
+export { allClasses as pixelatedStyleClass }

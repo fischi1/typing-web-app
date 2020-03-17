@@ -1,57 +1,58 @@
-import * as PIXI from 'pixi.js';
+import * as PIXI from "pixi.js"
 
 type RectangleDictionary = {
-    [index:number] : PIXI.Rectangle 
+    [index: number]: PIXI.Rectangle
 }
 
 export class XMLHelper {
-    private xmlDoc : Document;
-    private rectangleDic : RectangleDictionary;
-    
-    biggestWidth : number = 0;
+    private xmlDoc: Document
+    private rectangleDic: RectangleDictionary
 
-    constructor(xmlDoc : Document) {
-        this.xmlDoc = xmlDoc;
-        this.rectangleDic = this.initDic();
+    biggestWidth: number = 0
+
+    constructor(xmlDoc: Document) {
+        this.xmlDoc = xmlDoc
+        this.rectangleDic = this.initDic()
     }
 
-    getCount() : number {
-        const countAttr = this.xmlDoc.getElementsByTagName("chars")[0].getAttribute("count");
-        const count = countAttr ? +countAttr : 0;
-        return count;
+    getCount(): number {
+        const countAttr = this.xmlDoc
+            .getElementsByTagName("chars")[0]
+            .getAttribute("count")
+        const count = countAttr ? +countAttr : 0
+        return count
     }
 
     getRectangleForChar(char: string): PIXI.Rectangle {
-        const code = char.charCodeAt(0);
-        return this.getRectangle(code);
+        const code = char.charCodeAt(0)
+        return this.getRectangle(code)
     }
 
-    getRectangle(charCode : number) : PIXI.Rectangle {
-        return this.rectangleDic[charCode];
+    getRectangle(charCode: number): PIXI.Rectangle {
+        return this.rectangleDic[charCode]
     }
 
-    private initDic() : RectangleDictionary {
-        var ret : RectangleDictionary = {};
-    
-        const chars = this.xmlDoc.getElementsByTagName("char");
+    private initDic(): RectangleDictionary {
+        var ret: RectangleDictionary = {}
 
-        for(let i = 0; i < chars.length; i++) {
-            const elem = chars[i];
+        const chars = this.xmlDoc.getElementsByTagName("char")
 
-            var id = +(elem.getAttribute("id") as string);
-            var width = +(elem.getAttribute("width") as string);
+        for (let i = 0; i < chars.length; i++) {
+            const elem = chars[i]
 
-            if(width > this.biggestWidth)
-                this.biggestWidth = width;
+            var id = +(elem.getAttribute("id") as string)
+            var width = +(elem.getAttribute("width") as string)
+
+            if (width > this.biggestWidth) this.biggestWidth = width
 
             ret[id] = new PIXI.Rectangle(
                 +(elem.getAttribute("x") as string),
                 +(elem.getAttribute("y") as string),
                 width,
                 +(elem.getAttribute("height") as string)
-            );
+            )
         }
 
-        return ret;
+        return ret
     }
 }

@@ -1,60 +1,56 @@
-import { GameContext, GameObject } from "./GameObject";
-import { Letter } from "./Letter";
-import forceToNull from "../../functions/forceToNull";
+import forceToNull from "../../functions/forceToNull"
+import { GameContext, GameObject } from "./GameObject"
+import { Letter } from "./Letter"
 
 export type InvalidLetter = {
-    status : "used" | "free",
-    letter : Letter
+    status: "used" | "free"
+    letter: Letter
 }
 
-export class ErrorLetterPool extends GameObject{
+export class ErrorLetterPool extends GameObject {
+    static instance: ErrorLetterPool
 
-    static instance : ErrorLetterPool;
+    private errorLetters: InvalidLetter[]
 
-    private errorLetters : InvalidLetter[];
+    constructor(letters: Letter[]) {
+        super()
+        if (ErrorLetterPool.instance)
+            console.error("ErrorLetterPool should only exist once!!!")
+        else ErrorLetterPool.instance = this
 
-    constructor(letters : Letter[]) {
-        super();
-        if(ErrorLetterPool.instance) 
-            console.error("ErrorLetterPool should only exist once!!!");
-        else 
-            ErrorLetterPool.instance = this;
-
-        this.errorLetters = letters.map(l => ({status: "free", letter: l}));
+        this.errorLetters = letters.map(l => ({ status: "free", letter: l }))
     }
 
-    init(gameContext : GameContext) {
-        super.init(gameContext);
-        this.errorLetters.forEach(el => el.letter.setStatus("invisible"));
+    init(gameContext: GameContext) {
+        super.init(gameContext)
+        this.errorLetters.forEach(el => el.letter.setStatus("invisible"))
     }
 
-    update(gameContext : GameContext) : void {
+    update(gameContext: GameContext): void {}
+
+    destroy(gameContext: GameContext): void {
+        ErrorLetterPool.instance = forceToNull<ErrorLetterPool>()
     }
 
-    destroy(gameContext : GameContext) : void {
-        ErrorLetterPool.instance = forceToNull<ErrorLetterPool>();
-    }
-
-    getLetter() : Letter | null {
-        for(var i = 0; i < this.errorLetters.length; i++) {
-            if(this.errorLetters[i].status === "free") {
-                this.errorLetters[i].status = "used";
+    getLetter(): Letter | null {
+        for (var i = 0; i < this.errorLetters.length; i++) {
+            if (this.errorLetters[i].status === "free") {
+                this.errorLetters[i].status = "used"
                 //console.log("giving out letter: " + i);
-                return this.errorLetters[i].letter;
+                return this.errorLetters[i].letter
             }
         }
-        return null;
+        return null
     }
 
-    returnLetter(letter : Letter) : void {
+    returnLetter(letter: Letter): void {
         var found = this.errorLetters.find((elem, i) => {
-            if(elem.letter === letter) {
+            if (elem.letter === letter) {
                 //console.log("returning letter: " + i);
-                return true;
+                return true
             }
-            return false;
-        });
-        if(found)
-            found.status = "free";
+            return false
+        })
+        if (found) found.status = "free"
     }
 }
