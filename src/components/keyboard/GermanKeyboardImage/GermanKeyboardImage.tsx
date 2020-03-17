@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, useCallback } from "react";
 import keyboardLayout from "../../../assets/images/keyboard/pressed_keyboard.png";
 import useWindowSize from "../../../hooks/useWindowSize";
 import { row1Urls, row2Urls, row3Urls, row4Urls, row5Urls } from "./imageUrls";
@@ -34,7 +34,7 @@ const GermanKeyBoardImage : FC<Props> = props => {
     const backgroundWidth = 1000;
     const widthMod = backgroundWidth / 1800;
 
-    const calculateZoom = () => {
+    const calculateZoom = useCallback(() => {
         if(!windowSize.width || windowSize.width > maxWidth)
             return 100;
 
@@ -42,12 +42,11 @@ const GermanKeyBoardImage : FC<Props> = props => {
         const ret = Math.round(val * 100);
 
         return ret < 20 ? 20 : ret;
-    }
+    }, [windowSize.width]);
 
     const zoom = useMemo(() => {
         return calculateZoom();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [windowSize.width]);
+    }, [calculateZoom]);
 
     return (
         <div className={classes.container}>
