@@ -52,7 +52,7 @@ const About: FC<{}> = () => {
                     </Typography>
                 </Link>
 
-                <div style={{ lineHeight: "20rem" }}>&nbsp;</div>
+                <div style={{ lineHeight: "7rem" }}>&nbsp;</div>
                 <HubButton onClick={reset}>
                     <span style={{ fontSize: "1.4rem" }}>Reset user data</span>
                 </HubButton>

@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core"
-import React, { FC, useCallback, useMemo } from "react"
+import React, { FC, useMemo } from "react"
 import keyboardLayout from "../../../assets/images/keyboard/pressed_keyboard.png"
 import useWindowSize from "../../../hooks/useWindowSize"
 import { row1Urls, row2Urls, row3Urls, row4Urls, row5Urls } from "./imageUrls"
@@ -24,16 +24,15 @@ type Props = {
 }
 
 const maxWidth = 1500
-const minWidth = 1250
+const minWidth = 1200
+const backgroundWidth = 1000
+const widthMod = backgroundWidth / 1800
 
 const GermanKeyBoardImage: FC<Props> = props => {
     const classes = useStyles()
     const windowSize = useWindowSize()
 
-    const backgroundWidth = 1000
-    const widthMod = backgroundWidth / 1800
-
-    const calculateZoom = useCallback(() => {
+    const zoom = useMemo(() => {
         if (!windowSize.width || windowSize.width > maxWidth) return 100
 
         const val = (windowSize.width - minWidth) / (maxWidth - minWidth)
@@ -41,10 +40,6 @@ const GermanKeyBoardImage: FC<Props> = props => {
 
         return ret < 20 ? 20 : ret
     }, [windowSize.width])
-
-    const zoom = useMemo(() => {
-        return calculateZoom()
-    }, [calculateZoom])
 
     return (
         <div className={classes.container}>
