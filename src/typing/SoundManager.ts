@@ -2,10 +2,10 @@ import { Howl, Howler } from "howler"
 
 Howler.mute(false)
 
-const urlFailSound = "/sounds/Explosion4.wav"
-const urlSuccessSound = "/sounds/Pickup_Coin66.wav"
+const urlFailSound = `${process.env.PUBLIC_URL}/sounds/Explosion4.wav`
+const urlSuccessSound = `${process.env.PUBLIC_URL}/sounds/Pickup_Coin66.wav`
 
-const relativaPathTyping = "/sounds/eklee-KeyPresses-cc0-opengameart/wav44100/"
+const relativaPathTyping = `${process.env.PUBLIC_URL}/sounds/eklee-KeyPresses-cc0-opengameart/wav44100/`
 
 const urlTypingSounds = [
     "eklee-KeyPressMac01.wav",

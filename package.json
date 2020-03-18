@@ -2,7 +2,7 @@
   "name": "typing-web-app",
   "version": "1.0.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "/typing-web-app",
   "dependencies": {
     "@material-ui/core": "^4.5.0",
     "@material-ui/icons": "^4.4.3",
