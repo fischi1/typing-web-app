@@ -43,7 +43,7 @@ const AnimatedSwitch: FC<{}> = props => {
         <div>
             <TransitionGroup className={classes.transitionGroup}>
                 <CSSTransition
-                    key={location.key}
+                    key={location.pathname}
                     classNames="fade"
                     timeout={animationDurationMS}
                 >

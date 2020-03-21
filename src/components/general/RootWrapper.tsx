@@ -9,7 +9,7 @@ const RootWrapper: FC<{}> = ({ children }) => (
     <GameResultHistoryProvider>
         <TitleProvider>
             <UserInfoProvider>
-                <HashRouter basename={process.env.PUBLIC_URL}>
+                <HashRouter>
                     <AppContainer>{children}</AppContainer>
                 </HashRouter>
             </UserInfoProvider>

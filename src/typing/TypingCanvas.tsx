@@ -44,7 +44,8 @@ const TypingCanvas: FC<Props> = props => {
 
     useEffect(() => {
         const gameComplete = (result: GameResultType): void => {
-            history.push("/gameresult", result)
+            sessionStorage.setItem("gameresult", JSON.stringify(result));
+            history.push("/gameresult")
         }
 
         const typing = new TypingRoot({

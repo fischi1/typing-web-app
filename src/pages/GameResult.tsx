@@ -1,6 +1,6 @@
 import { Typography } from "@material-ui/core"
-import React, { FC, useEffect } from "react"
-import { Redirect, useHistory, useLocation } from "react-router"
+import React, { FC, useEffect, useState } from "react"
+import { useHistory } from "react-router"
 import { useGameResultHistoryDispatch } from "../components/context/GameResultHistoryProvider"
 import { useSetTitleOnMount } from "../components/context/TitleProvider"
 import {
@@ -11,28 +11,45 @@ import GameResultDisplay from "../components/general/GameResultDisplay"
 import lessonsData from "../data/lessonsDataImport"
 import { GameResultType } from "../types/GameResultType"
 
+const retrieveAndClearGameResult = () => {
+    const str = sessionStorage.getItem("gameresult")
+    if (!str) return null
+
+    const obj = JSON.parse(str)
+
+    sessionStorage.removeItem("gameresult")
+
+    return obj as GameResultType
+}
+
 const GameResult: FC<{}> = () => {
     useSetTitleOnMount("Lesson Result")
 
-    const location = useLocation<GameResultType | undefined>()
     const history = useHistory()
     const userInfoState = useUserInfoState()
     const userInfoDispatch = useUserInfoDispatch()
 
-    const gameResult = location.state
+    const [gameResult, setGameResult] = useState<GameResultType>()
 
     const gameResultHistoryDispatch = useGameResultHistoryDispatch()
 
     useEffect(() => {
-        window.history.replaceState(undefined, "")
+        const newGameResult = retrieveAndClearGameResult()
 
-        if (gameResult && gameResult.resultType === "DONE") {
-            userInfoDispatch({ type: "lessonComplete", payload: gameResult })
-            gameResultHistoryDispatch({ type: "add", payload: gameResult })
+        if (!newGameResult) {
+            history.push("/")
+            return
         }
-    }, [gameResult, gameResultHistoryDispatch, userInfoDispatch])
 
-    if (!gameResult) return <Redirect to="/" />
+        if (newGameResult.resultType === "DONE") {
+            userInfoDispatch({ type: "lessonComplete", payload: newGameResult })
+            gameResultHistoryDispatch({ type: "add", payload: newGameResult })
+        }
+
+        setGameResult(newGameResult)
+    }, [gameResultHistoryDispatch, history, userInfoDispatch])
+
+    if (!gameResult) return null
 
     const lesson = lessonsData.data[gameResult.lessonUuid]
 
