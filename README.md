@@ -1,44 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Typing Web App
 
-## Available Scripts
+Typing trainer single page application  
+Everything except the typing lessons were implemented with React. The typing was realized with an entity-component approach and rendered with PixiJS.
 
-In the project directory, you can run:
+[DEMO](https://lukasfischer.me/typing-web-app/)
 
-### `npm start`
+If you want to try it out locally, clone the repo and execute
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm install
+npm start
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Technologies and Libraries
 
-### `npm test`
+-   [React](https://reactjs.org/)
+-   [Typescript](https://www.typescriptlang.org/)
+-   [Material UI](https://material-ui.com/)
+-   [PixiJS](https://www.pixijs.com/)
+-   [Recharts](https://recharts.org/en-US/)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Further plans
 
-### `npm run build`
+-   Polishing
+-   Electron application  
+    Because this application doesn't work for devices without a physical keyboard
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Assets
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   Pixel art font  
+    [m5x7](https://managore.itch.io/m5x7) by Managore
+-   Pixel tile set  
+    [1-Bit Pack](https://www.kenney.nl/assets/bit-pack) by Kenney
+-   Typing sound effects  
+    [Single Key Press Sounds](https://opengameart.org/content/single-key-press-sounds) by eklee  
+    Copyright 2012 eklee http://freesound.org/people/eklee/ | Copyright 2012 qubodup  
+    http://freesound.org/people/qubodup/ extraction of single sounds | License: CC Attribution 3.0  
+    http://creativecommons.org/licenses/by/3.0/

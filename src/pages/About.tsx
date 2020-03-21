@@ -7,6 +7,12 @@ import { highlightColors } from "../highlightColors"
 import useLoadExampleData from "../hooks/useLoadExampleData"
 import useResetApp from "../hooks/useResetApp"
 
+const ExternalLink: FC<{ href: string }> = ({ href, children }) => (
+    <Link href={href} rel="noopener noreferrer" target="_blank">
+        {children}
+    </Link>
+)
+
 const About: FC<{}> = () => {
     useSetTitleOnMount("About")
 
@@ -23,35 +29,28 @@ const About: FC<{}> = () => {
             <Container maxWidth="md" style={{ textAlign: "center" }}>
                 <Typography variant="h5">
                     Made by{" "}
-                    <span style={{ color: highlightColors.blue }}>
-                        Lukas Fischer
-                    </span>
+                    <ExternalLink href="https://twitter.com/Fischinator">
+                        <span style={{ color: highlightColors.blue }}>
+                            fischi
+                        </span>
+                    </ExternalLink>
                 </Typography>
                 <div>&nbsp;</div>
-                <Link
-                    href="https://github.com"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
+                <ExternalLink href="https://github.com/fischi1/typing-web-app">
                     <Typography>
                         <span style={{ color: highlightColors.yellow }}>
                             View on github
                         </span>
                     </Typography>
-                </Link>
+                </ExternalLink>
                 <div>&nbsp;</div>
-                <Link
-                    href="https://lukasfischer.me"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
+                <ExternalLink href="https://lukasfischer.me">
                     <Typography>
                         <span style={{ color: highlightColors.yellow }}>
                             https://lukasfischer.me
                         </span>
                     </Typography>
-                </Link>
-
+                </ExternalLink>
                 <div style={{ lineHeight: "7rem" }}>&nbsp;</div>
                 <HubButton onClick={reset}>
                     <span style={{ fontSize: "1.4rem" }}>Reset user data</span>
