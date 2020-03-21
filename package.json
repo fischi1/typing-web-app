@@ -37,7 +37,7 @@
     "build": "react-scripts build",
     "storybook": "start-storybook -p 9001 -c .storybook -s ./public",
     "build-storybook": "build-storybook -c .storybook -o .out -s ./public",
-    "deploy": "npm run build && node ./deploy.js"
+    "deploy": "npm run build && npm version patch -m \"version %s\" && node ./deploy.js"
   },
   "eslintConfig": {
     "extends": "react-app"
